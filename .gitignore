@@ -1,0 +1,28 @@
+# --- data & generated artifacts (kept out of git; live in the cache dir) ---
+cache/
+data/
+clips/
+results/
+*.mp4
+*.tgz
+*.zip
+
+# --- third-party / vendored ---
+cosmos-reason2/
+
+# --- python ---
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.ipynb_checkpoints/
+
+# --- secrets / local config ---
+.env
+*.token
+
+# --- os / editor ---
+.DS_Store
+Thumbs.db
