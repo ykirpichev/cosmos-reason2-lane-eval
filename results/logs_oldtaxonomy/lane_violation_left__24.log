@@ -1,0 +1,11 @@
+
+
+```json
+{
+  "behavior": "lane_violation_left",
+  "road_geometry": "curved",
+  "confidence": 0.95,
+  "time_of_event_sec": 7.0,
+  "description": "The ego-vehicle initiates a left turn but crosses the solid white lane line, indicating a lane violation. The curved road geometry is evident from the left-turn trajectory and lane markings."
+}
+```

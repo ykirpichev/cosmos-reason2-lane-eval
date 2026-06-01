@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.98,
+  "time_of_event_sec": 0.0,
+  "description": "The ego-vehicle initially travels in the rightmost lane and then smoothly transitions into the left lane while maintaining proper lane discipline. The lane markings are clear, and the maneuver is executed without crossing solid lines or exhibiting erratic steering. The vehicle remains centered within the target lane after the lane change, indicating controlled and compliant lane-keeping behavior."
+}

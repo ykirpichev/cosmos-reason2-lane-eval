@@ -1,0 +1,28 @@
+
+
+```json
+{
+  "road_geometry": "straight",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 0.99,
+      "description": "I am driving in the right lane, which is a carpool lane, and I am not allowed to be in this lane unless there are two or more people in my vehicle."
+    },
+    {
+      "behavior": "lane_change",
+      "time_of_event_sec": 5.0,
+      "confidence": 0.99,
+      "description": "I change lanes to the left, crossing a solid white line, which is a traffic violation."
+    },
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 7.0,
+      "confidence": 0.99,
+      "description": "I continue driving in the left lane, maintaining a constant speed and staying within my lane."
+    }
+  ],
+  "overall_behavior": "lane_change"
+}
+```

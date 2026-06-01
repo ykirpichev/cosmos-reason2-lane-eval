@@ -1,0 +1,11 @@
+
+
+```json
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 1.0,
+  "time_of_event_sec": null,
+  "description": "The ego vehicle remains consistently centered in the middle lane of a three-lane road, maintaining a safe following distance behind the black SUV ahead. The lane markings and straight roadway alignment confirm no lateral deviations or steering corrections, indicating steady lane-keeping behavior throughout the sequence."
+}
+```

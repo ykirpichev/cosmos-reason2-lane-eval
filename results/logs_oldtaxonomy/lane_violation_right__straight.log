@@ -1,0 +1,11 @@
+
+
+```json
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "curved",
+  "confidence": 0.95,
+  "time_of_event_sec": 0.0,
+  "description": "The ego-vehicle maintains its lane position while navigating a curved road within a parking lot, following directional arrows and avoiding parked vehicles."
+}
+```

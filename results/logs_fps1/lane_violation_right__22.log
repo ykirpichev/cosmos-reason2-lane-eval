@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 1.0,
+  "time_of_event_sec": 0.0,
+  "description": "The ego vehicle maintains its position in the middle lane of the highway, adhering to the lane markings (white dashed lines) without drifting or changing lanes. The road is straight, as evidenced by consistent lane alignment, clear forward visibility, and no curves or bends observed in the scene."
+}

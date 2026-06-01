@@ -1,0 +1,16 @@
+
+
+```json
+{
+  "road_geometry": "straight",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 0.9,
+      "description": "I drive straight on a two‑lane collector road with a bike lane on the right, approaching an intersection where the traffic light is green. I maintain a safe distance behind a vehicle ahead and follow it. As I reach the intersection, I make a right turn and continue driving. I see a speed‑limit‑35 sign and ensure I drive at or below the posted limit."
+    }
+  ],
+  "overall_behavior": "keep_within_lane"
+}
+```

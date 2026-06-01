@@ -1,0 +1,22 @@
+
+
+```json
+{
+  "road_geometry": "curved",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 0.9,
+      "description": "The ego vehicle initially travels in the far right lane of a three-lane highway, maintaining its position within the lane as it proceeds straight."
+    },
+    {
+      "behavior": "lane_change",
+      "time_of_event_sec": 10.6,
+      "confidence": 0.95,
+      "description": "As the rightmost lane splits into two, the ego vehicle steers right into the newly formed highway entrance lane, crossing a solid white line\u2014a traffic violation\u2014to complete the lane change."
+    }
+  ],
+  "overall_behavior": "lane_change"
+}
+```

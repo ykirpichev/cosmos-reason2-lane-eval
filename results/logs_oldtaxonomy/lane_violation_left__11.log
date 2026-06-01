@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.95,
+  "time_of_event_sec": 5.0,
+  "description": "The ego vehicle remains in the correct lane, merging left into the designated left-turn lane as intended, without violating lane markings. The road is straight until the intersection, with no unexpected curves or obstacles."
+}

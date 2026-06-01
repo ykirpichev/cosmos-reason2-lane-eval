@@ -1,0 +1,11 @@
+
+
+```json
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.98,
+  "time_of_event_sec": null,
+  "description": "The ego vehicle maintains a consistent lane position, centered within its lane, and drives straight along a clear, straight road. There are no lane changes, recoveries, or violations observed, and the road geometry remains linear throughout the sequence."
+}
+```

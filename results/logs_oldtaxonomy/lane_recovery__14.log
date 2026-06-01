@@ -1,0 +1,11 @@
+
+
+```json
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 1.0,
+  "time_of_event_sec": 4.0,
+  "description": "The ego vehicle initially travels in the left lane of a three-lane freeway, then safely merges into the right lane between 4 and 7 seconds after confirming it is clear. It continues maintaining its position in the right lane for the remainder of the sequence, demonstrating controlled lane-keeping behavior on a straight roadway."
+}
+```

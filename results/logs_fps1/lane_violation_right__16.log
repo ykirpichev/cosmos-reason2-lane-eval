@@ -1,0 +1,11 @@
+
+
+```json
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.95,
+  "time_of_event_sec": null,
+  "description": "The ego vehicle maintains a steady speed in the left lane of a straight highway with clear lane markings. There are no lane changes, recoveries, or violations observed. A semi-truck remains in the adjacent right lane throughout the clip, but the ego vehicle's position and behavior remain consistent and uneventful."
+}
+```

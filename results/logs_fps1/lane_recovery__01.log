@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_violation_right",
+  "road_geometry": "straight",
+  "confidence": 0.95,
+  "time_of_event_sec": 4.8,
+  "description": "The ego-vehicle initiates a right lane change over a solid white line, violating lane markings, while traveling on a straight, multi-lane road."
+}

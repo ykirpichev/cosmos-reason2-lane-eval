@@ -1,0 +1,16 @@
+
+
+```json
+{
+  "road_geometry": "straight",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 1.0,
+      "description": "The ego-vehicle remains in the middle lane of the three-lane road, maintaining its position without crossing any lane markings as it proceeds straight through the intersection after the light turns green."
+    }
+  ],
+  "overall_behavior": "keep_within_lane"
+}
+```

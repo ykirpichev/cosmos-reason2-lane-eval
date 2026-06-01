@@ -1,0 +1,16 @@
+
+
+```json
+{
+  "road_geometry": "straight",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 1.0,
+      "description": "The ego vehicle maintains its position within the lane, following the car ahead without making any lane changes or significant lateral movements. It adjusts its speed in response to the car in front, which slows down and eventually stops, before resuming movement. The ego vehicle remains stationary briefly and then continues to follow the car ahead, staying within the lane boundaries throughout the entire sequence."
+    }
+  ],
+  "overall_behavior": "keep_within_lane"
+}
+```

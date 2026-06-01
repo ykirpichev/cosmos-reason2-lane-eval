@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.95,
+  "time_of_event_sec": null,
+  "description": "The ego-vehicle maintains a consistent position within its lane throughout the video, with no visible drift, swerving, or steering corrections. The road is straight, bordered by vegetation and utility poles, and the vehicle proceeds steadily without interacting with other road users or objects."
+}

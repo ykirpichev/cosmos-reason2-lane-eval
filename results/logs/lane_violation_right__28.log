@@ -1,0 +1,22 @@
+
+
+```json
+{
+  "road_geometry": "curved",
+  "events": [
+    {
+      "behavior": "lane_change",
+      "time_of_event_sec": 0.0,
+      "confidence": 0.95,
+      "description": "The ego vehicle approaches a stop sign, comes to a complete stop, checks for oncoming traffic, and then makes a right turn at the intersection. During this turn, it crosses a double set of solid white lines to transition into the correct lane, indicating a deliberate lane change maneuver."
+    },
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 10.5,
+      "confidence": 0.95,
+      "description": "After completing the right turn, the ego vehicle continues driving on a road that curves slightly to the right. It remains within its lane, following the curvature of the road without crossing any lane markings."
+    }
+  ],
+  "overall_behavior": "lane_change"
+}
+```

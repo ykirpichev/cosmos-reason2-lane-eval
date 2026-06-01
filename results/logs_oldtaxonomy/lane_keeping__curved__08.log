@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.95,
+  "time_of_event_sec": 5.0,
+  "description": "The ego vehicle initially waits in the center lane of a multi-lane road at a red light. When the light turns green, it proceeds straight through the intersection and transitions into the left lane of a two-lane road, maintaining proper lane discipline without any abrupt maneuvers or deviations."
+}

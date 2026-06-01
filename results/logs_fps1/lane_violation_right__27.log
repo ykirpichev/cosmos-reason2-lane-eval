@@ -1,0 +1,11 @@
+
+
+```json
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.95,
+  "time_of_event_sec": null,
+  "description": "The ego vehicle maintains a consistent position in the leftmost lane, adhering to the double solid yellow lines on the left and dashed white lines on the right. It proceeds steadily without lane changes, drifts, or violations, indicating focused lane-keeping behavior on a straight, multi-lane road at night."
+}
+```

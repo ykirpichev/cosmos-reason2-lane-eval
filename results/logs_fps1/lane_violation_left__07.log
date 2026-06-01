@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "curved",
+  "confidence": 0.9,
+  "time_of_event_sec": 4.8,
+  "description": "The ego-vehicle maintains its position in the left lane throughout the sequence, adhering to the lane markings and pavement arrows as the road forks. It does not deviate from its lane or exhibit any recovery maneuvers, demonstrating consistent lane-keeping behavior."
+}

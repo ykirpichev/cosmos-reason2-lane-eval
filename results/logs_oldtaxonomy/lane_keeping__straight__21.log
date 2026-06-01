@@ -1,0 +1,11 @@
+
+
+```json
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.95,
+  "time_of_event_sec": null,
+  "description": "The ego-vehicle maintains a steady lane position on a straight multi-lane road at night, with clear visibility and no lane changes or violations observed."
+}
+```

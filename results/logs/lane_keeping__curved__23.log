@@ -1,0 +1,16 @@
+
+
+```json
+{
+  "road_geometry": "straight",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 1.0,
+      "description": "The ego vehicle remains in its lane, following the silver pickup truck ahead, and does not perform any lane changes or crossings throughout the entire sequence."
+    }
+  ],
+  "overall_behavior": "keep_within_lane"
+}
+```

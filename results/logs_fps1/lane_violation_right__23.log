@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.95,
+  "time_of_event_sec": null,
+  "description": "The ego vehicle maintains a steady speed and stays within its lane markings throughout the 12-second sequence. The road is straight with clear lane markings, and there are no sudden lane changes, swerving, or drifts observed. The vehicle remains centered in its lane, avoiding encroachment into adjacent lanes despite surrounding traffic."
+}

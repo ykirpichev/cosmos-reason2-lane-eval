@@ -1,0 +1,16 @@
+
+
+```json
+{
+  "road_geometry": "curved",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 1.0,
+      "description": "The ego-vehicle maintains its lane throughout the sequence, adhering to the lane markings (solid yellow line on the left and dashed/then solid white line on the right) while navigating a curve. There are no lane changes, drifting, or interactions with other vehicles, indicating consistent lane-keeping behavior."
+    }
+  ],
+  "overall_behavior": "keep_within_lane"
+}
+```

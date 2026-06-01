@@ -1,0 +1,28 @@
+
+
+```json
+{
+  "road_geometry": "straight",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 0.9,
+      "description": "From 0.0s to ~4.0s, I am driving in the right through lane of a two-lane, one-way road, maintaining my lane position and not crossing any lane lines."
+    },
+    {
+      "behavior": "lane_change",
+      "time_of_event_sec": 4.0,
+      "confidence": 0.9,
+      "description": "Around 4.0s to ~6.0s, I initiate a lane change to the right, crossing a solid white line to enter the dedicated right-turn lane, which is a traffic violation."
+    },
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 6.0,
+      "confidence": 0.9,
+      "description": "From ~6.0s until the end of the clip, I remain in the right-turn lane, stopped behind a black SUV at a red light, and do not cross any lane lines."
+    }
+  ],
+  "overall_behavior": "lane_change"
+}
+```

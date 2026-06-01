@@ -1,0 +1,11 @@
+
+
+```json
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.99,
+  "time_of_event_sec": 3.0,
+  "description": "The ego-vehicle maintains its lane position within the left lane after completing a smooth left lane change, continuing straight with consistent speed and spacing relative to surrounding traffic."
+}
+```

@@ -1,0 +1,22 @@
+
+
+```json
+{
+  "road_geometry": "straight",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 1.0,
+      "description": "The ego-vehicle remains in the center lane, maintaining a steady speed and consistent lane position while observing surrounding traffic."
+    },
+    {
+      "behavior": "lane_change",
+      "time_of_event_sec": 5.6,
+      "confidence": 1.0,
+      "description": "The ego-vehicle smoothly merges from the center lane to the left lane, completing the lane change without abrupt movements or disruptions to traffic flow."
+    }
+  ],
+  "overall_behavior": "lane_change"
+}
+```

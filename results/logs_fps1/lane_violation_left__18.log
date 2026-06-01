@@ -1,0 +1,11 @@
+
+
+```json
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 1.0,
+  "time_of_event_sec": null,
+  "description": "The ego vehicle maintains a steady speed and consistent lane position, following the truck ahead without deviating from its lane. The clear lane markings and stable camera perspective indicate a straight roadway with no curves or turns, reinforcing the lane-keeping behavior throughout the sequence."
+}
+```

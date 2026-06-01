@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "curved",
+  "confidence": 0.95,
+  "time_of_event_sec": null,
+  "description": "The ego-vehicle maintains a consistent position in the center lane throughout the video, with no sudden lane changes or drifts. The road features a slight rightward curve as it approaches an overpass, indicating a curved road geometry despite the predominantly straight appearance."
+}

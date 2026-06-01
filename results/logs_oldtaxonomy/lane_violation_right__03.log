@@ -1,0 +1,11 @@
+
+
+```json
+{
+  "behavior": "lane_violation_left",
+  "road_geometry": "straight",
+  "confidence": 0.95,
+  "time_of_event_sec": 4.0,
+  "description": "The ego vehicle initially travels in the right lane of a two-lane road. As it approaches an intersection, it begins to drift left, crosses the solid white lane marking into the left lane, and continues driving in that lane, constituting a lane violation."
+}
+```

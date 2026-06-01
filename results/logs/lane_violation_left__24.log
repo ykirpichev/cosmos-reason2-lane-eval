@@ -1,0 +1,16 @@
+
+
+```json
+{
+  "road_geometry": "curved",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 0.99,
+      "description": "The ego vehicle remains in the leftmost lane of a three-lane road, which is a left-turn-only lane, and follows the white car ahead while maintaining a safe distance. After the light turns green, it executes a left turn through the intersection, staying within the lane and to the right of the yellow line, continuing along the leftmost lane of the three-lane road."
+    }
+  ],
+  "overall_behavior": "keep_within_lane"
+}
+```

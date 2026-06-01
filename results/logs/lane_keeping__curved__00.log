@@ -1,0 +1,16 @@
+
+
+```json
+{
+  "road_geometry": "straight",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 0.96,
+      "description": "I am driving on a collector road with two lanes in each direction. I am driving behind a black car, which is driving in front of me. The black car is driving straight. I am driving straight behind it. I cross an intersection with a green light. I keep driving behind the black car. There is a pedestrian crosswalk, but I do not stop for it. There are no other road users around."
+    }
+  ],
+  "overall_behavior": "keep_within_lane"
+}
+```

@@ -1,0 +1,22 @@
+
+
+```json
+{
+  "road_geometry": "straight",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 1.0,
+      "description": "The ego vehicle maintains its position in the center lane, driving straight while keeping a safe following distance from the vehicle ahead. The lane markings are clear and the road appears straight, with no immediate need for lane changes or adjustments."
+    },
+    {
+      "behavior": "lane_change",
+      "time_of_event_sec": 8.0,
+      "confidence": 1.0,
+      "description": "The ego vehicle initiates a gradual lane change to the right, crossing the dashed white line to merge into the adjacent right lane. The maneuver is smooth and controlled, with the ego vehicle aligning properly within the new lane while continuing to follow traffic flow."
+    }
+  ],
+  "overall_behavior": "lane_change"
+}
+```

@@ -1,0 +1,11 @@
+
+
+```json
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 1.0,
+  "time_of_event_sec": 0.0,
+  "description": "The ego-vehicle completes a right turn into a clear lane and proceeds straight, maintaining consistent lane position and speed without deviations or violations."
+}
+```

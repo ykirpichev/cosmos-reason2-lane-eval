@@ -1,0 +1,11 @@
+
+
+```json
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.98,
+  "time_of_event_sec": null,
+  "description": "The ego-vehicle maintains a steady speed and stays centered in its lane throughout the video, with no visible lane changes, recoveries, or violations. The road is straight, and the faded lane markings do not disrupt its consistent lane-keeping behavior."
+}
+```

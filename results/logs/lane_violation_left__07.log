@@ -1,0 +1,22 @@
+
+
+```json
+{
+  "road_geometry": "straight",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 1.0,
+      "description": "I am driving straight on a two‑lane highway, keeping within my lane."
+    },
+    {
+      "behavior": "lane_change",
+      "time_of_event_sec": 3.6,
+      "confidence": 1.0,
+      "description": "I turn left onto a new road, changing lanes to make the turn."
+    }
+  ],
+  "overall_behavior": "lane_change"
+}
+```

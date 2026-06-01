@@ -1,0 +1,28 @@
+
+
+```json
+{
+  "road_geometry": "curved",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 0.9,
+      "description": "The ego vehicle drives straight on a single‑lane, one‑way road, maintaining its lane position without any deviation."
+    },
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 7.1,
+      "confidence": 0.9,
+      "description": "As the ego vehicle approaches the left‑turn lane, it begins to slow down while still keeping within its lane, preparing for the turn."
+    },
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 8.6,
+      "confidence": 0.9,
+      "description": "The ego vehicle executes the left turn smoothly, maintaining control and staying within the designated turn lane throughout the maneuver."
+    }
+  ],
+  "overall_behavior": "keep_within_lane"
+}
+```

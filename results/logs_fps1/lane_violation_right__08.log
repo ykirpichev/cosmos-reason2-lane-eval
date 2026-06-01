@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.95,
+  "time_of_event_sec": 0.0,
+  "description": "The ego vehicle maintains a steady position within its lane, following a vehicle ahead that is signaling a right turn. The lane markings are clearly visible, and the ego vehicle does not deviate from its lane, indicating consistent lane-keeping behavior. The road appears straight, with no significant curves or turns observed in the video."
+}

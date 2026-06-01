@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_violation_left",
+  "road_geometry": "curved",
+  "confidence": 0.9,
+  "time_of_event_sec": 8.5,
+  "description": "The ego-vehicle drifts slightly to the right while executing a left turn in the outer left turning lane, crossing the lane boundary and violating proper lane discipline despite following the SUV ahead. The curved nature of the turn exacerbates the lateral deviation."
+}

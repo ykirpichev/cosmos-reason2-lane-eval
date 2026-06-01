@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.98,
+  "time_of_event_sec": 0.0,
+  "description": "The ego vehicle remains centered in the left-turn-only lane, following the vehicle ahead while maintaining a steady speed and lane position. There are no signs of lane drifting, recovery maneuvers, or violations, as the vehicle stays within the designated lane boundaries throughout the observed period. The road is straight with clear lane markings, and the ego vehicle adheres to the lane discipline without deviation."
+}

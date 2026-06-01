@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 1.0,
+  "time_of_event_sec": 0.0,
+  "description": "The ego vehicle maintains its position in the center lane of a three-lane road, follows the lead vehicle at a safe distance, and proceeds straight through the intersection after the light turns green, demonstrating consistent lane-keeping behavior on a straight roadway."
+}

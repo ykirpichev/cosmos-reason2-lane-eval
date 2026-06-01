@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.95,
+  "time_of_event_sec": null,
+  "description": "The ego vehicle maintains a consistent position within its lane, following the road markings without deviation. The road is straight, and there are no indications of lane changes, recoveries, or violations. The steady speed and clear lane boundaries suggest stable, compliant driving behavior."
+}

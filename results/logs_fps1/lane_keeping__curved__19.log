@@ -1,0 +1,11 @@
+
+
+```json
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.98,
+  "time_of_event_sec": null,
+  "description": "The ego vehicle remains centered in its lane and proceeds straight through the intersection after the light turns green, maintaining consistent lane discipline without lateral deviations or interactions with other vehicles."
+}
+```

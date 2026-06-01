@@ -1,0 +1,16 @@
+
+
+```json
+{
+  "road_geometry": "straight",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 0.8,
+      "description": "I drive straight on a 3-lane freeway, and I start to shift to the right lane. There are no other vehicles in my lane, and there is a trailer truck on my right side. I am driving at a higher speed than the trailer truck."
+    }
+  ],
+  "overall_behavior": "keep_within_lane"
+}
+```

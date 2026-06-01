@@ -1,0 +1,16 @@
+
+
+```json
+{
+  "road_geometry": "straight",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 1.0,
+      "description": "The ego vehicle remains in the same lane throughout the video, maintaining a safe distance behind the white car. There are no lane changes or lane wanderings observed. The ego vehicle follows the white car's movements, slowing down and coming to a stop when the white car does so."
+    }
+  ],
+  "overall_behavior": "keep_within_lane"
+}
+```

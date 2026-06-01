@@ -1,0 +1,11 @@
+
+
+```json
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.95,
+  "time_of_event_sec": 0.0,
+  "description": "The ego vehicle maintains its position within the left lane, adhering to the lane markings and solid yellow line without crossing into adjacent lanes or exhibiting any signs of lane recovery or violation. The road remains straight throughout the observed period."
+}
+```

@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 1.0,
+  "time_of_event_sec": 0.0,
+  "description": "The ego-vehicle maintains a steady position in the center lane of a straight highway, with no visible steering adjustments or lane changes. The road markings remain consistent, and the vehicle's trajectory aligns with the lane throughout the sequence."
+}

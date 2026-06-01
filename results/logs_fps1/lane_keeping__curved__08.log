@@ -1,0 +1,11 @@
+
+
+```json
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 1.0,
+  "time_of_event_sec": 0.0,
+  "description": "The ego vehicle maintains a steady position in the center lane of a three-lane road, adhering to lane markings without drifting or changing lanes. The road is straight, and the vehicle proceeds forward as the traffic light turns green, keeping consistent lateral control."
+}
+```

@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "curved",
+  "confidence": 0.95,
+  "time_of_event_sec": 2.0,
+  "description": "The ego-vehicle executes a left turn at an intersection while adhering to lane markings, maintaining proper lane discipline. After completing the turn, it continues driving straight in the right lane of a two-lane road, with no observed lane deviations or violations."
+}

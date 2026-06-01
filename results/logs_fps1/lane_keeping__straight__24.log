@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.95,
+  "time_of_event_sec": 0.0,
+  "description": "The ego vehicle maintains a steady position centered within its lane throughout the entire 12-second sequence, with no indication of lane drifting, recovery maneuvers, or intentional lane violations. The road remains straight, and the vehicle's consistent lane-keeping behavior aligns with the visible lane markings and stable driving conditions."
+}

@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "curved",
+  "confidence": 0.98,
+  "time_of_event_sec": 8.5,
+  "description": "The ego vehicle maintains its lane while navigating a left curve after crossing the intersection, following the road's curvature without deviating from its lane."
+}

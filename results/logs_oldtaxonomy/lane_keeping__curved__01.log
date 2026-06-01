@@ -1,0 +1,11 @@
+
+
+```json
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 1.0,
+  "time_of_event_sec": null,
+  "description": "The ego-vehicle maintains a steady position within the right lane of a two-lane road, adhering to lane markings and stopping at the white line at the intersection while monitoring surrounding traffic. No lane changes, recoveries, or violations occur throughout the sequence."
+}
+```

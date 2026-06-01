@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.95,
+  "time_of_event_sec": null,
+  "description": "The ego vehicle remains centered in the middle lane of the three-lane highway, maintaining consistent lateral positioning relative to lane markings. There are no visible lane deviations, crossings, or abrupt steering adjustments. The road is straight, and the vehicle proceeds steadily without interacting with surrounding traffic in a way that would necessitate lane changes or recoveries."
+}

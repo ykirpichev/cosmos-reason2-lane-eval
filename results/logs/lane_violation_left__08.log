@@ -1,0 +1,22 @@
+
+
+```json
+{
+  "road_geometry": "straight",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 0.95,
+      "description": "I am driving straight on a two-lane road in each direction, following a vehicle ahead of me in the same lane, maintaining a safe distance and speed."
+    },
+    {
+      "behavior": "lane_change",
+      "time_of_event_sec": 9.1,
+      "confidence": 0.95,
+      "description": "I initiate a lane change to the right, crossing the lane line and moving into the adjacent lane, completing the maneuver smoothly."
+    }
+  ],
+  "overall_behavior": "lane_change"
+}
+```

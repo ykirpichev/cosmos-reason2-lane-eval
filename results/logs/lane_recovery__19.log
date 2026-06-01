@@ -1,0 +1,16 @@
+
+
+```json
+{
+  "road_geometry": "straight",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 1.0,
+      "description": "The ego vehicle remains in the middle lane of a three‑lane highway, maintaining a steady speed and a safe following distance behind a white truck. A black car in the right lane and a white SUV in the left lane pass by, but the ego vehicle does not change lanes or deviate from its path."
+    }
+  ],
+  "overall_behavior": "keep_within_lane"
+}
+```

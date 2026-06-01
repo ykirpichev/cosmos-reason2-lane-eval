@@ -1,0 +1,22 @@
+
+
+```json
+{
+  "road_geometry": "straight",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 0.98,
+      "description": "The ego vehicle remains within its lane, following a white pickup truck while maintaining a safe distance and steady speed."
+    },
+    {
+      "behavior": "lane_change",
+      "time_of_event_sec": 10.0,
+      "confidence": 0.95,
+      "description": "The ego vehicle initiates a lane change to the right, crossing the dashed white line and smoothly transitioning into the adjacent lane while continuing forward."
+    }
+  ],
+  "overall_behavior": "lane_change"
+}
+```

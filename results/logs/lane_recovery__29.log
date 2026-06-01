@@ -1,0 +1,16 @@
+
+
+```json
+{
+  "road_geometry": "curved",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 0.99,
+      "description": "I am performing a U‑turn at night on a two‑lane road, and the road is curved. I am in the left lane. I can see the lane markings, and the road curves to the left. I am following the curve of the road and staying within my lane. There are no other vehicles or obstacles in my lane. I am maintaining a safe speed and distance from the lane markings. The road is well‑lit, and I can see the lane markings clearly. I am not changing lanes or making any lane changes. I am not lane‑wandering. I am keeping within my lane."
+    }
+  ],
+  "overall_behavior": "keep_within_lane"
+}
+```

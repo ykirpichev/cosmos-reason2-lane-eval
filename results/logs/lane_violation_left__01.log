@@ -1,0 +1,22 @@
+
+
+```json
+{
+  "road_geometry": "straight",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 1.0,
+      "description": "The ego vehicle maintains its lane position, staying within the lane boundaries marked by solid and dashed white lines, indicating steady and controlled driving on a straight highway segment."
+    },
+    {
+      "behavior": "lane_change",
+      "time_of_event_sec": 10.1,
+      "confidence": 1.0,
+      "description": "The ego vehicle crosses a solid white line to merge into an adjacent lane, executing a smooth and deliberate lane change while maintaining speed and control, suggesting awareness of lane markings and surrounding traffic conditions."
+    }
+  ],
+  "overall_behavior": "lane_change"
+}
+```

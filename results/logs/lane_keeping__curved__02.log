@@ -1,0 +1,16 @@
+
+
+```json
+{
+  "road_geometry": "straight",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 1.0,
+      "description": "The ego vehicle remains in the right lane throughout the video, maintaining a steady speed and staying within its lane boundaries. There are no lane changes, lane wanderings, or interactions with other vehicles that would alter its lane position."
+    }
+  ],
+  "overall_behavior": "keep_within_lane"
+}
+```

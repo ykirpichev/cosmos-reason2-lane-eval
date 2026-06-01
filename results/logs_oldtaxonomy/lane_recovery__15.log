@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.98,
+  "time_of_event_sec": 5.0,
+  "description": "The ego vehicle maintains its lane position in the left lane after merging, with no abrupt steering corrections or deviations from the lane markings. The road remains straight, and the vehicle continues steadily within its lane."
+}

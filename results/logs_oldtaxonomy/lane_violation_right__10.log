@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "curved",
+  "confidence": 0.95,
+  "time_of_event_sec": 6.0,
+  "description": "The ego-vehicle drifts slightly to the right side of its lane during the right turn but remains within the lane boundaries afterward, maintaining its position on the right side of the lane without crossing into adjacent lanes or violating lane markings."
+}

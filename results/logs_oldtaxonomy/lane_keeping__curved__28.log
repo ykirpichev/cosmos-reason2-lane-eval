@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.95,
+  "time_of_event_sec": null,
+  "description": "The ego-vehicle remains in the center lane throughout the clip, maintaining a consistent position relative to lane markings. It proceeds straight through the intersection after the light turns green, with no lateral deviations or lane changes observed. The road segment is linear, with no curves or turns evident in the footage."
+}

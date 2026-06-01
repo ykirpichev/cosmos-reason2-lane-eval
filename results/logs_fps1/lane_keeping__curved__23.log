@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.98,
+  "time_of_event_sec": 0.0,
+  "description": "The ego vehicle remains centered in the middle lane, maintaining a safe following distance behind the white truck while steering straight through the green-light intersection. There are no lane deviations, recoveries, or lateral adjustments observed, and the road geometry is consistently straight."
+}

@@ -1,0 +1,16 @@
+
+
+```json
+{
+  "road_geometry": "curved",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 0.99,
+      "description": "I drive straight through the intersection and continue on a single‑lane, two‑way road while keeping a safe distance from the stopped vehicles in the opposite lane."
+    }
+  ],
+  "overall_behavior": "keep_within_lane"
+}
+```

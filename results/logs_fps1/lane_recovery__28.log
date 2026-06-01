@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "curved",
+  "confidence": 0.95,
+  "time_of_event_sec": 2.8,
+  "description": "The ego-vehicle maintains its lane position while executing a left turn, following the visible lane markings and adjusting steering to align with the curve of the intersection. No lane deviations or recoveries are observed."
+}

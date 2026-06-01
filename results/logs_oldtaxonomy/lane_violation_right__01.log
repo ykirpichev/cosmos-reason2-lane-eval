@@ -1,0 +1,11 @@
+
+
+```json
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 1.0,
+  "time_of_event_sec": 6.5,
+  "description": "The ego vehicle maintains its lane throughout the sequence, initially driving straight in the right lane, then executing a controlled right turn into the adjacent road while staying within the designated lane. After the turn, it continues straight in the new lane without any lane changes or violations. The road geometry after the turn is straight with clear lane markings."
+}
+```

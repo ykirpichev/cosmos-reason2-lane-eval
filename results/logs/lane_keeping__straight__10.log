@@ -1,0 +1,16 @@
+
+
+```json
+{
+  "road_geometry": "straight",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 0.99,
+      "description": "I am driving straight on a two‑lane road, with the left lane designated for left turns and the right lane for right turns. I stay within my lane and approach an intersection where a vehicle ahead of me stops at a red light. I also come to a stop behind this vehicle, maintaining a safe distance. Throughout the sequence, I remain in my lane without any lane changes or crossings."
+    }
+  ],
+  "overall_behavior": "keep_within_lane"
+}
+```

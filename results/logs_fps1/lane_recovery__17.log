@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.95,
+  "time_of_event_sec": null,
+  "description": "The ego-vehicle maintains a consistent position within its lane, following the dashed white lane markings without crossing into adjacent lanes or the solid white right-edge line. The road is straight, with no visible curves or turns, and the ego-vehicle's steady forward motion aligns with the linear trajectory of the highway."
+}

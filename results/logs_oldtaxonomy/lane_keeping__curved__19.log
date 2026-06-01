@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.95,
+  "time_of_event_sec": 0.0,
+  "description": "The ego vehicle remains in the center lane throughout the sequence, maintaining a steady course without lane changes or violations. The road is straight, with no curves or turns observed."
+}

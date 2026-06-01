@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 1.0,
+  "time_of_event_sec": null,
+  "description": "The ego vehicle consistently maintains its position within the third lane of the four-lane road, adhering to the white lane markings. It approaches and stops at the red traffic light behind the white line without crossing into adjacent lanes or exhibiting any drifting. The road remains straight throughout the sequence, with no curves or lane changes observed."
+}

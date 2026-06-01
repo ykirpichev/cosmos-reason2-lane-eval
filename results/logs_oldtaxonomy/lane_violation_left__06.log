@@ -1,0 +1,11 @@
+
+
+```json
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.95,
+  "time_of_event_sec": null,
+  "description": "The ego vehicle maintains a steady position in the left lane of a two-lane road, following the vehicle ahead at a safe distance. The road is straight, with clear lane markings and no visible curves or intersections. No lane changes, recoveries, or violations occur throughout the video."
+}
+```

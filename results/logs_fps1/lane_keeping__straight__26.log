@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.95,
+  "time_of_event_sec": null,
+  "description": "The ego vehicle maintains a steady position within its lane, following the white van ahead without deviating from the lane markings. The road is straight, with multiple lanes and consistent traffic flow under a green light, indicating no need for lane changes or corrections."
+}

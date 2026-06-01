@@ -1,0 +1,16 @@
+
+
+```json
+{
+  "road_geometry": "straight",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 1.0,
+      "description": "The ego vehicle maintains a steady position within the leftmost lane of a three-lane highway, adhering to the solid yellow line on its left and dashed white lane markings. No lane changes, drifting, or interactions with other vehicles occur throughout the entire clip, indicating consistent lane-keeping behavior."
+    }
+  ],
+  "overall_behavior": "keep_within_lane"
+}
+```

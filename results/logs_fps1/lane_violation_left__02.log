@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 1.0,
+  "time_of_event_sec": null,
+  "description": "The ego vehicle maintains its position within the left lane, adhering to the lane markings (solid white line on the right, dashed white line on the left) without crossing into adjacent lanes. The road geometry is straight as the vehicle approaches and navigates the intersection along a linear path, despite executing a left turn at the junction."
+}

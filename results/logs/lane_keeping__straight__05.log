@@ -1,0 +1,16 @@
+
+
+```json
+{
+  "road_geometry": "straight",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 0.99,
+      "description": "I am driving in the leftmost lane of a four‑lane road in the same direction. Traffic is moderate, and I maintain a safe distance from the vehicles around me. I see a directional sign for \u201cSOUTH\u201d and \u201cInterstate\u201595\u201d to my right, along with a green exit sign further ahead. A white sedan merges into my lane from the right, so I slow down to keep a safe following distance. I approach a red traffic light and prepare to stop."
+    }
+  ],
+  "overall_behavior": "keep_within_lane"
+}
+```

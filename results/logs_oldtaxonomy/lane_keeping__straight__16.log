@@ -1,0 +1,11 @@
+
+
+```json
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.95,
+  "time_of_event_sec": null,
+  "description": "The ego vehicle maintains a steady position within its lane on a straight, two-lane road, adhering to lane markings without deviation. The consistent forward motion, clear lane boundaries, and lack of abrupt maneuvers indicate stable lane-keeping behavior throughout the video."
+}
+```

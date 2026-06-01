@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_violation_left",
+  "road_geometry": "curved",
+  "confidence": 0.95,
+  "time_of_event_sec": 0.0,
+  "description": "The ego vehicle completes a left turn and merges into the second lane of a two-lane street, indicating a deliberate lane change during the maneuver. The curved road geometry of the left turn and the intentional lane shift suggest a lane violation (left) as the vehicle transitions into the adjacent lane post-turn."
+}

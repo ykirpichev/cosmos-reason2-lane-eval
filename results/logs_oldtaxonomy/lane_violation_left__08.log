@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.95,
+  "time_of_event_sec": 8.5,
+  "description": "The ego-vehicle maintains its lane position throughout most of the sequence, initially in the left lane and later in the right lane after a permitted lane change over dashed white lines. The lane change is executed safely and does not constitute a violation, as it occurs between dashed lane markings. The road remains straight with no curves indicated."
+}

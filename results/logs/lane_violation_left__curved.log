@@ -1,0 +1,11 @@
+
+
+```json
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 1.0,
+  "time_of_event_sec": null,
+  "description": "After completing the left turn, the ego vehicle continues driving straight on a two-lane street, maintaining a steady pace and consistent lane position without deviations or lane changes."
+}
+```

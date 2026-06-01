@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.98,
+  "time_of_event_sec": 0.0,
+  "description": "The ego-vehicle consistently maintains its position within the second lane, adhering to the white dashed lane markings without any lateral deviations or lane changes throughout the entire 12-second sequence. The steady following distance and stable trajectory indicate controlled lane-keeping behavior on a straight roadway."
+}

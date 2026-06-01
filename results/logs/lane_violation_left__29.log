@@ -1,0 +1,16 @@
+
+
+```json
+{
+  "road_geometry": "curved",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 0.8,
+      "description": "I am driving on a single‑lane, bidirectional road at night. Visibility is reduced, but my headlights provide enough illumination for safe driving. I see a speed bump sign, which alerts me to slow down and drive carefully. I notice several vehicles parked along the side of the road, so I stay alert and keep a safe distance from them. As I approach a turn, I cautiously make the left turn and continue driving ahead."
+    }
+  ],
+  "overall_behavior": "keep_within_lane"
+}
+```

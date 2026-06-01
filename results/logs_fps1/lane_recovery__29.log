@@ -1,0 +1,11 @@
+
+
+```json
+{
+  "behavior": "lane_violation_left",
+  "road_geometry": "curved",
+  "confidence": 0.95,
+  "time_of_event_sec": 10.0,
+  "description": "The ego-vehicle starts on the right side of the road, gradually shifts left, and crosses into the adjacent lane while navigating a gentle right curve. This leftward drift and lane crossing constitutes a lane violation, despite the road's curvature."
+}
+```

@@ -1,0 +1,11 @@
+
+
+```json
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.95,
+  "time_of_event_sec": 0.0,
+  "description": "The ego-vehicle maintains a steady position within the center lane, following the white sedan ahead while staying between the lane markings. There are no lateral deviations, lane changes, or violations observed; the vehicle adheres to the straight lane path as traffic progresses through the intersection."
+}
+```

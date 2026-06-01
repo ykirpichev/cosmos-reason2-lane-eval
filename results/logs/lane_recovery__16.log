@@ -1,0 +1,22 @@
+
+
+```json
+{
+  "road_geometry": "straight",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 1.0,
+      "description": "The ego vehicle maintains its position in the right lane, keeping a safe distance from surrounding vehicles while driving straight."
+    },
+    {
+      "behavior": "lane_change",
+      "time_of_event_sec": 7.5,
+      "confidence": 1.0,
+      "description": "The ego vehicle smoothly merges into the left lane, ensuring no abrupt movements and maintaining awareness of nearby vehicles."
+    }
+  ],
+  "overall_behavior": "lane_change"
+}
+```

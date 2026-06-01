@@ -1,0 +1,22 @@
+
+
+```json
+{
+  "road_geometry": "straight",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 0.99,
+      "description": "The ego vehicle maintains its position within the lane, following the truck ahead without crossing any lane lines."
+    },
+    {
+      "behavior": "lane_change",
+      "time_of_event_sec": 11.6,
+      "confidence": 0.99,
+      "description": "The ego vehicle initiates a lane change, crossing the lane line to move into the adjacent lane while maintaining control and alignment with the new lane."
+    }
+  ],
+  "overall_behavior": "lane_change"
+}
+```

@@ -1,0 +1,22 @@
+
+
+```json
+{
+  "road_geometry": "straight",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 0.0,
+      "description": "I drive straight on a four‑lane highway, keeping a safe distance from surrounding vehicles."
+    },
+    {
+      "behavior": "lane_change",
+      "time_of_event_sec": 11.6,
+      "confidence": 0.0,
+      "description": "I check my right side, ensure it is clear, and merge into the right adjacent lane while maintaining a steady speed."
+    }
+  ],
+  "overall_behavior": "lane_change"
+}
+```

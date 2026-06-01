@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "curved",
+  "confidence": 0.95,
+  "time_of_event_sec": 0.0,
+  "description": "The ego vehicle remains in the leftmost lane designated for left turns, follows the lead vehicle through the intersection, and smoothly navigates the slight left curve post-turn while maintaining lane discipline. No lane deviations or violations are observed."
+}

@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 1.0,
+  "time_of_event_sec": null,
+  "description": "The ego-vehicle remains centered in its lane, maintaining a safe following distance behind the white car as the traffic light turns green. There are no lane changes, swerves, or deviations from the lane markings, indicating consistent lane-keeping behavior on a straight multi-lane urban road."
+}

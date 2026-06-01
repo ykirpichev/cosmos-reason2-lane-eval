@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.95,
+  "time_of_event_sec": null,
+  "description": "The ego vehicle maintains its position within the lane, following the vehicle ahead on a straight road with clear lane markings. No lane changes or corrections are observed, indicating consistent lane-keeping behavior."
+}

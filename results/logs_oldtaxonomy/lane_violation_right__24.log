@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.95,
+  "time_of_event_sec": 0.0,
+  "description": "The ego vehicle remains consistently in the rightmost lane throughout the video, maintaining a steady speed and trajectory without any lane changes, turns, or deviations from its lane. The solid white line on the right side of the road reinforces the boundary, and no other vehicles or obstacles prompt a change in behavior. The road geometry is straight, as indicated by the consistent lane alignment and lack of curves."
+}

@@ -1,0 +1,11 @@
+
+
+```json
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.9,
+  "time_of_event_sec": null,
+  "description": "The ego-vehicle maintains a steady forward motion on a straight, two-lane road at night, with no visible lane changes, swerving, or interactions with other road users. Lane markings are faint but suggest consistent lane positioning, and the road geometry remains linear throughout the sequence."
+}
+```

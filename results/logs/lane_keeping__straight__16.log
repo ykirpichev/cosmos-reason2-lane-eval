@@ -1,0 +1,16 @@
+
+
+```json
+{
+  "road_geometry": "straight",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 1.0,
+      "description": "The ego vehicle maintains a steady speed and remains in the right lane throughout the 12-second clip, adhering to the double yellow line and showing no lane changes or wanderings."
+    }
+  ],
+  "overall_behavior": "keep_within_lane"
+}
+```

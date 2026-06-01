@@ -1,0 +1,11 @@
+
+
+```json
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.95,
+  "time_of_event_sec": null,
+  "description": "The ego vehicle maintains a steady lane position within its lane, following the car ahead without drifting or abrupt steering changes. The road is a straight, multi-lane highway with clear lane markings and no visible curves or turns."
+}
+```

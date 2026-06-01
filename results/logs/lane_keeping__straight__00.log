@@ -1,0 +1,16 @@
+
+
+```json
+{
+  "road_geometry": "straight",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 0.99,
+      "description": "I am driving forward while staying within my lane and following the car ahead."
+    }
+  ],
+  "overall_behavior": "keep_within_lane"
+}
+```

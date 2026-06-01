@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 1.0,
+  "time_of_event_sec": null,
+  "description": "The ego vehicle maintains a steady position within its lane throughout the video, showing no signs of lane drifting, sudden steering adjustments, or lane changes. The road is a straight multi-lane highway with clear lane markings, and the vehicle\u2019s trajectory remains centered and consistent relative to adjacent vehicles and lane boundaries."
+}

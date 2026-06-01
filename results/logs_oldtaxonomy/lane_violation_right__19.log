@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 1.0,
+  "time_of_event_sec": null,
+  "description": "The ego vehicle maintains a steady position within its lane, centered between the solid yellow and dashed white lines, with no lateral deviations or steering adjustments observed. The road remains straight throughout the sequence, and the vehicle adheres to lane markings while approaching and navigating the intersection."
+}

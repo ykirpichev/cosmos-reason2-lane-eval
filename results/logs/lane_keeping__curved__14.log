@@ -1,0 +1,16 @@
+
+
+```json
+{
+  "road_geometry": "straight",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 0.99,
+      "description": "I am driving straight on a three‑lane road in the middle lane, following a black SUV that is stopped at a red light. I come to a stop behind it while staying within my lane, maintaining a safe distance from the vehicle in front and the vehicles in the adjacent lanes. I remain vigilant, monitoring my surroundings for any sudden movements or changes in traffic conditions."
+    }
+  ],
+  "overall_behavior": "keep_within_lane"
+}
+```

@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "curved",
+  "confidence": 0.95,
+  "time_of_event_sec": null,
+  "description": "The ego-vehicle maintains proper lane discipline by signaling and merging into the right lane as the road forks, then follows the curved roadway while staying centered within the lane markings. No lane violations or recovery maneuvers are observed."
+}

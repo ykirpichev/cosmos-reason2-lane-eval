@@ -1,0 +1,16 @@
+
+
+```json
+{
+  "road_geometry": "straight",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 1.0,
+      "description": "I am driving straight on a three‑lane road in my lane, with a solid white line on either side, and I am following a vehicle ahead of me. The traffic is heavy, so I am driving cautiously. The vehicle in front of me is moving slowly, and I am maintaining a safe distance. I continue to drive straight in my lane."
+    }
+  ],
+  "overall_behavior": "keep_within_lane"
+}
+```

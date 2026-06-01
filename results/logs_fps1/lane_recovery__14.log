@@ -1,0 +1,11 @@
+
+
+```json
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.95,
+  "time_of_event_sec": null,
+  "description": "The ego vehicle maintains a steady position within its lane, following the white dashed lane markings without deviation. The road is straight, with no curves or turns indicated, and the consistent lane markings and stable camera perspective suggest no need for lane changes or recovery maneuvers."
+}
+```

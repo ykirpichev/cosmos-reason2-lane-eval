@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.99,
+  "time_of_event_sec": 0.0,
+  "description": "The ego vehicle remains in the left turn-only lane, maintaining proper lane position while slowing and stopping behind the lead vehicle at the red light. The road ahead is straight, and no lane changes or violations occur."
+}

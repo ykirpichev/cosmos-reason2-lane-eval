@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.98,
+  "time_of_event_sec": null,
+  "description": "The ego vehicle maintains a steady course in its lane throughout the 12-second clip, staying centered between lane markings without any lane changes or violations. The road is predominantly straight, with only a slight left curve in the highway segment, but the ego vehicle continues straight without deviating from its lane."
+}

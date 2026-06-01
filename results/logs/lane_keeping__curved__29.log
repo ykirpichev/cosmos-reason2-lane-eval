@@ -1,0 +1,16 @@
+
+
+```json
+{
+  "road_geometry": "straight",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 1.0,
+      "description": "The ego-vehicle maintains a steady pace and stays within its lane throughout the video, adhering to the single-lane road layout. There are no lane changes, crossings, or deviations observed, even as another vehicle approaches from the opposite direction. The consistent lane-keeping behavior is reinforced by the absence of any abrupt maneuvers or interactions with lane markings."
+    }
+  ],
+  "overall_behavior": "keep_within_lane"
+}
+```

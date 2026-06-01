@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.99,
+  "time_of_event_sec": 0.0,
+  "description": "The ego vehicle maintains a steady speed and safe following distance behind the white van while staying centered in the center lane of the four-lane highway. There are no lateral movements, lane changes, or deviations from the lane, indicating consistent lane-keeping behavior on a straight road segment."
+}

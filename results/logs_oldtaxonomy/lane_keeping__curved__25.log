@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.95,
+  "time_of_event_sec": null,
+  "description": "The ego vehicle maintains a steady forward trajectory within its lane, following the straight path of the parking garage aisle toward the exit. It completes an initial right turn into the lane but then proceeds straight, consistently staying centered between parked vehicles and lane markings without deviation or recovery maneuvers."
+}

@@ -1,0 +1,16 @@
+
+
+```json
+{
+  "road_geometry": "straight",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 0.99,
+      "description": "I am driving in the right lane of a collector road, approaching a signalized intersection. I maintain my lane position and stop behind a vehicle at the red light, waiting for it to turn green while staying within my lane."
+    }
+  ],
+  "overall_behavior": "keep_within_lane"
+}
+```

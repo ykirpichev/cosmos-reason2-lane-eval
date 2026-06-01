@@ -1,0 +1,11 @@
+
+
+```json
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.95,
+  "time_of_event_sec": null,
+  "description": "The ego-vehicle maintains a consistent position in the right lane, adhering to the solid white lane markings, with no indication of lane changes, recovery maneuvers, or violations. The road remains straight throughout the sequence, as evidenced by the steady forward motion and lack of curvature in the lane markings or surrounding environment."
+}
+```

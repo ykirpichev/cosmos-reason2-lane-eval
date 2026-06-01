@@ -1,0 +1,11 @@
+
+
+```json
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 1.0,
+  "time_of_event_sec": null,
+  "description": "The ego-vehicle maintains a consistent position in the left lane of a straight, three-lane road, following the vehicle ahead at a safe distance. There are no lane changes, recoveries, or violations observed throughout the drive."
+}
+```

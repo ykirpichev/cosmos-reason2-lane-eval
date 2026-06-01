@@ -1,0 +1,22 @@
+
+
+```json
+{
+  "road_geometry": "straight",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 1.0,
+      "description": "The ego vehicle drives straight in the right lane, maintaining a steady pace and staying within its lane boundaries from 0s to 8s."
+    },
+    {
+      "behavior": "lane_change",
+      "time_of_event_sec": 8.0,
+      "confidence": 1.0,
+      "description": "Between 8s and 12s, the ego vehicle deliberately crosses solid lane lines to merge into a new lane on the right, completing the lane change while maintaining control and caution."
+    }
+  ],
+  "overall_behavior": "lane_change"
+}
+```

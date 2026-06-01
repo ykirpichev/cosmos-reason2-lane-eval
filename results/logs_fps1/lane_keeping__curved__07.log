@@ -1,0 +1,11 @@
+
+
+```json
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.95,
+  "time_of_event_sec": 0.0,
+  "description": "The ego-vehicle remains centered in the right lane of a two-lane road, maintaining a consistent following distance behind the black pickup truck while proceeding straight through the green traffic light. No lateral deviations, steering adjustments, or lane violations are observed throughout the sequence."
+}
+```

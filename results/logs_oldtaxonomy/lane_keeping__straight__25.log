@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 1.0,
+  "time_of_event_sec": null,
+  "description": "The ego vehicle maintains a steady pace and stays centered in the middle lane of a three-lane road with dashed white lane markings, adhering to lane discipline without crossing into adjacent lanes. The road is straight, and no lane changes, recoveries, or violations are observed throughout the scenario."
+}

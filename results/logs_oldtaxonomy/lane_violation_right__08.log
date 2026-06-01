@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "curved",
+  "confidence": 0.9,
+  "time_of_event_sec": 0.0,
+  "description": "The ego-vehicle maintains its lane position while following the curve of the road, adhering to the lane markings without drifting or requiring recovery. The visible lane markings and the vehicle's steady steering adjustments indicate controlled navigation through the right curve."
+}

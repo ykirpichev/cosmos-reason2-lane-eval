@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 1.0,
+  "time_of_event_sec": 0.0,
+  "description": "The ego vehicle starts in the center lane and smoothly transitions to the left lane while maintaining a steady speed and proper lane positioning. The road remains straight, with clear lane markings and no deviations or obstacles affecting the vehicle's path."
+}

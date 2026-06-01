@@ -1,0 +1,28 @@
+
+
+```json
+{
+  "road_geometry": "curved",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 1.0,
+      "description": "The ego vehicle drives straight within its lane, maintaining a consistent position relative to the lane markings."
+    },
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 2.6,
+      "confidence": 1.0,
+      "description": "The ego vehicle follows the left curve, staying within its lane while navigating the bend smoothly."
+    },
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 9.1,
+      "confidence": 1.0,
+      "description": "After completing the left turn, the ego vehicle continues driving straight ahead, maintaining lane discipline and a steady path."
+    }
+  ],
+  "overall_behavior": "keep_within_lane"
+}
+```

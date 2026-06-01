@@ -1,0 +1,16 @@
+
+
+```json
+{
+  "road_geometry": "straight",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 0.95,
+      "description": "I am driving straight on a single‑lane road in each direction, with a dedicated left‑turn lane on the left side of the road. I am approaching an intersection with a red traffic signal, and I slow down at the intersection."
+    }
+  ],
+  "overall_behavior": "keep_within_lane"
+}
+```

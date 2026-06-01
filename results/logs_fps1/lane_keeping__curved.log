@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.95,
+  "time_of_event_sec": 0.0,
+  "description": "The ego vehicle remains stationary in the middle of the intersection, maintaining its lane position without any lateral movement or steering adjustments. The road ahead is straight, with clear lane markings and no signs of turns or curves, indicating a straightforward lane-keeping scenario while waiting for the traffic light to change."
+}

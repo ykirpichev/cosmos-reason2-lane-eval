@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "curved",
+  "confidence": 0.95,
+  "time_of_event_sec": 0.0,
+  "description": "The ego vehicle maintains its position in the right lane while navigating a left curve, keeping a steady pace and staying centered within the lane markings as the road bends. There are no lane deviations or abrupt steering adjustments, indicating controlled lane-keeping behavior through the curved section."
+}

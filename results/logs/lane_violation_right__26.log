@@ -1,0 +1,16 @@
+
+
+```json
+{
+  "road_geometry": "curved",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 0.99,
+      "description": "I am driving on a three‑lane road in each direction with a left‑turn lane. I am driving on the middle lane. I am approaching an intersection. The traffic light is green. I slow down and make a right turn. I am now driving on the right lane of a two‑lane road."
+    }
+  ],
+  "overall_behavior": "keep_within_lane"
+}
+```

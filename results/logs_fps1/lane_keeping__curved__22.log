@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 1.0,
+  "time_of_event_sec": 0.0,
+  "description": "The ego vehicle remains centered within the lane throughout the sequence, maintaining a safe distance from the stopped truck ahead. The solid white lane markings indicate a no-crossing zone, and the vehicle's consistent positioning within the lane without lateral deviation confirms adherence to lane discipline. The road segment is straight, with no curves or turns present."
+}

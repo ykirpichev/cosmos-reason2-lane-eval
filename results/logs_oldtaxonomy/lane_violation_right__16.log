@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.95,
+  "time_of_event_sec": null,
+  "description": "The ego vehicle maintains a steady pace within its lane, adhering to the lane markings without drifting or recovering. The road is straight, as indicated by consistent lane lines and a clear path ahead."
+}

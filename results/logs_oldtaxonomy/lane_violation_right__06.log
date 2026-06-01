@@ -1,0 +1,11 @@
+
+
+```json
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "curved",
+  "confidence": 0.99,
+  "time_of_event_sec": 0.0,
+  "description": "The ego-vehicle maintains its lane position while transitioning from a straight freeway segment onto a curved exit ramp, adhering to lane markings and adjusting speed appropriately for the curve."
+}
+```

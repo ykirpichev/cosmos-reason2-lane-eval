@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.95,
+  "time_of_event_sec": 0.0,
+  "description": "The ego-vehicle maintains a steady course within its lane, adhering to the solid white and yellow lines, and decelerates appropriately for the red traffic signal ahead. There are no lane deviations or steering adjustments beyond normal lane-keeping behavior."
+}

@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_recovery",
+  "road_geometry": "straight",
+  "confidence": 0.95,
+  "time_of_event_sec": 6.5,
+  "description": "The ego-vehicle initially occupies the middle lane and then smoothly transitions to the left lane, maintaining proper lane alignment afterward. The lane markings are clear, and the road is straight, indicating a deliberate lane change rather than a violation or recovery from an error."
+}

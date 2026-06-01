@@ -1,0 +1,11 @@
+
+
+```json
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.99,
+  "time_of_event_sec": null,
+  "description": "The ego vehicle maintains a steady pace and stays centered in the right lane throughout the video. The road is straight, and there are no visible lane deviations, recoveries, or violations. The driver remains focused on lane-keeping despite limited visibility."
+}
+```

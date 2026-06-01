@@ -1,0 +1,28 @@
+
+
+```json
+{
+  "road_geometry": "straight",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 1.0,
+      "description": "The ego vehicle initially maintains its position within the lane, driving straight while observing the school zone marking and keeping a safe distance from the vehicle ahead."
+    },
+    {
+      "behavior": "lane_change",
+      "time_of_event_sec": 3.5,
+      "confidence": 1.0,
+      "description": "The ego vehicle changes lanes to the right, crossing the lane line and settling into the adjacent lane while continuing to drive forward."
+    },
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 6.5,
+      "confidence": 1.0,
+      "description": "After completing the lane change, the ego vehicle resumes maintaining its position within the new lane, proceeding straight through the intersection under a green traffic light."
+    }
+  ],
+  "overall_behavior": "lane_change"
+}
+```

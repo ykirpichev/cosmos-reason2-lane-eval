@@ -1,0 +1,11 @@
+
+
+```json
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "curved",
+  "confidence": 0.95,
+  "time_of_event_sec": 9.0,
+  "description": "The ego-vehicle remains within the left-turn lane, following the visible lane markings and arrows, and executes a controlled left turn onto the new road while maintaining proper lane discipline throughout the maneuver."
+}
+```

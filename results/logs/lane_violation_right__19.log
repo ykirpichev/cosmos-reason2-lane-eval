@@ -1,0 +1,22 @@
+
+
+```json
+{
+  "road_geometry": "straight",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 0.0,
+      "description": "I am driving on a single lane, two-way road."
+    },
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 7.6,
+      "confidence": 0.0,
+      "description": "I am approaching a T-intersection with a stop sign. I proceed to make a rolling stop as I come to the stop sign. I then proceed to make a right turn at the intersection."
+    }
+  ],
+  "overall_behavior": "keep_within_lane"
+}
+```

@@ -1,0 +1,28 @@
+
+
+```json
+{
+  "road_geometry": "curved",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 0.9,
+      "description": "I am driving in the rightmost lane of a three-lane main street, maintaining my lane position as I approach an intersection where a right turn is required."
+    },
+    {
+      "behavior": "lane_wandering",
+      "time_of_event_sec": 6.6,
+      "confidence": 0.8,
+      "description": "As I approach the intersection, I begin to execute a right turn, momentarily straddling the lane lines while navigating the curve, then re-establishing my position in the new lane after the turn."
+    },
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 9.1,
+      "confidence": 0.9,
+      "description": "After completing the right turn, I continue driving straight in the new lane, maintaining proper lane discipline and staying within the lane markings."
+    }
+  ],
+  "overall_behavior": "lane_wandering"
+}
+```

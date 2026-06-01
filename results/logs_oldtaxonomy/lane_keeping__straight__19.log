@@ -1,0 +1,11 @@
+
+
+```json
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.95,
+  "time_of_event_sec": null,
+  "description": "The ego vehicle remains centered in the middle lane of a three-lane highway, maintaining a steady speed and safe following distance. No lane changes, recoveries, or violations occur, and the road is consistently straight with clear lane markings."
+}
+```

@@ -1,0 +1,11 @@
+
+
+```json
+{
+  "behavior": "lane_violation_right",
+  "road_geometry": "curved",
+  "confidence": 1.0,
+  "time_of_event_sec": 9.0,
+  "description": "The ego-vehicle, positioned in a right-turn-only lane, initiates a right turn at the intersection but crosses over a solid white line during the maneuver. This action constitutes a lane violation (right side) as the vehicle deviates from the intended path marked by the solid line. The curved nature of the turn is evident from the lane markings and the vehicle's steering behavior."
+}
+```

@@ -1,0 +1,16 @@
+
+
+```json
+{
+  "road_geometry": "straight",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 0.95,
+      "description": "The ego vehicle maintains its position in the third lane throughout the video, adhering to the solid white lane markings. It slows down and stops smoothly behind another vehicle at the red traffic light without deviating from its lane or interacting with the adjacent bicycle lane."
+    }
+  ],
+  "overall_behavior": "keep_within_lane"
+}
+```

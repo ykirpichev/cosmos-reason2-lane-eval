@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "curved",
+  "confidence": 0.95,
+  "time_of_event_sec": 0.0,
+  "description": "The ego-vehicle maintains a steady speed and lane position in the leftmost lane throughout the 15-second sequence, following the slight rightward curve of the road without any lane deviations or violations."
+}

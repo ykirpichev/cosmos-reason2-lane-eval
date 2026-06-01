@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_violation_right",
+  "road_geometry": "straight",
+  "confidence": 0.9,
+  "time_of_event_sec": 10.0,
+  "description": "The ego vehicle gradually shifts from the left lane to the right lane, indicating a lane change that may be considered a violation if not properly signaled or executed. The road remains straight throughout the sequence."
+}

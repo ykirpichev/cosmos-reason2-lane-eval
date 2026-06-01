@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.95,
+  "time_of_event_sec": null,
+  "description": "The ego-vehicle maintains a consistent position within its lane, following the black sedan through the intersection and along the straight road. There are no visible lane deviations, steering corrections, or interactions with other vehicles that would suggest lane recovery or violations. The clear lane markings and steady progression indicate controlled lane-keeping behavior throughout the sequence."
+}

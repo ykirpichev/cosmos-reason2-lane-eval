@@ -1,0 +1,16 @@
+
+
+```json
+{
+  "road_geometry": "straight",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 1.0,
+      "description": "The ego vehicle maintains a steady speed in the middle lane of a three-lane highway, staying within its lane without any lane changes or drifting. The white truck and white van remain in their respective lanes, and no abrupt maneuvers occur throughout the 12-second clip."
+    }
+  ],
+  "overall_behavior": "keep_within_lane"
+}
+```

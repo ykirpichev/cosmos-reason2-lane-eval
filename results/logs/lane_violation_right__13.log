@@ -1,0 +1,34 @@
+
+
+```json
+{
+  "road_geometry": "straight",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 0.99,
+      "description": "I am driving in the rightmost lane of a three‑lane road, maintaining my lane position without crossing any lane lines."
+    },
+    {
+      "behavior": "lane_change",
+      "time_of_event_sec": 2.6,
+      "confidence": 0.99,
+      "description": "I initiate a lane change to the right, crossing a lane marking to enter the rightmost lane, which is designated for right turns."
+    },
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 5.1,
+      "confidence": 0.99,
+      "description": "After completing the lane change, I continue driving in the rightmost lane, staying within the lane markings as I approach the intersection."
+    },
+    {
+      "behavior": "lane_wandering",
+      "time_of_event_sec": 11.1,
+      "confidence": 0.99,
+      "description": "As I make a right turn at the intersection, I briefly straddle the lane markings while turning, indicating momentary lane wandering before fully entering the new lane."
+    }
+  ],
+  "overall_behavior": "lane_change"
+}
+```

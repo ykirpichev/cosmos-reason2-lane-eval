@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "curved",
+  "confidence": 0.95,
+  "time_of_event_sec": 8.2,
+  "description": "The ego vehicle maintains proper lane position throughout the sequence, following the single lane markings and smoothly navigating the left curve without crossing solid lines or drifting out of the lane. The road transitions from straight to curved during the turn, but the vehicle adheres to the lane guidance provided by the markings and signage."
+}

@@ -1,0 +1,28 @@
+
+
+```json
+{
+  "road_geometry": "curved",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 0.9,
+      "description": "The ego vehicle initially travels in the rightmost lane of a multi-lane highway, maintaining a steady speed and staying centered within its lane as it approaches a diverging lane peeling off to the right."
+    },
+    {
+      "behavior": "lane_change",
+      "time_of_event_sec": 4.2,
+      "confidence": 0.95,
+      "description": "The ego vehicle begins merging onto the diverging lane by gradually shifting right, guided by lane markings, while maintaining awareness of surrounding traffic and ensuring a smooth transition onto the exit ramp."
+    },
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 8.2,
+      "confidence": 0.9,
+      "description": "After successfully merging onto the diverging lane, the ego vehicle continues straight along the exit ramp, following its gentle rightward curve while remaining centered in the lane and maintaining a consistent speed."
+    }
+  ],
+  "overall_behavior": "lane_change"
+}
+```

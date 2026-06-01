@@ -1,0 +1,16 @@
+
+
+```json
+{
+  "road_geometry": "straight",
+  "events": [
+    {
+      "behavior": "lane_change",
+      "time_of_event_sec": 0.0,
+      "confidence": 1.0,
+      "description": "The ego vehicle begins in the right lane and smoothly merges into the left lane, crossing the dashed white lane lines while maintaining control and proper lane discipline. The merge is completed by the end of the observed period."
+    }
+  ],
+  "overall_behavior": "lane_change"
+}
+```

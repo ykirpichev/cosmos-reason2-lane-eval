@@ -1,0 +1,28 @@
+
+
+```json
+{
+  "road_geometry": "straight",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 1.0,
+      "description": "The ego vehicle initially drives straight along the road, maintaining its lane position."
+    },
+    {
+      "behavior": "lane_wandering",
+      "time_of_event_sec": 1.1,
+      "confidence": 1.0,
+      "description": "The ego vehicle slightly turns to the left to avoid a black object on the right side of the road, temporarily deviating from its lane."
+    },
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 2.1,
+      "confidence": 1.0,
+      "description": "After passing the object, the ego vehicle returns to driving straight and resumes keeping within its lane."
+    }
+  ],
+  "overall_behavior": "lane_wandering"
+}
+```

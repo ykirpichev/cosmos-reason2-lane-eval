@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.95,
+  "time_of_event_sec": 0.0,
+  "description": "The ego-vehicle initially merges into the left lane (a brief lane change) and then maintains its position within the left lane for the remainder of the sequence, adhering to lane markings on a straight highway segment."
+}

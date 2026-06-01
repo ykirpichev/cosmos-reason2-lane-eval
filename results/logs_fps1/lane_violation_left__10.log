@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.95,
+  "time_of_event_sec": null,
+  "description": "The ego vehicle maintains its position within the lane boundaries, adhering to the solid white line on the right and yellow line on the left. The road is straight, and there are no indications of lane deviations, recoveries, or violations. The vehicle continues steadily without crossing lane markings, consistent with safe lane-keeping behavior."
+}

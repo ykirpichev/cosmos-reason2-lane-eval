@@ -1,0 +1,11 @@
+
+
+```json
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.9,
+  "time_of_event_sec": 10.6,
+  "description": "The ego vehicle maintains its lane position while making a right turn at the intersection, staying within the lane markings until the turn is completed. The road leading up to the intersection is straight, and the lane markings remain clear throughout the maneuver."
+}
+```

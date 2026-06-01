@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.95,
+  "time_of_event_sec": null,
+  "description": "The ego-vehicle maintains its position in the middle lane of a three-lane road after completing a left turn, proceeding straight without any lane changes or violations. The road geometry remains straight throughout the observed sequence, with clear lane markings and no visible curves or intersections requiring adjustments."
+}

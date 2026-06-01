@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_violation_right",
+  "road_geometry": "straight",
+  "confidence": 0.98,
+  "time_of_event_sec": 11.6,
+  "description": "The ego vehicle initially shifts to the right lane correctly but then violates lane discipline by entering a bike lane at the intersection instead of remaining in the designated right lane, indicating a rightward lane violation."
+}

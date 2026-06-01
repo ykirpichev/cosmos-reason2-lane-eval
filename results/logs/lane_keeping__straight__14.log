@@ -1,0 +1,16 @@
+
+
+```json
+{
+  "road_geometry": "straight",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 0.0,
+      "description": "I am driving straight on a two-way road, and there are no other road users around, so there is not much to watch out for. However, I do need to be cautious of the road conditions as the road is very bumpy, and it is difficult to see the lane markings because they are not visible."
+    }
+  ],
+  "overall_behavior": "keep_within_lane"
+}
+```

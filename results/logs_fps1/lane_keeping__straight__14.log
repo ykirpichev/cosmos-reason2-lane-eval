@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 1.0,
+  "time_of_event_sec": null,
+  "description": "The ego vehicle maintains a steady speed and remains centered within its lane throughout the entire clip. There are no lane deviations, recoveries, or violations, as the vehicle consistently stays to the right of the solid yellow line on a straight, uninterrupted road segment."
+}

@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_change_left",
+  "road_geometry": "straight",
+  "confidence": 0.95,
+  "time_of_event_sec": 8.0,
+  "description": "The ego-vehicle smoothly transitions from the center lane to the left lane between 8 and 12 seconds, maintaining steady speed and alignment with lane markings. The road remains straight throughout the maneuver."
+}

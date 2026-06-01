@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_violation_right",
+  "road_geometry": "straight",
+  "confidence": 0.95,
+  "time_of_event_sec": 0.1,
+  "description": "The ego-vehicle crosses a solid white line to enter a right turn lane, constituting a lane violation. The road remains straight throughout the sequence, with no indication of curves or bends."
+}

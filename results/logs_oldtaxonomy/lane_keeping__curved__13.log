@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.98,
+  "time_of_event_sec": 0.0,
+  "description": "The ego vehicle remains centered in the center lane throughout the sequence, maintaining consistent lane position and speed. There are no visible lane changes, nudges, or deviations from the lane markings, indicating steady lane-keeping behavior. The road geometry is straight, as evidenced by the aligned lane markings and lack of curves."
+}

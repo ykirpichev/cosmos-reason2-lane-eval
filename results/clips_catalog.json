@@ -1,0 +1,13 @@
+{
+  "total_clips": 28,
+  "manifest": "clips/manifest_all.json",
+  "clip_seconds": 12,
+  "clip_fps": 4,
+  "by_behavior": {
+    "lane_keeping": 8,
+    "lane_recovery": 8,
+    "lane_violation_left": 6,
+    "lane_violation_right": 6
+  },
+  "note": "Map-mined from nuScenes mini. Use label_matches_target=true for highest-quality examples."
+}

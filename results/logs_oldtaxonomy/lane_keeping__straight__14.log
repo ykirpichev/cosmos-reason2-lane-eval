@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.99,
+  "time_of_event_sec": null,
+  "description": "The ego vehicle maintains a steady position in the right lane of a two-lane road with dashed lane markings, showing no signs of lane deviation, recovery, or violation. The road is straight, and the vehicle continues forward without interacting with other road users or obstacles."
+}

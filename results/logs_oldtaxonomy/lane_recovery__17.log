@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.95,
+  "time_of_event_sec": null,
+  "description": "The ego vehicle maintains a steady speed and lane position on a straight multi-lane highway, merging into the left lane cautiously without any lane violations or recoveries. Clear lane markings and consistent forward motion indicate controlled lane-keeping behavior."
+}

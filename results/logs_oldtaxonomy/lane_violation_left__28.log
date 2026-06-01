@@ -1,0 +1,11 @@
+
+
+```json
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "curved",
+  "confidence": 0.95,
+  "time_of_event_sec": 0.0,
+  "description": "The ego-vehicle is making a left turn at an intersection, following the lane markings that guide the turn. The vehicle maintains a steady pace and stays within the designated lane throughout the maneuver, indicating controlled and deliberate driving. The road is curved, as evidenced by the left turn, and the vehicle completes the turn smoothly before continuing along the new road."
+}
+```

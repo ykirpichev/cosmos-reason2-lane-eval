@@ -1,0 +1,11 @@
+
+
+```json
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.95,
+  "time_of_event_sec": 9.0,
+  "description": "The ego vehicle maintains its position in the center lane for most of the clip, then smoothly initiates a planned merge to the right lane as the adjacent lane becomes available. The lane markings remain clear, and the maneuver is executed without abrupt steering or lane deviations, indicating intentional lane-keeping behavior followed by a controlled lane change."
+}
+```

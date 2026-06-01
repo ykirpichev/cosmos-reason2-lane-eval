@@ -1,0 +1,11 @@
+
+
+```json
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 1.0,
+  "time_of_event_sec": 0.0,
+  "description": "The ego vehicle remains in the leftmost lane, steadily following the black car ahead while maintaining proper lane positioning and speed. As traffic progresses through the green light, the vehicle continues straight without deviating from its lane, demonstrating consistent lane-keeping behavior on a straight roadway."
+}
+```

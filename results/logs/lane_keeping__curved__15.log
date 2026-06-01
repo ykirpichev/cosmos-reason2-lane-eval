@@ -1,0 +1,16 @@
+
+
+```json
+{
+  "road_geometry": "straight",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 1.0,
+      "description": "The ego-vehicle remains in the rightmost lane throughout the video, maintaining a steady pace behind the red truck ahead. There are no lane changes, drifting, or crossing of lane markings observed."
+    }
+  ],
+  "overall_behavior": "keep_within_lane"
+}
+```

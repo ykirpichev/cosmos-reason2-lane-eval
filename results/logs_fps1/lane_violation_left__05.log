@@ -1,0 +1,11 @@
+
+
+```json
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.95,
+  "time_of_event_sec": 3.0,
+  "description": "The ego vehicle shifts to the right lane and maintains a steady speed in a straight path, with clear lane lines and no abrupt maneuvers."
+}
+```

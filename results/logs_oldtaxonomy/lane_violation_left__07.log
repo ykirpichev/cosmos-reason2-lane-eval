@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.95,
+  "time_of_event_sec": 4.2,
+  "description": "The ego-vehicle smoothly merges from the left through lane into the left-turn lane as the road geometry transitions toward an intersection, adhering to lane markings and maintaining controlled steering without abrupt movements."
+}

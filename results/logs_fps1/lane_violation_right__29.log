@@ -1,0 +1,11 @@
+
+
+```json
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.95,
+  "time_of_event_sec": 0.0,
+  "description": "The ego-vehicle maintains a steady position within its lane, following the vehicle ahead while adhering to lane markings (solid yellow line on the left, dashed white line on the right). It proceeds straight through the intersection without deviating from its lane, demonstrating consistent lane-keeping behavior on a straight road segment."
+}
+```

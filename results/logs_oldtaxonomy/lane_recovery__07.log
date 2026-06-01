@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.95,
+  "time_of_event_sec": 4.2,
+  "description": "The ego vehicle starts in the center lane, then merges right into the adjacent lane while maintaining proper lane discipline. The road is slightly curved to the right but remains straight overall, with dashed white lane markings allowing safe merging. No lane violations occur as the maneuver is executed within permitted lane boundaries."
+}

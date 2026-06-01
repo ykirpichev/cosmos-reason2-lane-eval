@@ -1,0 +1,11 @@
+
+
+```json
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.95,
+  "time_of_event_sec": null,
+  "description": "The ego-vehicle remains in the right lane, maintaining a consistent position relative to lane markings throughout the sequence. It proceeds straight after the light turns green, adhering to the lane without any lateral deviations or interactions with other vehicles that would suggest lane changes, recoveries, or violations."
+}
+```

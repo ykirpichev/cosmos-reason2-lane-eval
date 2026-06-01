@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.95,
+  "time_of_event_sec": null,
+  "description": "The ego-vehicle maintains its lane throughout the sequence, following the white van without deviating from the lane markings. The road is straight, with consistent white dashed lane lines and no visible curves or turns. No lane recovery or violations are observed."
+}

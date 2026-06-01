@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "curved",
+  "confidence": 0.95,
+  "time_of_event_sec": 9.0,
+  "description": "The ego vehicle maintains proper lane positioning while centered in its lane, then executes a controlled right turn at the T-intersection after stopping. The turn involves crossing lane markings as part of the legal maneuver, but no lane violation occurs. The road geometry transitions from straight to curved during the turn."
+}

@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "curved",
+  "confidence": 0.95,
+  "time_of_event_sec": 9.0,
+  "description": "The ego vehicle follows the lane markings during the left turn, maintaining proper lane position without crossing solid lines, and completes the maneuver smoothly within the curved road geometry."
+}

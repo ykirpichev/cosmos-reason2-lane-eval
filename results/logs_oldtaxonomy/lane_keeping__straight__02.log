@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.95,
+  "time_of_event_sec": 0.0,
+  "description": "The ego vehicle remains centered in the right lane, maintaining a safe following distance behind the lead vehicle and adhering to lane markings (solid white line to the right, dashed white line to the left). No lateral deviations or lane changes occur, and the vehicle proceeds straight through the intersection as the light turns green."
+}

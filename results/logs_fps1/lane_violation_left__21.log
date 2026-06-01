@@ -1,0 +1,11 @@
+
+
+```json
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 1.0,
+  "time_of_event_sec": null,
+  "description": "The ego vehicle maintains a consistent position in the right lane throughout the video, following lane markings without deviation. The road is straight, with no curves or intersections, and the vehicle continues steadily without lane changes or violations."
+}
+```

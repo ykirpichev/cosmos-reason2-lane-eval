@@ -1,0 +1,16 @@
+
+
+```json
+{
+  "road_geometry": "straight",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 0.99,
+      "description": "The ego vehicle remains consistently within the right lane, maintaining a steady speed and position throughout the entire clip. It does not cross or interact with the solid yellow line, nor does it exhibit any lane changes, drifting, or weaving. The lane boundaries are clearly defined, and the ego vehicle adheres strictly to them."
+    }
+  ],
+  "overall_behavior": "keep_within_lane"
+}
+```

@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.95,
+  "time_of_event_sec": null,
+  "description": "The ego vehicle remains in a dedicated left-turn lane throughout the sequence, maintaining its position relative to the lane markings while following a white SUV. The road is straight, and there are no indications of lane changes, drifting, or violations. The vehicle proceeds steadily through the green-lit intersection without deviating from its lane."
+}

@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.95,
+  "time_of_event_sec": null,
+  "description": "The ego vehicle maintains a steady course in the right lane of a straight two-lane road, adhering to lane markings and the posted speed limit of 55 mph. There are no lane changes, violations, or recoveries observed, and the road remains linear without curves or intersections."
+}

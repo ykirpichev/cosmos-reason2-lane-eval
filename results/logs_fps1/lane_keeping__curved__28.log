@@ -1,0 +1,11 @@
+
+
+```json
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.98,
+  "time_of_event_sec": null,
+  "description": "The ego vehicle remains centered in the lane throughout the sequence, maintaining a safe following distance as traffic flows straight through the intersection. The clear lane markings and absence of lateral adjustments indicate consistent lane-keeping behavior on a straight, multi-lane road."
+}
+```

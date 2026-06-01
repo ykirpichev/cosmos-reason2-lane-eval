@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.95,
+  "time_of_event_sec": null,
+  "description": "The ego vehicle maintains its lane position throughout the sequence, following the white truck through the intersection and continuing straight on the road. There are no indications of lane deviations, recoveries, or violations, and the road geometry remains straight after the turn."
+}

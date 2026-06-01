@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.95,
+  "time_of_event_sec": null,
+  "description": "The ego vehicle maintains a steady position within the left lane, adhering to lane markings without drifting or crossing into adjacent lanes. The road remains straight, with no curves or intersections, and the driver consistently keeps a safe following distance from surrounding vehicles."
+}

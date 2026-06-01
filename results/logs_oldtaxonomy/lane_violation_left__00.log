@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "curved",
+  "confidence": 0.95,
+  "time_of_event_sec": 9.0,
+  "description": "The ego-vehicle maintains proper lane position while following the leftward curve of the road, adhering to the lane markings without encroaching into adjacent lanes or deviating from the intended path."
+}

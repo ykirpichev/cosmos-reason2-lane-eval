@@ -1,0 +1,16 @@
+
+
+```json
+{
+  "road_geometry": "straight",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 1.0,
+      "description": "The ego vehicle remains in the right-turn-only lane, follows the SUV through the right turn, and continues straight on the two-way road without deviating from its lane."
+    }
+  ],
+  "overall_behavior": "keep_within_lane"
+}
+```

@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "curved",
+  "confidence": 0.99,
+  "time_of_event_sec": 0.0,
+  "description": "The ego vehicle remains within the rightmost exit lane, following its rightward curve while maintaining lane discipline. There are no lane violations or recovery maneuvers, as the vehicle adheres to the lane markings throughout the sequence."
+}

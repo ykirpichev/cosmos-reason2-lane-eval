@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_recovery",
+  "road_geometry": "curved",
+  "confidence": 0.9,
+  "time_of_event_sec": 7.5,
+  "description": "The ego vehicle briefly crosses the solid white line while making a right turn at the T-intersection but corrects its path to stay within the rightmost lane of the four-lane road afterward."
+}

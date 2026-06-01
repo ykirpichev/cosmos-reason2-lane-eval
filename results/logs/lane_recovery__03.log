@@ -1,0 +1,28 @@
+
+
+```json
+{
+  "road_geometry": "straight",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 0.9,
+      "description": "The ego vehicle remains stationary at the intersection, positioned within its lane and maintaining proper lane discipline."
+    },
+    {
+      "behavior": "lane_wandering",
+      "time_of_event_sec": 4.1,
+      "confidence": 0.8,
+      "description": "The ego vehicle begins to move forward and initiates a left turn, briefly crossing the lane boundary as it transitions into the adjacent lane while navigating around traffic cones."
+    },
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 10.6,
+      "confidence": 0.9,
+      "description": "After completing the left turn, the ego vehicle stabilizes and continues driving straight within its new lane, maintaining lane discipline."
+    }
+  ],
+  "overall_behavior": "lane_wandering"
+}
+```

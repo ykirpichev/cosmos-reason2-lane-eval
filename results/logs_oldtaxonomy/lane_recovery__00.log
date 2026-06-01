@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_violation_right",
+  "road_geometry": "curved",
+  "confidence": 0.95,
+  "time_of_event_sec": 8.5,
+  "description": "The ego-vehicle completes a left turn but ends up in the right lane of a two-lane road after navigating around obstructing traffic cones, indicating a lane violation to the right. The turn itself involves a curved path due to the intersection geometry."
+}

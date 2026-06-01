@@ -1,0 +1,11 @@
+
+
+```json
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.95,
+  "time_of_event_sec": 0.0,
+  "description": "The ego vehicle maintains its position in the right lane, follows the black pickup truck at a safe distance, and proceeds straight through the green-lit intersection without any lateral deviation or lane changes."
+}
+```

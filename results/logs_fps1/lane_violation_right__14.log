@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.95,
+  "time_of_event_sec": null,
+  "description": "The ego vehicle maintains its position in the center lane of a straight, multi-lane highway throughout the sequence. Lane markings remain clear and consistent, and the vehicle exhibits no lane changes, drifts, or corrective maneuvers. The steady speed and stable camera perspective further confirm compliant lane-keeping behavior on a straight roadway."
+}

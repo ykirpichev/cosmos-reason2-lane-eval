@@ -1,0 +1,16 @@
+
+
+```json
+{
+  "road_geometry": "curved",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 1.0,
+      "description": "The ego vehicle remains in the right lane throughout the entire clip, following a silver sedan while maintaining a safe distance and steady pace. It does not cross lane lines, change lanes, or exhibit any drifting or weaving behavior. The slight rightward curve of the road is navigated smoothly without altering lane position."
+    }
+  ],
+  "overall_behavior": "keep_within_lane"
+}
+```

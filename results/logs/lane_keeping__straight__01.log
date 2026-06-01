@@ -1,0 +1,16 @@
+
+
+```json
+{
+  "road_geometry": "straight",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 1.0,
+      "description": "I am driving straight on a three‑lane road, approaching an intersection where the traffic signal is red. I stay in the same lane and come to a complete stop behind the vehicle ahead of me. There are no vehicles behind me, but there are several vehicles in adjacent lanes. I can see the intersection ahead, and I am prepared to proceed when the signal turns green."
+    }
+  ],
+  "overall_behavior": "keep_within_lane"
+}
+```

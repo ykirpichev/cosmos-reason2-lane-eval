@@ -1,0 +1,16 @@
+
+
+```json
+{
+  "road_geometry": "straight",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 1.0,
+      "description": "The ego vehicle maintains a steady position in the right lane, following the straight highway path without any lane changes, drifting, or interactions with lane markings. Traffic flow and surrounding vehicles do not influence its lane-keeping behavior."
+    }
+  ],
+  "overall_behavior": "keep_within_lane"
+}
+```

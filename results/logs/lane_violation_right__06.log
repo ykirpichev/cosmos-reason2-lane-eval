@@ -1,0 +1,22 @@
+
+
+```json
+{
+  "road_geometry": "curved",
+  "events": [
+    {
+      "behavior": "lane_change",
+      "time_of_event_sec": 0.1,
+      "confidence": 0.99,
+      "description": "I merge from the middle lane into the right lane to enter the exit ramp, crossing a solid white line and then settling into the right lane."
+    },
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 4.1,
+      "confidence": 0.99,
+      "description": "I continue driving straight in the right lane, maintaining a steady speed and staying within the lane markings."
+    }
+  ],
+  "overall_behavior": "lane_change"
+}
+```

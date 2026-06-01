@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_violation_right",
+  "road_geometry": "curved",
+  "confidence": 0.95,
+  "time_of_event_sec": 7.0,
+  "description": "After completing the left turn, the ego vehicle drives in the middle of two lanes instead of staying to the right side of the left lane, constituting a rightward lane violation. The curved road geometry during the turn contributes to this misalignment."
+}

@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.95,
+  "time_of_event_sec": 0.0,
+  "description": "The ego-vehicle maintains its position in the middle lane throughout the entire clip, showing no signs of lane changes, swerving, or recovery maneuvers. It drives steadily along a straight highway segment, adhering to lane markings and avoiding interactions with adjacent traffic or obstacles."
+}

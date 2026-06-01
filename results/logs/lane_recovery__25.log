@@ -1,0 +1,16 @@
+
+
+```json
+{
+  "road_geometry": "curved",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 0.8,
+      "description": "I am driving on a single-lane, two-way road. I am driving safely and following all the traffic rules. The road is a bit dark, so I am driving cautiously. I drive forward and make a right turn, merging onto a two-way, single-lane road. I see an oncoming vehicle from the opposite direction in the left lane. I continue driving straight in the same lane."
+    }
+  ],
+  "overall_behavior": "keep_within_lane"
+}
+```

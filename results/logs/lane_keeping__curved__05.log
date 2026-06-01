@@ -1,0 +1,34 @@
+
+
+```json
+{
+  "road_geometry": "curved",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 1.0,
+      "description": "The ego vehicle remains stationary at a red light in the right lane of a two‑lane road, maintaining its position without any lateral movement."
+    },
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 3.1,
+      "confidence": 1.0,
+      "description": "The traffic light turns green, and the ego vehicle proceeds straight through the intersection while staying within the right lane, exercising caution as it crosses the pedestrian crosswalk."
+    },
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 7.6,
+      "confidence": 1.0,
+      "description": "After clearing the intersection, the ego vehicle continues forward in the right lane of the two‑lane road, maintaining a steady course as the road begins to curve to the left."
+    },
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 10.1,
+      "confidence": 1.0,
+      "description": "As the road curves left, the ego vehicle slows down and navigates the bend carefully, remaining centered in the right lane without deviating from its lane markings."
+    }
+  ],
+  "overall_behavior": "keep_within_lane"
+}
+```

@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 1.0,
+  "time_of_event_sec": null,
+  "description": "The ego vehicle remains within its lane, adhering to the solid white line on the right and broken white line on the left, with no lane changes or violations. The road is straight, as evidenced by consistent lane markings and the vehicle's steady forward motion through the intersection."
+}

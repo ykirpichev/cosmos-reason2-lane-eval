@@ -1,0 +1,16 @@
+
+
+```json
+{
+  "road_geometry": "straight",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 1.0,
+      "description": "The ego-vehicle maintains a steady course within its lane, adhering to the clear lane markings while driving straight on a multi-lane highway. Surrounding vehicles, including a white van to the left and other traffic ahead, remain in adjacent lanes, and the ego-vehicle does not initiate or execute any lane changes, drifts, or weaves throughout the entire sequence."
+    }
+  ],
+  "overall_behavior": "keep_within_lane"
+}
+```

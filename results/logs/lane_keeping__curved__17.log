@@ -1,0 +1,16 @@
+
+
+```json
+{
+  "road_geometry": "straight",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 0.99,
+      "description": "I am driving straight in the right‑turn‑only lane on a three‑lane road, approaching an intersection. I slow down and stop at the intersection, waiting for the traffic light to turn green. I keep my vehicle within my lane, avoiding any lane changes or lane wanderings. I stay attentive to the traffic light and the surrounding traffic, maintaining a safe distance from other vehicles."
+    }
+  ],
+  "overall_behavior": "keep_within_lane"
+}
+```

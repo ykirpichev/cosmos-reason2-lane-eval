@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.99,
+  "time_of_event_sec": 0.0,
+  "description": "The ego-vehicle maintains a steady course in its lane, centered between the lane markings, on a straight two-lane road with no evident need for lane changes, recovery, or violations."
+}

@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "curved",
+  "confidence": 0.95,
+  "time_of_event_sec": 0.0,
+  "description": "The ego vehicle maintains a steady position within its lane throughout the sequence, following a slight rightward curve in the road while keeping a consistent distance from the white van ahead. There are no lane violations or abrupt maneuvers, and the lane markings remain clearly visible and respected."
+}

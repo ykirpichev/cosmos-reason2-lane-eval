@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_violation_right",
+  "road_geometry": "curved",
+  "confidence": 0.9,
+  "time_of_event_sec": 8.5,
+  "description": "The ego-vehicle crosses over a solid white line to enter the right lane of a new three-lane road during a split, constituting a lane violation on the right side despite potential jurisdictional allowances."
+}

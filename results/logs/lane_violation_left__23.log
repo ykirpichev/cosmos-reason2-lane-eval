@@ -1,0 +1,16 @@
+
+
+```json
+{
+  "road_geometry": "straight",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 1.0,
+      "description": "The ego vehicle remains steadily centered in the second lane from the left throughout the entire clip, maintaining consistent lane discipline without crossing or drifting across lane lines."
+    }
+  ],
+  "overall_behavior": "keep_within_lane"
+}
+```

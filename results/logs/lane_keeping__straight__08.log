@@ -1,0 +1,16 @@
+
+
+```json
+{
+  "road_geometry": "straight",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 1.0,
+      "description": "The ego vehicle remains consistently in the left lane of a two-lane road throughout the entire clip, maintaining a safe following distance from the vehicle ahead and adhering to lane markings without any lane changes, drifts, or crossings."
+    }
+  ],
+  "overall_behavior": "keep_within_lane"
+}
+```

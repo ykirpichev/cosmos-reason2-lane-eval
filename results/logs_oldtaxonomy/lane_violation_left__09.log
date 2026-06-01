@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "curved",
+  "confidence": 0.98,
+  "time_of_event_sec": 8.2,
+  "description": "The ego-vehicle correctly transitions into the left-turn-only lane to execute a U-turn at the intersection, following lane markings and traffic signals. After completing the maneuver, it resumes lane-keeping in the right lane on the opposite side of the road. No lane violations occur, as the left lane is designated for turning, and the U-turn is performed safely within the lane."
+}

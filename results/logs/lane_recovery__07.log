@@ -1,0 +1,28 @@
+
+
+```json
+{
+  "road_geometry": "straight",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 1.0,
+      "description": "I am driving in the third lane from the right, maintaining my lane position."
+    },
+    {
+      "behavior": "lane_change",
+      "time_of_event_sec": 5.1,
+      "confidence": 1.0,
+      "description": "I signal and change lanes to the right, crossing a lane line and settling into the second lane from the right."
+    },
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 5.6,
+      "confidence": 1.0,
+      "description": "After completing the lane change, I continue driving in the second lane from the right, maintaining my lane position."
+    }
+  ],
+  "overall_behavior": "lane_change"
+}
+```

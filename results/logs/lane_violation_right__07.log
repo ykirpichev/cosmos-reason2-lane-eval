@@ -1,0 +1,16 @@
+
+
+```json
+{
+  "road_geometry": "curved",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 0.0,
+      "description": "I am driving on a curved, single‑lane road at night, following a black vehicle ahead. I maintain my lane position and avoid crossing any lane markings while proceeding along the curve."
+    }
+  ],
+  "overall_behavior": "keep_within_lane"
+}
+```

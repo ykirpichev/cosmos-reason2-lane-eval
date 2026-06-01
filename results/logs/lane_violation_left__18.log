@@ -1,0 +1,16 @@
+
+
+```json
+{
+  "road_geometry": "straight",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 0.95,
+      "description": "The ego vehicle remains in the same lane throughout the entire clip, maintaining a safe following distance behind the black pickup truck while adhering to lane markings. No lane changes, drifting, or interactions with adjacent lanes are observed."
+    }
+  ],
+  "overall_behavior": "keep_within_lane"
+}
+```

@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.95,
+  "time_of_event_sec": 0.0,
+  "description": "The ego vehicle maintains a steady position centered within its lane, following the lead vehicle at a safe distance. The road markings (solid yellow line on the left, dashed white lines on the right) indicate a straight, two-lane roadway with no curves or intersections. There is no lateral deviation or steering correction observed, confirming consistent lane-keeping behavior throughout the sequence."
+}

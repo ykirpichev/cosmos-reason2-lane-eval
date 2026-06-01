@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 1.0,
+  "time_of_event_sec": null,
+  "description": "The ego vehicle maintains its position in the right lane of a two-lane road, adhering to lane markings without any lateral deviations or steering corrections. The road remains straight throughout the sequence, with no curves or turns observed."
+}

@@ -1,0 +1,16 @@
+
+
+```json
+{
+  "road_geometry": "curved",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 1.0,
+      "description": "The ego vehicle remains within the single left-turn lane throughout the entire sequence, following the lane markings and completing a smooth left turn without crossing any lines or changing lanes."
+    }
+  ],
+  "overall_behavior": "keep_within_lane"
+}
+```

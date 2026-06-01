@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.98,
+  "time_of_event_sec": null,
+  "description": "The ego vehicle remains in the right lane of a straight two-lane road, following a silver car while maintaining proper lane position and adhering to lane markings. The solid white line on the right and dashed center line indicate no lane changes or crossings, and the vehicle proceeds smoothly under a green traffic light without deviating from its lane."
+}

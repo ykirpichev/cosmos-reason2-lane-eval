@@ -1,0 +1,11 @@
+
+
+```json
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.95,
+  "time_of_event_sec": 0.0,
+  "description": "After completing the left turn, the ego-vehicle maintains a consistent speed and stays centered in its lane on a straight, two-lane road. Clear lane markings and steady forward motion indicate no lane changes, violations, or recovery actions. The road remains linear with no curves, and the vehicle continues straight without deviation."
+}
+```

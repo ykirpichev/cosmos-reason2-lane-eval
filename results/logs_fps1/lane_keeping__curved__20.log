@@ -1,0 +1,11 @@
+
+
+```json
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.95,
+  "time_of_event_sec": null,
+  "description": "The ego vehicle maintains a consistent position in the third lane from the left, adhering to lane markings without deviations or lane changes. The road remains straight, with no visible curves or intersections, and the vehicle continues forward without abrupt maneuvers."
+}
+```

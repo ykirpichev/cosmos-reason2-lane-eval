@@ -1,0 +1,16 @@
+
+
+```json
+{
+  "road_geometry": "curved",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 1.0,
+      "description": "The ego vehicle remains stationary behind the white van at the traffic light, then proceeds through the intersection and onto the highway ramp, following the white van while staying within its lane."
+    }
+  ],
+  "overall_behavior": "keep_within_lane"
+}
+```

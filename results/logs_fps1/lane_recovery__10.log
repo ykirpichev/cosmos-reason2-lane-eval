@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.98,
+  "time_of_event_sec": null,
+  "description": "The ego vehicle maintains its lane position throughout the sequence, following the black SUV through the right turn and continuing straight on a clear road. Lane markings remain visible and unviolated, with no indication of drifting or lane changes. The road geometry after the turn is straight, with no curves or intersections affecting lane behavior."
+}

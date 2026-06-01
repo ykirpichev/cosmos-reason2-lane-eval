@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.95,
+  "time_of_event_sec": null,
+  "description": "The ego vehicle maintains a steady pace and safe distance behind the white van, staying within its lane as indicated by the dashed white lane markings. There are no signs of lateral drift, lane changes, or violations, and the road remains straight throughout the sequence."
+}

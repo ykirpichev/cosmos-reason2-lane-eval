@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.95,
+  "time_of_event_sec": 0.0,
+  "description": "The ego vehicle merges left into the middle lane at the beginning of the clip and then maintains a steady speed and lane position in the middle lane for the remainder of the 12 seconds, with no further lane changes or violations. The road remains straight throughout, with no curves or turns affecting lane behavior."
+}

@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_violation_right",
+  "road_geometry": "curved",
+  "confidence": 0.95,
+  "time_of_event_sec": 7.0,
+  "description": "The ego vehicle merges into the right lane, which may be a bicycle lane (as indicated by signage), constituting a lane violation. It then continues on a curved road, maintaining its position in the right lane before exiting. The road geometry is curved due to the exit ramp's alignment."
+}

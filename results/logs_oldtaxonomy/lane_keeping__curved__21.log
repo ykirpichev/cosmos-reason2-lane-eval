@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.95,
+  "time_of_event_sec": 0.0,
+  "description": "The ego vehicle remains centered in the center lane, maintaining a consistent position relative to lane markings while following the vehicle ahead at a safe distance. The road is straight, with no lateral deviations or steering adjustments observed."
+}

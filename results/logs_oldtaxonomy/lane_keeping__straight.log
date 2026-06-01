@@ -1,0 +1,11 @@
+
+
+```json
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 1.0,
+  "time_of_event_sec": null,
+  "description": "The ego-vehicle remains stationary at a red light, maintaining its lane position without any lateral movement or steering adjustments. The road geometry is straight, with no curves or intersections visible in the immediate vicinity of the ego-vehicle's position."
+}
+```

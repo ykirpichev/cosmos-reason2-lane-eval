@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.95,
+  "time_of_event_sec": 0.0,
+  "description": "The ego vehicle smoothly merges into the center lane and maintains its position within the lane, adhering to lane markings while proceeding straight on a multi-lane highway. The driver consistently checks surroundings and ensures safe spacing, indicating controlled lane-keeping behavior without violations or recovery actions."
+}

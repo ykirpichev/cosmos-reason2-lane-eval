@@ -1,0 +1,40 @@
+
+
+```json
+{
+  "road_geometry": "straight",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 0.98,
+      "description": "At the start, the ego vehicle is centered in its lane, maintaining a steady position relative to the lane lines."
+    },
+    {
+      "behavior": "lane_change",
+      "time_of_event_sec": 1.0,
+      "confidence": 0.98,
+      "description": "The ego vehicle crosses the lane line and moves into the adjacent lane, completing a smooth lane change."
+    },
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 2.0,
+      "confidence": 0.98,
+      "description": "After the lane change, the ego vehicle remains centered in the new lane, maintaining a steady position relative to the lane lines."
+    },
+    {
+      "behavior": "lane_change",
+      "time_of_event_sec": 10.0,
+      "confidence": 0.98,
+      "description": "The ego vehicle crosses another lane line and moves into the next adjacent lane, completing another smooth lane change."
+    },
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 11.0,
+      "confidence": 0.98,
+      "description": "Following the second lane change, the ego vehicle stays centered in the new lane, maintaining a steady position relative to the lane lines."
+    }
+  ],
+  "overall_behavior": "lane_change"
+}
+```

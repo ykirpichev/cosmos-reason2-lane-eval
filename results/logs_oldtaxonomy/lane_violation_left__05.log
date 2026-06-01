@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.95,
+  "time_of_event_sec": 0.0,
+  "description": "The ego vehicle maintains its lane position after intentional lane shifts, demonstrating controlled lane-keeping behavior on a straight highway. The vehicle shifts lanes to the right initially, then later returns to the left lane, but consistently stays within designated lanes without violations or recoveries."
+}

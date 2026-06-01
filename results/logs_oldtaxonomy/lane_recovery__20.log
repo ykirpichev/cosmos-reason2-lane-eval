@@ -1,0 +1,11 @@
+
+
+```json
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.95,
+  "time_of_event_sec": 8.5,
+  "description": "The ego-vehicle smoothly transitions from the left lane to the right lane using dashed lane markings, maintaining consistent speed and trajectory. The maneuver is executed without abrupt steering or lane violations, indicating a controlled lane change rather than a recovery or infraction. The road remains straight throughout, with no curves affecting the lane alignment."
+}
+```

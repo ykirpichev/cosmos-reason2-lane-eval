@@ -1,0 +1,11 @@
+
+
+```json
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 1.0,
+  "time_of_event_sec": null,
+  "description": "The ego vehicle maintains a steady position in the middle lane of a three-lane highway, adhering to lane markings without drifting or sudden steering adjustments. The road is straight, with no curves or intersections observed."
+}
+```

@@ -1,0 +1,28 @@
+
+
+```json
+{
+  "road_geometry": "curved",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 0.9,
+      "description": "The ego vehicle remains stationary at the intersection, observing traffic flow and staying within its initial lane."
+    },
+    {
+      "behavior": "lane_change",
+      "time_of_event_sec": 5.0,
+      "confidence": 0.85,
+      "description": "The ego vehicle begins to move forward, enters the intersection, and executes a left turn, crossing multiple lane lines during the maneuver."
+    },
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 11.0,
+      "confidence": 0.95,
+      "description": "After completing the left turn, the ego vehicle stabilizes within a new lane on the highway, maintaining a steady speed and lane position."
+    }
+  ],
+  "overall_behavior": "lane_change"
+}
+```

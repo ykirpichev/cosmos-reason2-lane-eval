@@ -1,0 +1,16 @@
+
+
+```json
+{
+  "road_geometry": "straight with a left-turn lane",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 1.0,
+      "description": "The ego vehicle remains within the left-turn lane throughout the sequence, following the white car ahead while maintaining a safe distance. It adheres to the solid white lane lines and directional arrows, executing a controlled left turn at the intersection without crossing any lane boundaries."
+    }
+  ],
+  "overall_behavior": "keep_within_lane"
+}
+```

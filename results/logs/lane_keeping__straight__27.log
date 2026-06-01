@@ -1,0 +1,16 @@
+
+
+```json
+{
+  "road_geometry": "straight",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 0.99,
+      "description": "I am keeping within my lane on a straight, three‑lane road, with a solid line on the left and broken lines on the right. I am following a white van ahead of me, maintaining a safe distance, and I am not changing lanes."
+    }
+  ],
+  "overall_behavior": "keep_within_lane"
+}
+```

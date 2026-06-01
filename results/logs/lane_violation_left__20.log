@@ -1,0 +1,16 @@
+
+
+```json
+{
+  "road_geometry": "straight",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 1.0,
+      "description": "The ego vehicle maintains its position within the lane, following the truck ahead without deviating from its path or interacting with lane markings. It remains vigilant of surrounding vehicles, including the overtaking white van, but does not initiate any lane changes or adjustments."
+    }
+  ],
+  "overall_behavior": "keep_within_lane"
+}
+```

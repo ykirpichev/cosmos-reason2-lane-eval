@@ -1,0 +1,11 @@
+
+
+```json
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 1.0,
+  "time_of_event_sec": null,
+  "description": "The ego-vehicle maintains a steady speed and stays centered within its lane, following the straight two-way road marked by solid yellow lines. There are no lane deviations, recoveries, or violations observed throughout the sequence."
+}
+```

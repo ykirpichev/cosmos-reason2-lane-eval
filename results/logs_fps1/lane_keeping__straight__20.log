@@ -1,0 +1,11 @@
+
+
+```json
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.95,
+  "time_of_event_sec": null,
+  "description": "The ego vehicle maintains a steady position in the center lane, following the black SUV ahead without any lateral deviations or steering adjustments. Lane markings remain consistent, and no lane violations or recoveries are observed throughout the sequence."
+}
+```

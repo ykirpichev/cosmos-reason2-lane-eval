@@ -1,0 +1,16 @@
+
+
+```json
+{
+  "road_geometry": "straight",
+  "events": [
+    {
+      "behavior": "lane_change",
+      "time_of_event_sec": 0.0,
+      "confidence": 1.0,
+      "description": "The ego vehicle initiates a lane change from the right lane to the left lane, crossing the dashed white line between 0 and 4 seconds, and completes the maneuver by 4 seconds, maintaining a steady speed in the new lane."
+    }
+  ],
+  "overall_behavior": "lane_change"
+}
+```

@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 1.0,
+  "time_of_event_sec": null,
+  "description": "The ego-vehicle maintains a steady pace in the rightmost lane of a multi-lane highway, keeping consistent distance from surrounding vehicles without any lateral deviations. The lane markings are clear, and the road is straight, with no indication of lane changes, recoveries, or violations observed throughout the sequence."
+}

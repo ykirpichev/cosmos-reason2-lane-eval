@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.95,
+  "time_of_event_sec": null,
+  "description": "The ego-vehicle maintains a steady pace in the middle lane of a three-lane highway, consistently keeping a safe distance from surrounding vehicles. Lane markings (white dashed lines) remain clear and unobstructed, and the vehicle shows no signs of drifting, lane changes, or steering adjustments that would indicate lane recovery or violation. The road is straight, with no curves or turns evident in the scene."
+}

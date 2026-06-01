@@ -1,0 +1,16 @@
+
+
+```json
+{
+  "road_geometry": "straight",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 1.0,
+      "description": "The ego vehicle remains in the right lane of a two-lane highway, maintaining its position behind a white van while a large truck passes on the left. The lane markings are clear, and the ego vehicle does not cross or deviate from its lane throughout the observed period."
+    }
+  ],
+  "overall_behavior": "keep_within_lane"
+}
+```

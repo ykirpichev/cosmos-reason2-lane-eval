@@ -1,0 +1,16 @@
+
+
+```json
+{
+  "road_geometry": "straight",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 1.0,
+      "description": "I drive straight and maintain my lane position, showing no lane changes or lane wanderings throughout the entire clip."
+    }
+  ],
+  "overall_behavior": "keep_within_lane"
+}
+```

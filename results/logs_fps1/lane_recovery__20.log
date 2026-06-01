@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.95,
+  "time_of_event_sec": null,
+  "description": "The ego vehicle maintains its lane position within the left lane initially and then gradually shifts to the right lane while staying within the lane markings, indicating controlled lane-keeping behavior. The road remains straight throughout the sequence."
+}

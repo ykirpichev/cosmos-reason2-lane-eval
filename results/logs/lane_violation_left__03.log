@@ -1,0 +1,28 @@
+
+
+```json
+{
+  "road_geometry": "straight",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 0.9,
+      "description": "I am driving straight, keeping within my lane and following the vehicle ahead."
+    },
+    {
+      "behavior": "lane_change",
+      "time_of_event_sec": 8.5,
+      "confidence": 0.9,
+      "description": "I am making a lane change to the right, crossing the solid lane line to enter the right‑turn lane."
+    },
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 11.5,
+      "confidence": 0.9,
+      "description": "I am continuing in the right‑turn lane, preparing for the upcoming turn."
+    }
+  ],
+  "overall_behavior": "lane_change"
+}
+```

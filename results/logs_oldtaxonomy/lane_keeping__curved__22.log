@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 1.0,
+  "time_of_event_sec": null,
+  "description": "The ego-vehicle maintains its lane position throughout the sequence, staying centered between the lane markings while approaching and stopping at the red light. The road geometry is straight, with no curves or turns indicated, and the lane markings remain consistent and unobstructed."
+}

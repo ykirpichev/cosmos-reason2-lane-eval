@@ -1,0 +1,16 @@
+
+
+```json
+{
+  "road_geometry": "straight",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 1.0,
+      "description": "The ego vehicle remains consistently within its lane, maintaining a steady speed and safe distance from the white sedan ahead. It adheres to the right-turn-only lane markings and stops at the red light without any lane changes or deviations."
+    }
+  ],
+  "overall_behavior": "keep_within_lane"
+}
+```

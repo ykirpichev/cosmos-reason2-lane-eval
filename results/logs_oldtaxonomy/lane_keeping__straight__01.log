@@ -1,0 +1,11 @@
+
+
+```json
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.95,
+  "time_of_event_sec": 0.0,
+  "description": "The ego vehicle remains stationary behind the black car, maintaining a safe distance and aligned within its lane markings. There is no lateral movement or steering correction observed, as the vehicle waits for the traffic light to turn green. The lane markings are clear, and the road is straight, with no indication of lane deviations or recovery actions."
+}
+```

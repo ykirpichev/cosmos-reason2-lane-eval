@@ -1,0 +1,16 @@
+
+
+```json
+{
+  "road_geometry": "curved",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 1.0,
+      "description": "The ego vehicle maintains its position within the lane, following the left-turn arrow and the slight leftward curve of the road. Lane markings are visible but become less distinct as the vehicle progresses, yet the vehicle continues to stay within the lane without any indication of lane changes or wandering."
+    }
+  ],
+  "overall_behavior": "keep_within_lane"
+}
+```

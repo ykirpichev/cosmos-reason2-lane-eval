@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_violation_right",
+  "road_geometry": "straight",
+  "confidence": 0.95,
+  "time_of_event_sec": 2.6,
+  "description": "The ego vehicle violates the solid white line by merging into the right-turn lane, constituting a lane violation. The road geometry remains straight as the vehicle approaches the intersection before executing the right turn."
+}

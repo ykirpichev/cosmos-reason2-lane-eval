@@ -1,0 +1,16 @@
+
+
+```json
+{
+  "road_geometry": "straight",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 1.0,
+      "description": "The ego vehicle maintains its lane and follows the vehicle ahead, keeping a steady speed and safe distance. The road is straight with clear lane markings, and the traffic light ahead is green. There are no lane changes or significant maneuvers observed."
+    }
+  ],
+  "overall_behavior": "keep_within_lane"
+}
+```

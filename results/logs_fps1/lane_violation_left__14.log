@@ -1,0 +1,11 @@
+
+
+```json
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 1.0,
+  "time_of_event_sec": null,
+  "description": "The ego vehicle maintains a steady position in the middle lane of a three-lane road, adhering to white dashed lane markings. It continues straight without lane changes, abrupt maneuvers, or deviations, indicating consistent lane-keeping behavior on a straight roadway."
+}
+```

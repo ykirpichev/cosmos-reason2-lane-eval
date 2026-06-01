@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.95,
+  "time_of_event_sec": 8.0,
+  "description": "The ego vehicle maintains its lane position relative to the clear markings, initially staying in the right lane and then smoothly merging left into the middle lane without abrupt movements or violations. The highway remains straight throughout the sequence."
+}

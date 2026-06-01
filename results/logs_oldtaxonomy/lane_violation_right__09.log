@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.98,
+  "time_of_event_sec": 12.0,
+  "description": "The ego-vehicle maintains a consistent position centered within its lane throughout the sequence, adhering to the lane markings without any lateral deviation. The road remains straight, and no lane changes, recoveries, or violations occur despite the presence of a parked vehicle on the right and a red traffic light ahead."
+}

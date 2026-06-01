@@ -1,0 +1,11 @@
+
+
+```json
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 1.0,
+  "time_of_event_sec": 0.0,
+  "description": "The ego vehicle remains in its lane throughout the scenario, following the silver car ahead while maintaining a safe distance. The solid white line on the left and broken white line on the right indicate lane boundaries, and the ego vehicle does not cross or drift outside its lane. The road is straight, and the green traffic light allows continuous forward motion without turning or lane changes."
+}
+```

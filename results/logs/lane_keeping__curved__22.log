@@ -1,0 +1,16 @@
+
+
+```json
+{
+  "road_geometry": "straight",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 0.99,
+      "description": "The ego vehicle consistently stays within its lane throughout the entire sequence, maintaining a straight path and adhering to the lane markings as it approaches and stops at the red traffic light behind the truck."
+    }
+  ],
+  "overall_behavior": "keep_within_lane"
+}
+```

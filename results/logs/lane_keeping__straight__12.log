@@ -1,0 +1,16 @@
+
+
+```json
+{
+  "road_geometry": "straight",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 1.0,
+      "description": "The ego-vehicle maintains a steady position within the right lane of the straight two-lane road, adhering to the lane markings without any lateral deviation or interaction with other vehicles or obstacles throughout the entire clip."
+    }
+  ],
+  "overall_behavior": "keep_within_lane"
+}
+```

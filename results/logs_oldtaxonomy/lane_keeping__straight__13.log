@@ -1,0 +1,11 @@
+
+
+```json
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.98,
+  "time_of_event_sec": 0.0,
+  "description": "The ego vehicle maintains a consistent position within its lane throughout the entire 12-second clip, staying centered between the solid yellow line and dashed white line. There are no lateral deviations, lane changes, or recovery actions observed. The road remains straight with no curves or intersections, and the vehicle proceeds steadily without reacting to the passing oncoming car."
+}
+```

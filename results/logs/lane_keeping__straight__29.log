@@ -1,0 +1,16 @@
+
+
+```json
+{
+  "road_geometry": "straight",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 0.0,
+      "description": "I am driving straight on a single-lane, two-way road. There are no other road users around, so there is not much to watch out for. However, it is dark at night, so I have my headlights on, and I drive cautiously."
+    }
+  ],
+  "overall_behavior": "keep_within_lane"
+}
+```

@@ -1,0 +1,16 @@
+
+
+```json
+{
+  "road_geometry": "straight",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 0.99,
+      "description": "I am driving straight on a two‑lane road with a dedicated left‑turn lane, approaching a signalized intersection. I slow down and come to a complete stop behind a white van in the same lane, maintaining proper lane discipline throughout the sequence. No lane changes or deviations occur."
+    }
+  ],
+  "overall_behavior": "keep_within_lane"
+}
+```

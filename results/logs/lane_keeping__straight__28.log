@@ -1,0 +1,16 @@
+
+
+```json
+{
+  "road_geometry": "straight",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 0.98,
+      "description": "The ego-vehicle maintains its position in the leftmost lane, which is designated for left turns, while gradually slowing down to match the pace of the white car ahead. It keeps a safe following distance and remains within the lane boundaries throughout the sequence."
+    }
+  ],
+  "overall_behavior": "keep_within_lane"
+}
+```

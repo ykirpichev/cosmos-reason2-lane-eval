@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.95,
+  "time_of_event_sec": 0.0,
+  "description": "The ego vehicle maintains proper lane position in the rightmost lane, follows lane markings to prepare for a right turn, and does not exhibit any lane deviations or violations. The road remains straight with clear lane guidance."
+}

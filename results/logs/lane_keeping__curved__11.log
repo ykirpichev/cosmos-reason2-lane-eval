@@ -1,0 +1,16 @@
+
+
+```json
+{
+  "road_geometry": "straight",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 0.0,
+      "description": "I am driving straight on a three‑lane road, and the road markings are clearly visible. I am positioned in the rightmost lane, following a black SUV, and I am maintaining a safe distance from the vehicle ahead. A white car is visible in the leftmost lane, and I am keeping a safe distance from it as well. I am driving safely and following all the traffic rules."
+    }
+  ],
+  "overall_behavior": "keep_within_lane"
+}
+```

@@ -1,0 +1,11 @@
+
+
+```json
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "curved",
+  "confidence": 0.95,
+  "time_of_event_sec": 0.0,
+  "description": "The ego-vehicle follows the white arrow marking to make a left turn, maintaining its lane despite reduced visibility of lane markings during the maneuver. The road geometry is curved due to the left turn."
+}
+```

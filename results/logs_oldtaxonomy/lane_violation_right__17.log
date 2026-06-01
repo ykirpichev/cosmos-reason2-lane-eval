@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 1.0,
+  "time_of_event_sec": null,
+  "description": "The ego vehicle maintains a steady position within the middle lane, adhering to the white dashed lane markings without any lateral deviations, lane changes, or interactions with surrounding vehicles. The straight highway alignment and consistent lane discipline indicate stable lane-keeping behavior throughout the 12-second clip."
+}

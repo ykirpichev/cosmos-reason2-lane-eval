@@ -1,0 +1,11 @@
+
+
+```json
+{
+  "behavior": "lane_violation_right",
+  "road_geometry": "straight",
+  "confidence": 1.0,
+  "time_of_event_sec": 10.2,
+  "description": "The ego vehicle crosses solid white lines while shifting to the rightmost lane as the road widens into three lanes, constituting a lane violation to the right."
+}
+```

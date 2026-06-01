@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_violation_right",
+  "road_geometry": "straight",
+  "confidence": 0.95,
+  "time_of_event_sec": 9.0,
+  "description": "The ego-vehicle swerves sharply to the right, crossing over the solid white line into the adjacent lane while attempting to follow the lead vehicle through the intersection. This constitutes a lane violation as it disrupts proper lane discipline by encroaching into another lane without a valid reason (e.g., dashed lines or permitted lane changes). After the swerve, the vehicle continues straight in the new lane, maintaining its path without further corrective action."
+}

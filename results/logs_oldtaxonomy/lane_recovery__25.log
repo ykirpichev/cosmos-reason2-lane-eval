@@ -1,0 +1,11 @@
+
+
+```json
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.95,
+  "time_of_event_sec": null,
+  "description": "The ego-vehicle maintains its lane position within the right-side lane markings on a straight, dimly lit two-lane road. The vehicle proceeds steadily forward without crossing lane boundaries, and no lane violations or recoveries are observed. The road appears geometrically straight with consistent lane markings visible on the right side."
+}
+```

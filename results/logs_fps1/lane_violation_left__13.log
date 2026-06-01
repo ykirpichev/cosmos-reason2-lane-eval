@@ -1,0 +1,11 @@
+
+
+```json
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "curved",
+  "confidence": 1.0,
+  "time_of_event_sec": 0.0,
+  "description": "The ego-vehicle maintains its position within the left-turn-only lane, adhering to the lane markings and preparing to execute a left turn at the intersection. There are no lane violations or deviations observed throughout the entire sequence."
+}
+```

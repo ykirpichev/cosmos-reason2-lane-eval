@@ -1,0 +1,22 @@
+
+
+```json
+{
+  "road_geometry": "straight",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 0.9,
+      "description": "The ego-vehicle maintains its position in the rightmost lane of the three-lane highway, staying centered between the lane markings while following traffic ahead."
+    },
+    {
+      "behavior": "lane_change",
+      "time_of_event_sec": 6.5,
+      "confidence": 0.95,
+      "description": "The ego-vehicle initiates a leftward lane change, crossing the dashed white line to merge into the middle lane while maintaining speed and ensuring no vehicles are in the target lane."
+    }
+  ],
+  "overall_behavior": "lane_change"
+}
+```

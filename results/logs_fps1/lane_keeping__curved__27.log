@@ -1,0 +1,11 @@
+
+
+```json
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.98,
+  "time_of_event_sec": null,
+  "description": "The ego vehicle remains centered in the middle lane of a straight, multi-lane road, maintaining consistent lane position and speed. It follows a white sedan ahead, stops at a red traffic light, and exhibits no lane deviations or violations throughout the sequence."
+}
+```

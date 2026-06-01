@@ -1,0 +1,16 @@
+
+
+```json
+{
+  "road_geometry": "straight",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 0.99,
+      "description": "I am driving straight on a two‑lane‑each‑way road, maintaining my lane position without any lane changes or deviations."
+    }
+  ],
+  "overall_behavior": "keep_within_lane"
+}
+```

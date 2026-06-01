@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_violation_right",
+  "road_geometry": "straight",
+  "confidence": 0.9,
+  "time_of_event_sec": 11.6,
+  "description": "The ego vehicle initially travels in the middle lane and later merges into the right lane, crossing a solid white line during the maneuver, indicating a lane violation to the right. The road remains straight throughout the sequence."
+}

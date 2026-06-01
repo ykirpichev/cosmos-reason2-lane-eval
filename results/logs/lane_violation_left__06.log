@@ -1,0 +1,16 @@
+
+
+```json
+{
+  "road_geometry": "straight",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 0.99,
+      "description": "The ego vehicle maintains its position within the left lane of a two‑lane highway, following a white car ahead, with no lane changes or deviations observed throughout the entire sequence."
+    }
+  ],
+  "overall_behavior": "keep_within_lane"
+}
+```

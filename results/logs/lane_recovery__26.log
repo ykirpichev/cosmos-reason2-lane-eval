@@ -1,0 +1,16 @@
+
+
+```json
+{
+  "road_geometry": "curved",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 0.99,
+      "description": "The ego-vehicle remains in the leftmost lane of a multi-lane road, follows the lane markings through a left curve, executes a left turn at the intersection, and continues in the left lane of the resulting two-lane road without deviating from its lane."
+    }
+  ],
+  "overall_behavior": "keep_within_lane"
+}
+```

@@ -1,0 +1,11 @@
+
+
+```json
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 1.0,
+  "time_of_event_sec": null,
+  "description": "The ego vehicle maintains a steady course within the center of its lane throughout the video, with no signs of lane drifting, recovery maneuvers, or violations. The road remains straight, as indicated by consistent parallel lane markings and a clear forward trajectory."
+}
+```

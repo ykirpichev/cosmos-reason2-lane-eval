@@ -1,0 +1,22 @@
+
+
+```json
+{
+  "road_geometry": "curved",
+  "events": [
+    {
+      "behavior": "lane_change",
+      "time_of_event_sec": 2.5,
+      "confidence": 0.95,
+      "description": "The ego vehicle crosses a solid white line to change lanes from the right lane to the left lane, then continues straight through the intersection."
+    },
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 2.5,
+      "confidence": 0.95,
+      "description": "After changing lanes, the ego vehicle maintains its position in the left lane, following the curve of the road and proceeding through the intersection under a green light."
+    }
+  ],
+  "overall_behavior": "lane_change"
+}
+```

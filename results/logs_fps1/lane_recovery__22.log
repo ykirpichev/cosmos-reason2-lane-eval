@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.95,
+  "time_of_event_sec": null,
+  "description": "The ego vehicle remains in the leftmost lane with a solid yellow line on its left and dashed white lines to the right, maintaining a steady speed and consistent lane position throughout the video. There are no indications of lane changes, nudging, or deviations from the lane, confirming compliant lane-keeping behavior. The road geometry is straight, as evidenced by the consistent forward-facing camera view, absence of curves, and alignment with typical highway design."
+}

@@ -1,0 +1,22 @@
+
+
+```json
+{
+  "road_geometry": "straight",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 1.0,
+      "description": "The ego vehicle maintains its position in the third lane of a five-lane highway, staying within the lane boundaries marked by solid white lines."
+    },
+    {
+      "behavior": "lane_change",
+      "time_of_event_sec": 9.6,
+      "confidence": 1.0,
+      "description": "The ego vehicle initiates a lane change from the third lane into the first lane, crossing solid white lane markings while maintaining a steady speed and trajectory."
+    }
+  ],
+  "overall_behavior": "lane_change"
+}
+```

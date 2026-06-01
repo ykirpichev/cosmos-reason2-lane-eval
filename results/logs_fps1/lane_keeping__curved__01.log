@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.95,
+  "time_of_event_sec": null,
+  "description": "The ego-vehicle remains in the right lane throughout the clip, adhering to the solid white line boundary and maintaining proper lane discipline. The road is straight, and no lane changes or violations occur."
+}

@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.95,
+  "time_of_event_sec": null,
+  "description": "The ego vehicle maintains a steady position within the center lane throughout the video, adhering to lane markings without any lateral deviation. It follows the vehicle ahead at a safe distance and stops smoothly at the red light, demonstrating consistent lane-keeping behavior on a straight, multi-lane road."
+}

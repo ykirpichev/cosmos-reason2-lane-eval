@@ -1,0 +1,16 @@
+
+
+```json
+{
+  "road_geometry": "straight",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 0.0,
+      "description": "I am driving on a straight two-lane road with a solid yellow line marking the center. I remain in the right lane, maintaining a consistent speed and staying within my lane throughout the entire video. There are no lane changes, lane wanderings, or interactions with other vehicles or obstacles."
+    }
+  ],
+  "overall_behavior": "keep_within_lane"
+}
+```

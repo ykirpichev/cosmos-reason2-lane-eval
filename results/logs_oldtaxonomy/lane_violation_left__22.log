@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 1.0,
+  "time_of_event_sec": null,
+  "description": "The ego-vehicle maintains a steady position in the center lane throughout the 12-second sequence, following the white van on the left while keeping consistent lane alignment. No lane changes, drifts, or recoveries are observed; the road remains straight with clear lane markings and no visible curves or obstructions."
+}

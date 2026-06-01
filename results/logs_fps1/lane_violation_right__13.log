@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.9,
+  "time_of_event_sec": 10.8,
+  "description": "The ego vehicle maintains its lane while preparing for and executing a right turn at the intersection, following the right-turn lane markings and traffic signals. The road leading to the intersection is straight, with no indication of a curved segment."
+}

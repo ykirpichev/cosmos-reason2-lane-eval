@@ -1,0 +1,11 @@
+
+
+```json
+{
+  "behavior": "lane_violation_right",
+  "road_geometry": "straight",
+  "confidence": 1.0,
+  "time_of_event_sec": 11.6,
+  "description": "The ego-vehicle initially maintains its lane but commits a lane violation by crossing a solid white line while making a right turn at the intersection. After the turn, it correctly aligns with the new lane marked for right turns and continues straight, adhering to lane markings afterward."
+}
+```

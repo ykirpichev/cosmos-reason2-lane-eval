@@ -1,0 +1,11 @@
+
+
+```json
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 1.0,
+  "time_of_event_sec": 0.0,
+  "description": "The ego-vehicle maintains a steady position in the middle lane, adhering to lane markings while proceeding straight through the intersection under a green light. There are no lane changes, recoveries, or violations observed; the vehicle consistently follows the lane lines without deviation."
+}
+```

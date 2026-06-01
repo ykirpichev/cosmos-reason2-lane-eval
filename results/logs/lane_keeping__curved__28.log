@@ -1,0 +1,22 @@
+
+
+```json
+{
+  "road_geometry": "straight",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 1.0,
+      "description": "The ego vehicle remains stationary in the middle lane, maintaining its position between the solid white lane markings while waiting at a red light."
+    },
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 3.0,
+      "confidence": 1.0,
+      "description": "When the traffic light turns green, the ego vehicle accelerates smoothly, continuing straight ahead while staying centered in the middle lane, surrounded by other moving vehicles."
+    }
+  ],
+  "overall_behavior": "keep_within_lane"
+}
+```

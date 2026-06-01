@@ -1,0 +1,16 @@
+
+
+```json
+{
+  "road_geometry": "straight",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 1.0,
+      "description": "The ego-vehicle drives straight in the right lane of a two-lane road, approaching an intersection with a red light. It stops at the stop line, waits for a crossing vehicle to clear the intersection, and then proceeds forward while remaining within the same lane."
+    }
+  ],
+  "overall_behavior": "keep_within_lane"
+}
+```

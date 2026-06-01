@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.95,
+  "time_of_event_sec": null,
+  "description": "The ego vehicle remains in the second lane from the left, maintaining a steady pace and safe following distance behind the black sedan. The lane markings are clear and consistent, with no indication of lane deviations, recoveries, or violations. The road is straight, as evidenced by the orderly traffic flow, traffic lights, and lack of visible curves or bends in the video."
+}

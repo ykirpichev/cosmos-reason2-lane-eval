@@ -1,0 +1,16 @@
+
+
+```json
+{
+  "road_geometry": "curved",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 1.0,
+      "description": "I am in the left‑turn lane, following the vehicle ahead as it moves through the intersection. I turn left onto the three‑lane road and continue straight in the middle lane, maintaining a safe following distance and staying alert for any changes in traffic flow. I keep within my lane and monitor the surroundings for potential hazards."
+    }
+  ],
+  "overall_behavior": "keep_within_lane"
+}
+```

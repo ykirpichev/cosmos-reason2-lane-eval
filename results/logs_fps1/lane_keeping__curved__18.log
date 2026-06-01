@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.95,
+  "time_of_event_sec": null,
+  "description": "The ego vehicle maintains a steady position in the third lane of a three-lane road, adhering to lane markings without deviation. It proceeds straight through a green light while staying vigilant for cyclists in the adjacent bike lane and potential traffic changes, with no lane changes, recoveries, or violations observed."
+}

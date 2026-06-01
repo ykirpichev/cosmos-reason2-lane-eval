@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.95,
+  "time_of_event_sec": null,
+  "description": "The ego vehicle consistently drives straight in the middle of the three-lane road, maintaining a steady pace and clear lane position without any signs of drifting, recovery, or lane changes. The road markings are visible and the path remains linear throughout the sequence."
+}

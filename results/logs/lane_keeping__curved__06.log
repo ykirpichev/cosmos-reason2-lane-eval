@@ -1,0 +1,16 @@
+
+
+```json
+{
+  "road_geometry": "straight",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 1.0,
+      "description": "I am driving on a collector road with two lanes in each direction and a shared turning lane in the center. I am in the middle of a three‑lane road, with a solid white line to my left and a broken white line to my right. The road is straight. I am driving behind a white sedan, and the traffic light turns green. I maintain a safe distance from the vehicles in my adjacent lanes. I drive straight through the intersection while maintaining a safe distance from the vehicles ahead of me. I am driving safely and following all the traffic rules."
+    }
+  ],
+  "overall_behavior": "keep_within_lane"
+}
+```

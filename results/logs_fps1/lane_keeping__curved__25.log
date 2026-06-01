@@ -1,0 +1,11 @@
+
+
+```json
+{
+  "behavior": "lane_violation_right",
+  "road_geometry": "curved",
+  "confidence": 0.95,
+  "time_of_event_sec": 2.5,
+  "description": "The ego-vehicle slightly crosses into the adjacent lane while making a right turn, constituting a lane violation to the right. The road geometry involves a curved turn followed by a straight path toward the exit."
+}
+```

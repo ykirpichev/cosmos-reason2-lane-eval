@@ -1,0 +1,11 @@
+
+
+```json
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 1.0,
+  "time_of_event_sec": null,
+  "description": "The ego vehicle maintains its lane position throughout the 12-second clip, adhering to lane markings while driving straight through the intersection. The road geometry remains straight, with no curves or turns observed, and the vehicle continues steadily without deviating from its path."
+}
+```

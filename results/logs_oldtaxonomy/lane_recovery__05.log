@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "curved",
+  "confidence": 0.95,
+  "time_of_event_sec": 6.5,
+  "description": "The ego vehicle remained within the designated left-turn-only lane throughout the entire sequence, including during the U-turn maneuver. The lane markings (solid white line on the right) and directional arrows clearly indicated the intended path, and the vehicle adhered to these constraints. The U-turn was executed within the lane's boundaries, confirming no lane violation. The road geometry involved a curved U-turn path."
+}

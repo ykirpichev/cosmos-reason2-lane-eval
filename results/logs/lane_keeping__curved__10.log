@@ -1,0 +1,16 @@
+
+
+```json
+{
+  "road_geometry": "straight",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 1.0,
+      "description": "The ego vehicle maintains its position within the lane throughout the entire clip, following a black SUV and stopping at the intersection without any lane changes or deviations."
+    }
+  ],
+  "overall_behavior": "keep_within_lane"
+}
+```

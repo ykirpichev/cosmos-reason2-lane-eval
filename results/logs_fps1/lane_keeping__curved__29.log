@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.95,
+  "time_of_event_sec": null,
+  "description": "The ego vehicle maintains a steady, centered position within its lane, driving straight along the narrow road without lateral deviations. The road is geometrically straight, bordered by barriers, and marked with clear edge lines, with no curves or turns observed in the sequence."
+}

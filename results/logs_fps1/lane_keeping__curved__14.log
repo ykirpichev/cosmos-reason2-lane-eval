@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 1.0,
+  "time_of_event_sec": null,
+  "description": "The ego vehicle remains stationary in the center lane, maintaining a safe distance from the vehicle ahead while waiting for the traffic light to turn green. There are no lateral movements or lane changes, and the clear lane markings confirm consistent lane positioning throughout the sequence."
+}

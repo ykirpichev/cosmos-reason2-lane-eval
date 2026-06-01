@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "curved",
+  "confidence": 0.95,
+  "time_of_event_sec": 8.5,
+  "description": "The ego vehicle maintains its lane after executing a cautious left turn, adhering to the single-lane, two-way road structure. The road geometry includes a curve due to the left turn, though the post-turn segment remains straight."
+}

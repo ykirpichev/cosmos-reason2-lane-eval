@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.99,
+  "time_of_event_sec": null,
+  "description": "The ego vehicle maintains a steady speed and centered position within the middle lane, adhering to dashed white lane markings. The road remains straight with consistent lane geometry, and no lateral deviations or violations occur throughout the sequence."
+}

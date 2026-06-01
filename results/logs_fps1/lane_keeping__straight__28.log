@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.95,
+  "time_of_event_sec": 0.0,
+  "description": "The ego-vehicle remains in the leftmost lane with a left-turn-only marking, maintaining lane position despite the need to turn left. The solid white lines on the right and yellow line on the left indicate no lane changes are required, and the ego-vehicle adheres to these markings by continuing straight within its designated lane."
+}

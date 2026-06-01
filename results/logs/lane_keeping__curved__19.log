@@ -1,0 +1,22 @@
+
+
+```json
+{
+  "road_geometry": "straight",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 1.0,
+      "description": "The ego vehicle remains stationary at the intersection, waiting for the traffic light to turn green. It stays within its lane, showing no signs of lane changes or wandering."
+    },
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 5.6,
+      "confidence": 1.0,
+      "description": "As the traffic light turns green, the ego vehicle begins to move forward, crossing the intersection. It continues to stay within its lane, maintaining a steady and controlled path."
+    }
+  ],
+  "overall_behavior": "keep_within_lane"
+}
+```

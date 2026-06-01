@@ -1,0 +1,28 @@
+
+
+```json
+{
+  "road_geometry": "straight",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 1.0,
+      "description": "The ego vehicle begins in the middle lane, maintaining a steady course with consistent lane-keeping behavior."
+    },
+    {
+      "behavior": "lane_change",
+      "time_of_event_sec": 5.5,
+      "confidence": 1.0,
+      "description": "The ego vehicle initiates a lane change to the left, crossing the dashed white line and merging into the left lane between 5.5s and 9.5s."
+    },
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 9.5,
+      "confidence": 1.0,
+      "description": "After completing the merge, the ego vehicle stabilizes in the left lane and continues driving straight, maintaining proper lane discipline."
+    }
+  ],
+  "overall_behavior": "lane_change"
+}
+```

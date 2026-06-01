@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_violation_right",
+  "road_geometry": "straight",
+  "confidence": 0.95,
+  "time_of_event_sec": 10.0,
+  "description": "The ego vehicle crosses a solid white line when the lane splits into a straight and right-turn lane, constituting a lane violation. The road geometry remains predominantly straight until the intersection where the split occurs."
+}

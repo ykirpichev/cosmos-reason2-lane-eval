@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "curved",
+  "confidence": 0.95,
+  "time_of_event_sec": null,
+  "description": "The ego-vehicle maintains a consistent following distance behind the white van, adhering to lane markings throughout the sequence. After the intersection, the road curves gently to the right, and the ego-vehicle smoothly follows the curve without deviating from its lane."
+}

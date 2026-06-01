@@ -1,0 +1,16 @@
+
+
+```json
+{
+  "road_geometry": "curved",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 1.0,
+      "description": "The ego vehicle maintains its lane position throughout the entire sequence, following the lane markings as the road curves slightly to the right. There are no lane changes or deviations from the lane observed."
+    }
+  ],
+  "overall_behavior": "keep_within_lane"
+}
+```

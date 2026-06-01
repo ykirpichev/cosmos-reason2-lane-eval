@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.95,
+  "time_of_event_sec": 11.6,
+  "description": "After completing the left turn, the ego vehicle continues driving in the left lane of a two-lane road, maintaining proper lane positioning without any violations or recovery actions. The road segment post-turn is straight."
+}

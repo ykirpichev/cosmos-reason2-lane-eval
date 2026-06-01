@@ -1,0 +1,22 @@
+
+
+```json
+{
+  "road_geometry": "straight",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 1.0,
+      "description": "The ego vehicle maintains a steady speed and stays in the middle lane of the three-lane highway, keeping a safe distance from the white van on its left and the truck ahead. The road is straight, with clear lane markings and no immediate lane changes or crossings observed during this initial phase."
+    },
+    {
+      "behavior": "lane_change",
+      "time_of_event_sec": 8.0,
+      "confidence": 1.0,
+      "description": "The ego vehicle initiates a smooth lane change to the right lane between 8s and 11s, moving from the middle lane to the right lane while maintaining speed and ensuring no conflict with surrounding vehicles. The maneuver is executed cautiously, with the driver checking for clearance before completing the shift."
+    }
+  ],
+  "overall_behavior": "lane_change"
+}
+```

@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.95,
+  "time_of_event_sec": null,
+  "description": "The ego vehicle maintains a steady position within its lane, following the black SUV while keeping a safe distance. The lane markings are clear, and the vehicle does not exhibit any lateral deviation or steering corrections, indicating consistent lane-keeping behavior. The road geometry remains straight throughout the sequence, with no curves or intersections affecting the ego vehicle's path."
+}

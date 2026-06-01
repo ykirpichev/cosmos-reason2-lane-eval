@@ -1,0 +1,11 @@
+
+
+```json
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "curved",
+  "confidence": 1.0,
+  "time_of_event_sec": 0.0,
+  "description": "The ego-vehicle remains in its lane while waiting at the stop sign and then executes a left turn into the correct lane after ensuring the path is clear, maintaining proper lane discipline throughout the maneuver. The road geometry during the turn is curved as the vehicle follows the lane markings to complete the left turn."
+}
+```

@@ -1,0 +1,130 @@
+[
+  {
+    "id": "lane_keeping__straight",
+    "ground_truth": "lane_keeping / straight",
+    "video": "clips/lane_keeping__straight.mp4",
+    "scene": "scene-0553",
+    "return_code": 0,
+    "elapsed_sec": 160.1,
+    "parsed": {
+      "behavior": "lane_keeping",
+      "road_geometry": "straight",
+      "confidence": 1.0,
+      "time_of_event_sec": null,
+      "description": "The ego-vehicle remains stationary at a red light, maintaining its lane position without any lateral movement or steering adjustments. The road geometry is straight, with no curves or intersections visible in the immediate vicinity of the ego-vehicle's position."
+    },
+    "log": "results/logs/lane_keeping__straight.log"
+  },
+  {
+    "id": "lane_keeping__curved",
+    "ground_truth": "lane_keeping / curved",
+    "video": "clips/lane_keeping__curved.mp4",
+    "scene": "scene-1100",
+    "return_code": 0,
+    "elapsed_sec": 233.1,
+    "parsed": {
+      "behavior": "lane_keeping",
+      "road_geometry": "straight",
+      "confidence": 0.95,
+      "time_of_event_sec": 0.0,
+      "description": "The ego vehicle remains stationary in the middle of the intersection, maintaining its lane position without any lateral movement or steering adjustments. The road ahead is straight, with clear lane markings and no signs of turns or curves, indicating a straightforward lane-keeping scenario while waiting for the traffic light to change."
+    },
+    "log": "results/logs/lane_keeping__curved.log"
+  },
+  {
+    "id": "lane_recovery__straight",
+    "ground_truth": "lane_recovery / straight",
+    "video": "clips/lane_recovery__straight.mp4",
+    "scene": "scene-1077",
+    "return_code": 0,
+    "elapsed_sec": 279.2,
+    "parsed": {
+      "behavior": "lane_keeping",
+      "road_geometry": "curved",
+      "confidence": 0.95,
+      "time_of_event_sec": 0.0,
+      "description": "The ego-vehicle maintains a steady speed and lane position in the leftmost lane throughout the 15-second sequence, following the slight rightward curve of the road without any lane deviations or violations."
+    },
+    "log": "results/logs/lane_recovery__straight.log"
+  },
+  {
+    "id": "lane_recovery__curved",
+    "ground_truth": "lane_recovery / curved",
+    "video": "clips/lane_recovery__curved.mp4",
+    "scene": "scene-1077",
+    "return_code": 0,
+    "elapsed_sec": 211.2,
+    "parsed": {
+      "behavior": "lane_keeping",
+      "road_geometry": "straight",
+      "confidence": 1.0,
+      "time_of_event_sec": null,
+      "description": "The ego-vehicle maintains a consistent position in the left lane of a straight, three-lane road, following the vehicle ahead at a safe distance. There are no lane changes, recoveries, or violations observed throughout the drive."
+    },
+    "log": "results/logs/lane_recovery__curved.log"
+  },
+  {
+    "id": "lane_violation_left__straight",
+    "ground_truth": "lane_violation_left / straight",
+    "video": "clips/lane_violation_left__straight.mp4",
+    "scene": "scene-1094",
+    "return_code": 0,
+    "elapsed_sec": 182.8,
+    "parsed": {
+      "behavior": "lane_keeping",
+      "road_geometry": "straight",
+      "confidence": 0.95,
+      "time_of_event_sec": 0.0,
+      "description": "After completing the left turn, the ego-vehicle maintains a consistent speed and stays centered in its lane on a straight, two-lane road. Clear lane markings and steady forward motion indicate no lane changes, violations, or recovery actions. The road remains linear with no curves, and the vehicle continues straight without deviation."
+    },
+    "log": "results/logs/lane_violation_left__straight.log"
+  },
+  {
+    "id": "lane_violation_right__straight",
+    "ground_truth": "lane_violation_right / straight",
+    "video": "clips/lane_violation_right__straight.mp4",
+    "scene": "scene-0916",
+    "return_code": 0,
+    "elapsed_sec": 116.9,
+    "parsed": {
+      "behavior": "lane_keeping",
+      "road_geometry": "curved",
+      "confidence": 0.95,
+      "time_of_event_sec": 0.0,
+      "description": "The ego-vehicle maintains its lane position while navigating a curved road within a parking lot, following directional arrows and avoiding parked vehicles."
+    },
+    "log": "results/logs/lane_violation_right__straight.log"
+  },
+  {
+    "id": "lane_violation_left__curved",
+    "ground_truth": "lane_violation_left / curved",
+    "video": "clips/lane_violation_left__curved.mp4",
+    "scene": "scene-1094",
+    "return_code": 0,
+    "elapsed_sec": 180.1,
+    "parsed": {
+      "behavior": "lane_keeping",
+      "road_geometry": "straight",
+      "confidence": 1.0,
+      "time_of_event_sec": null,
+      "description": "After completing the left turn, the ego vehicle continues driving straight on a two-lane street, maintaining a steady pace and consistent lane position without deviations or lane changes."
+    },
+    "log": "results/logs/lane_violation_left__curved.log"
+  },
+  {
+    "id": "lane_violation_right__curved",
+    "ground_truth": "lane_violation_right / curved",
+    "video": "clips/lane_violation_right__curved.mp4",
+    "scene": "scene-0916",
+    "return_code": 0,
+    "elapsed_sec": 215.5,
+    "parsed": {
+      "behavior": "lane_keeping",
+      "road_geometry": "curved",
+      "confidence": 0.98,
+      "time_of_event_sec": 0.0,
+      "description": "The ego-vehicle maintains its lane while navigating a curved road, consistently staying within the lane markings without any signs of lane recovery or violations. The road transitions smoothly from straight to curved sections, and the vehicle follows the curve steadily, demonstrating controlled and deliberate steering adjustments."
+    },
+    "log": "results/logs/lane_violation_right__curved.log"
+  }
+]

@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "curved",
+  "confidence": 0.9,
+  "time_of_event_sec": null,
+  "description": "The ego vehicle maintains its position in the leftmost lane throughout the sequence, following the red vehicle ahead while preparing for and executing a controlled left turn. The lane markings remain clear, and the vehicle adheres to its lane without abrupt steering adjustments or deviations. The road geometry involves a curved path as the ego navigates the intersection turn."
+}

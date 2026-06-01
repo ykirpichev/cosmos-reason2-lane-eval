@@ -1,0 +1,9 @@
+
+
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "straight",
+  "confidence": 0.95,
+  "time_of_event_sec": null,
+  "description": "The ego vehicle maintains a straight path along the unmarked residential street, staying centered between the road edges without deviation. The absence of lane markings simplifies the scenario, and the steady, linear motion indicates consistent lane-keeping behavior."
+}

@@ -1,0 +1,28 @@
+
+
+```json
+{
+  "road_geometry": "straight",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 0.99,
+      "description": "The ego vehicle is initially driving straight in the middle lane, maintaining its position within the lane boundaries."
+    },
+    {
+      "behavior": "lane_wandering",
+      "time_of_event_sec": 1.6,
+      "confidence": 0.99,
+      "description": "The ego vehicle begins to nudge out of its lane to the left to avoid a partially obstructing car on the right, temporarily straddling the lane line while maintaining safe clearance from surrounding vehicles and the median."
+    },
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 10.6,
+      "confidence": 0.99,
+      "description": "After passing the obstruction, the ego vehicle smoothly returns to its original lane and continues driving straight, fully re‑establishing itself within the lane boundaries."
+    }
+  ],
+  "overall_behavior": "lane_wandering"
+}
+```

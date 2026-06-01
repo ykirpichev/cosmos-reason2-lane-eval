@@ -1,0 +1,11 @@
+
+
+```json
+{
+  "behavior": "lane_violation_left",
+  "road_geometry": "straight",
+  "confidence": 0.95,
+  "time_of_event_sec": 7.5,
+  "description": "The ego-vehicle crosses a solid white line while steering left to enter the parking lot, constituting a lane violation. The road geometry is straight before the turn."
+}
+```

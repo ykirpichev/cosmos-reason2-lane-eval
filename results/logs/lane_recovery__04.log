@@ -1,0 +1,16 @@
+
+
+```json
+{
+  "road_geometry": "straight",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 1.0,
+      "description": "The ego vehicle maintains a steady course within its lane, following the white car ahead without deviating from the lane markings throughout the entire clip."
+    }
+  ],
+  "overall_behavior": "keep_within_lane"
+}
+```

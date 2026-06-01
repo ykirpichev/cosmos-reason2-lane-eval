@@ -1,0 +1,11 @@
+
+
+```json
+{
+  "behavior": "lane_keeping",
+  "road_geometry": "curved",
+  "confidence": 0.98,
+  "time_of_event_sec": 0.0,
+  "description": "The ego-vehicle maintains its lane while navigating a curved road, consistently staying within the lane markings without any signs of lane recovery or violations. The road transitions smoothly from straight to curved sections, and the vehicle follows the curve steadily, demonstrating controlled and deliberate steering adjustments."
+}
+```

@@ -1,0 +1,22 @@
+
+
+```json
+{
+  "road_geometry": "straight",
+  "events": [
+    {
+      "behavior": "keep_within_lane",
+      "time_of_event_sec": 0.0,
+      "confidence": 1.0,
+      "description": "The ego vehicle maintains its lane, staying between the solid yellow and white lines on a straight two-way road."
+    },
+    {
+      "behavior": "lane_change",
+      "time_of_event_sec": 8.0,
+      "confidence": 1.0,
+      "description": "As the lane markings transition from solid to dashed yellow lines, the ego vehicle drifts left, crosses the dashed line, and continues straight in the adjacent lane."
+    }
+  ],
+  "overall_behavior": "lane_change"
+}
+```
