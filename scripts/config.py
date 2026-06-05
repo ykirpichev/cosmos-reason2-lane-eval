@@ -56,11 +56,35 @@ MEDIA_ROOT = CLIPS_DIR.parent
 # --- code-tracked assets -----------------------------------------------------
 PROMPTS_DIR = REPO_ROOT / "prompts"
 PROMPT_FILE = PROMPTS_DIR / "lane_behavior.yaml"
+# Prompt variant describing the 3-pane multi-camera mosaic (see CAMERA_LAYOUTS).
+PROMPT_FILE_MOSAIC = PROMPTS_DIR / "lane_behavior_mosaic.yaml"
+
+# --- raw dataset locations ---------------------------------------------------
+# nuScenes devkit data root (expects v1.0-mini, samples/, sweeps/, maps/ with the
+# unzipped map-expansion under maps/expansion). Override with NUSCENES_DATAROOT.
+NUSCENES_DATAROOT = Path(
+    os.environ.get("NUSCENES_DATAROOT", str(DATASETS_DIR / "nuscenes"))
+).expanduser()
+NUSCENES_VERSION = os.environ.get("NUSCENES_VERSION", "v1.0-mini")
 
 # --- clip geometry (kept in sync with ingestion) -----------------------------
 CLIP_SECONDS = 12.0
 CLIP_FPS = 4
 FRAMES_PER_CLIP = int(CLIP_SECONDS * CLIP_FPS)
+
+# --- camera layouts ----------------------------------------------------------
+# How the frames in a clip are composed. "front_only" is a single forward camera
+# (BATON/openpilot); "front_mosaic3" is a 2-row mosaic with CAM_FRONT on top
+# (full width, higher res) and CAM_FRONT_LEFT | CAM_FRONT_RIGHT below (lower res).
+CAMERA_LAYOUTS = ["front_only", "front_mosaic3"]
+DEFAULT_CAMERA_LAYOUT = "front_only"
+
+# Mosaic canvas geometry (pixels). Front pane spans the full width on top; the two
+# side panes split the width on the bottom row.
+MOSAIC_WIDTH = 1280
+MOSAIC_FRONT_HEIGHT = 720
+MOSAIC_SIDE_HEIGHT = 360
+MOSAIC_HEIGHT = MOSAIC_FRONT_HEIGHT + MOSAIC_SIDE_HEIGHT
 
 # --- model / serving ---------------------------------------------------------
 MODEL = os.environ.get("COSMOS_MODEL", "nvidia/Cosmos-Reason2-32B")
@@ -85,6 +109,11 @@ def resolve_media(rel_path: str) -> Path:
     """Resolve a manifest ``video`` path (stored relative to MEDIA_ROOT)."""
     p = Path(rel_path)
     return p if p.is_absolute() else MEDIA_ROOT / p
+
+
+def prompt_file_for_layout(layout: str | None) -> Path:
+    """Return the prompt template matching a clip's camera layout."""
+    return PROMPT_FILE_MOSAIC if layout == "front_mosaic3" else PROMPT_FILE
 
 
 def overall_behavior(parsed: dict) -> str | None:

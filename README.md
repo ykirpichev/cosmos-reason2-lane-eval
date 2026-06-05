@@ -3,9 +3,14 @@
 Evaluate **NVIDIA Cosmos-Reason2-32B** (a video reasoning VLM) on ego-vehicle
 lane behavior, using real dashcam clips with lane signals mined from
 [BATON-Sample](https://huggingface.co/datasets/HenryYHW/BATON-Sample) (openpilot's
-production lane model). The pipeline mines 12 s / 4 Hz clips, derives
-offset-based pseudo-labels, runs Cosmos inference, and provides Streamlit apps for
+production lane model) and from [nuScenes](https://www.nuscenes.org/) (HD-map +
+ego-pose projection). The pipeline mines 12 s / 4 Hz clips, derives
+pseudo-labels, runs Cosmos inference, and provides Streamlit apps for
 human labeling and disagreement review.
+
+Clips can be a single forward camera (`front_only`, BATON/openpilot) or a
+multi-camera **mosaic** (`front_mosaic3`, nuScenes): `CAM_FRONT` on top at higher
+resolution, with `CAM_FRONT_LEFT | CAM_FRONT_RIGHT` below at lower resolution.
 
 ## Taxonomy
 
@@ -24,11 +29,14 @@ single most significant one (`lane_change`/`lane_wandering` outrank `keep_within
 ## Repository layout
 
 ```
-prompts/lane_behavior.yaml     # Cosmos prompt (geometry + multi-event schema)
+prompts/lane_behavior.yaml         # Cosmos prompt for single-camera clips
+prompts/lane_behavior_mosaic.yaml  # Cosmos prompt for 3-pane mosaic clips
 scripts/
-  config.py                    # central paths + cache dir + helpers
+  config.py                    # central paths + cache dir + camera layouts + helpers
   ingest_baton.py              # mine clips from BATON-Sample (offset signal)
   ingest_openpilot.py          # adapter for ADAS-TO / OpenLKA style data
+  ingest_nuscenes.py           # mine mosaic clips from nuScenes (map + ego pose)
+  mosaic_utils.py              # compose CAM_FRONT/FRONT_LEFT/FRONT_RIGHT into a mosaic
   remap_pseudo_3class.py       # offset -> 3-class pseudo-label (artifact-gated)
   run_batch.py                 # batch Cosmos inference via vLLM OpenAI API
   serve_vllm.sh                # start the Cosmos-Reason2 vLLM server (Docker)
@@ -94,6 +102,35 @@ scripts/serve_vllm.sh
 
 `ingest_baton.py` flags: `--per-category N`, `--scan-only` (yield report only),
 `--max-routes K` (quick run).
+
+## Other datasets
+
+### nuScenes (multi-camera mosaic)
+
+`ingest_nuscenes.py` mines mosaic clips from a local nuScenes install (defaults to
+`v1.0-mini` under `<cache>/datasets/nuscenes`, override with `NUSCENES_DATAROOT` /
+`NUSCENES_VERSION`). It needs the unzipped map-expansion under `maps/expansion`.
+
+```bash
+.venv/bin/python scripts/ingest_nuscenes.py --per-category 5   # merges into manifest_all.json
+.venv/bin/python scripts/ingest_nuscenes.py --scan-only        # candidate yield only
+.venv/bin/python scripts/ingest_nuscenes.py --layout front_only  # single CAM_FRONT instead of mosaic
+```
+
+Because nuScenes has no production lane signal, the lateral offset is derived by
+projecting the ego pose onto its current lane's map centerline. To avoid the
+nearest-centerline "snapping" between parallel lanes that caused phantom
+violations, the reference lane is tracked with hysteresis (only re-anchored once
+the ego is comfortably centered, `|offset| < 0.7 m`) and extended along lane
+connectivity; impossible >5 m/s lateral jumps are gated out. The resulting
+`signed_lateral_m` feeds the same mining classifier and 3-class remap as BATON.
+These remain **pseudo-labels** — verify them with `apps/label_clips.py` (it has a
+**Dataset** filter so you can label just the nuScenes clips).
+
+nuScenes clips are tagged `dataset: "nuscenes"` / `camera_layout: "front_mosaic3"`.
+`run_batch.py` auto-selects `prompts/lane_behavior_mosaic.yaml` for mosaic clips
+and `prompts/lane_behavior.yaml` for single-camera clips, so one run handles a
+mixed manifest.
 
 ## Prediction schema
 
