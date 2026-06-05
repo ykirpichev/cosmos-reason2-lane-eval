@@ -96,7 +96,53 @@ MEDIA_PATH_PREFIX = os.environ.get("VLLM_MEDIA_PATH_PREFIX", "/workspace")
 # Behavior taxonomy (lateral) and ordering for "most significant" reduction.
 BEHAVIORS = ["keep_within_lane", "lane_change", "lane_wandering"]
 GEOMETRIES = ["straight", "curved"]
-BEHAVIOR_SEVERITY = {"keep_within_lane": 1, "lane_wandering": 2, "lane_change": 2}
+# Precedence for reducing a multi-event timeline to one label: a completed
+# crossing (lane_change) outranks a drift-and-return (lane_wandering), which
+# outranks staying put (keep_within_lane).
+BEHAVIOR_SEVERITY = {"keep_within_lane": 1, "lane_wandering": 2, "lane_change": 3}
+
+# The model occasionally emits behaviors outside the 3-class taxonomy (e.g. a
+# "right_turn" through an intersection, or "merging"). Snap them to the closest
+# in-taxonomy class so they don't leak into overall_behavior / scoring.
+BEHAVIOR_SYNONYMS = {
+    "right_turn": "keep_within_lane",
+    "left_turn": "keep_within_lane",
+    "turn": "keep_within_lane",
+    "turning": "keep_within_lane",
+    "intersection": "keep_within_lane",
+    "stationary": "keep_within_lane",
+    "stopped": "keep_within_lane",
+    "stopping": "keep_within_lane",
+    "decelerating": "keep_within_lane",
+    "accelerating": "keep_within_lane",
+    "straight": "keep_within_lane",
+    "merge": "lane_change",
+    "merging": "lane_change",
+    "lane_merge": "lane_change",
+    "exit": "lane_change",
+    "exiting": "lane_change",
+    "overtake": "lane_change",
+    "overtaking": "lane_change",
+    "lane_departure": "lane_change",
+    "drift": "lane_wandering",
+    "drifting": "lane_wandering",
+    "swerve": "lane_wandering",
+    "swerving": "lane_wandering",
+    "weaving": "lane_wandering",
+    "wandering": "lane_wandering",
+    "straddle": "lane_wandering",
+    "straddling": "lane_wandering",
+}
+
+
+def normalize_behavior(b: str | None) -> str | None:
+    """Map a raw behavior string to the 3-class taxonomy (or None if unknown)."""
+    if not b:
+        return None
+    key = str(b).strip().lower().replace(" ", "_").replace("-", "_")
+    if key in BEHAVIORS:
+        return key
+    return BEHAVIOR_SYNONYMS.get(key)
 
 
 def ensure_dirs() -> None:
@@ -117,14 +163,22 @@ def prompt_file_for_layout(layout: str | None) -> Path:
 
 
 def overall_behavior(parsed: dict) -> str | None:
-    """Reduce a (possibly multi-event) prediction to one behavior label."""
+    """Reduce a (possibly multi-event) prediction to one taxonomy label.
+
+    The label is DERIVED from the event timeline by precedence (lane_change >
+    lane_wandering > keep_within_lane) rather than trusting the model's free-text
+    ``overall_behavior``, which was observed to (a) emit out-of-taxonomy classes
+    and (b) pick the wrong winner when a clip contains both a wander and a change.
+    The model's self-summary is only a fallback when no events are present.
+    """
     if not parsed:
         return None
-    if parsed.get("overall_behavior"):
-        return parsed["overall_behavior"]
     events = parsed.get("events") or []
-    if events:
-        return max(
-            events, key=lambda e: BEHAVIOR_SEVERITY.get(e.get("behavior"), 0)
-        ).get("behavior")
-    return parsed.get("behavior")
+    behs = [normalize_behavior(e.get("behavior")) for e in events]
+    behs = [b for b in behs if b in BEHAVIORS]
+    if behs:
+        return max(behs, key=lambda b: BEHAVIOR_SEVERITY.get(b, 0))
+    # No usable events: fall back to the (normalized) model summary or single label.
+    return normalize_behavior(parsed.get("overall_behavior")) or normalize_behavior(
+        parsed.get("behavior")
+    )

@@ -14,17 +14,27 @@ user_prompt: |
 
   2) events — the time-ordered sequence of lane events. The ego's behavior can change
      during the clip, so report EVERY distinct event, each with the timestamp (seconds,
-     read from the burned-in clock) when it begins. Use these behavior classes:
-     - keep_within_lane: the ego stays inside its lane (never crosses a line)
+     read from the burned-in clock) when it begins. Use ONLY these three behavior
+     classes — do NOT invent any others:
+     - keep_within_lane: the ego stays inside its lane (never crosses a line). This
+       INCLUDES turning, accelerating, braking, or stopping while staying in the lane.
      - lane_change: the ego crosses a lane line and settles in a different lane
+       (this includes merging onto/off a highway).
      - lane_wandering: the ego crosses or rides a line but returns to the same lane
        (drift-and-return, straddling, or weaving)
+
+     Do not use labels like "right_turn", "merge", or "stopped" — map them to one of
+     the three classes above (a turn that stays in lane is keep_within_lane).
 
      Rules:
      - List events in chronological order by time_of_event_sec.
      - Merge contiguous identical behavior into one event; do not emit duplicates.
+     - A normal lane change reads as keep_within_lane -> lane_change -> keep_within_lane
+       (settled in the new lane); that is expected and correct.
      - If the ego simply keeps its lane the whole clip, emit a single
        keep_within_lane event at time_of_event_sec 0.0.
+     - Only emit lane_change if you actually see the ego cross a lane line. Do not emit
+       a lane_change event for a clip that merely keeps its lane.
      - Pay special attention to the final 1-2 seconds: a maneuver that only BEGINS
        near the end still counts. If the ego has started crossing a lane line by the
        end of the clip (even if it has not yet fully settled into the new lane),
@@ -32,7 +42,8 @@ user_prompt: |
        late or partial crossing as lane-keeping.
 
   Also report overall_behavior = the single most significant event behavior in the clip.
-  Precedence: lane_change and lane_wandering both outrank keep_within_lane.
+  Strict precedence (highest wins): lane_change > lane_wandering > keep_within_lane.
+  If any event is a lane_change, overall_behavior MUST be lane_change.
 
   Answer using this format:
 
