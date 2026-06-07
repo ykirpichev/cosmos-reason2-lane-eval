@@ -169,6 +169,72 @@ def fig_stages(final_acc: float | None = None) -> None:
     plt.close(fig)
 
 
+def fig_roi(clip: str = "lane_recovery__17", t: float = 5.0) -> None:
+    """Pictorial explanation of ROI-crop + zoom on a real crossing frame:
+    left = native frame with sky/hood marked as discarded and the road band kept;
+    right = the ROI-crop+zoom frame the model actually sees."""
+    import cv2
+    nat_p = ROOT / "clips" / "baton" / f"{clip}.mp4"
+    roi_p = ROOT / "clips" / "baton_roi8" / f"{clip}.mp4"
+    if not (nat_p.exists() and roi_p.exists()):
+        return
+
+    def grab(path, fps_assumed, sec):
+        c = cv2.VideoCapture(str(path))
+        n = int(c.get(cv2.CAP_PROP_FRAME_COUNT))
+        idx = min(int(round(sec * fps_assumed)), n - 1)
+        c.set(cv2.CAP_PROP_POS_FRAMES, idx)
+        ok, fr = c.read()
+        c.release()
+        return cv2.cvtColor(fr, cv2.COLOR_BGR2RGB) if ok else None
+
+    nat = grab(nat_p, 4.0, t)   # native clips are 4 fps
+    roi = grab(roi_p, 8.0, t)   # roi clips are 8 fps
+    if nat is None or roi is None:
+        return
+
+    y_top, y_bot = 0.36, 0.95
+    h, w = nat.shape[:2]
+    yt, yb = int(y_top * h), int(y_bot * h)
+
+    fig, (axL, axR) = plt.subplots(1, 2, figsize=(11.6, 4.4),
+                                   gridspec_kw={"width_ratios": [1.0, 1.55]})
+
+    # --- left: native frame with discarded bands shaded ---
+    axL.imshow(nat)
+    axL.add_patch(plt.Rectangle((0, 0), w, yt, color="#1b2a4a", alpha=0.62, ec="none"))
+    axL.add_patch(plt.Rectangle((0, yb), w, h - yb, color="#1b2a4a", alpha=0.62, ec="none"))
+    axL.add_patch(plt.Rectangle((1, yt), w - 2, yb - yt, fill=False,
+                                ec=GOOD, lw=3))
+    axL.text(w / 2, yt / 2, "sky / horizon — discarded (top 36%)", color="white",
+             ha="center", va="center", fontsize=8.5, fontweight="bold")
+    axL.text(w / 2, (yb + h) / 2, "hood — discarded", color="white",
+             ha="center", va="center", fontsize=8.0, fontweight="bold")
+    axL.text(w / 2, yt + 10, "ROI = road band (kept & zoomed)", color="white",
+             ha="center", va="top", fontsize=8.8, fontweight="bold",
+             bbox=dict(boxstyle="round,pad=0.25", fc=GOOD, ec="none", alpha=0.9))
+    axL.set_xlim(0, w); axL.set_ylim(h, 0)
+    axL.set_xticks([]); axL.set_yticks([])
+    axL.set_title("Native frame (526×330)\n~⅓ of tokens wasted on sky + hood",
+                  fontsize=9.5, fontweight="bold")
+
+    # --- right: ROI-crop + zoom (what the model sees) ---
+    axR.imshow(roi)
+    axR.set_xticks([]); axR.set_yticks([])
+    hr, wr = roi.shape[:2]
+    axR.set_title("ROI-crop + zoom (1052×390)\nsame band, 2× pixels → lane line legible",
+                  fontsize=9.5, fontweight="bold", color=GOOD)
+    axR.annotate("crossing cue\nnow large enough to read", (wr * 0.5, hr * 0.62),
+                 color="white", ha="center", fontsize=9, fontweight="bold",
+                 bbox=dict(boxstyle="round,pad=0.3", fc="#2e8b57", ec="none", alpha=0.85))
+
+    fig.suptitle("Aiming the spatial token budget: crop to the road band, then zoom it",
+                 fontsize=11.5, fontweight="bold", y=1.02)
+    fig.tight_layout()
+    fig.savefig(OUT / "fig_roi.png", bbox_inches="tight")
+    plt.close(fig)
+
+
 def fig_headtohead() -> None:
     """Grouped bars: Cosmos 2 vs Cosmos 3 across the four matched configs on the
     27 human-labeled clips. Shows the two models respond OPPOSITELY to the same
@@ -241,6 +307,7 @@ def main() -> None:
     fig_budget()
     fig_fps()
     fig_stages(final_acc)
+    fig_roi()
     fig_headtohead()
     print(f"wrote figures to {OUT}  (final_acc={'pending' if final_acc is None else final_acc})")
 

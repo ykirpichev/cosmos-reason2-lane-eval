@@ -284,6 +284,16 @@ hood, so the extra tokens are spent on blur. ROI-crop + zoom enlarges **only the
 band**, so essentially the entire added spatial budget lands on the cue the model has
 to read. Same idea ("more tokens per frame"), but *aimed*.
 
+![ROI-crop + zoom illustrated on a real crossing frame](assets/cosmos3/fig_roi.png)
+
+**Figure 7.** ROI-crop + zoom on `lane_recovery__17` at the crossing moment
+(t≈5 s). *Left:* the native 526×330 frame — the top 36 % (sky/horizon) and bottom
+5 % (hood) carry no lane information, yet consume ~⅓ of the per-frame visual tokens.
+*Right:* after cropping to the green road band and zooming it 2× (1052×390), the same
+spatial budget is spent on the lane markings, and the lane line the model previously
+missed is now legible. This is the difference between "more pixels" (§4.4) and "more
+*useful* pixels".
+
 With that one change (re-cut from source, 8 fps, greedy), this is the genuine spatial
 fix:
 
@@ -380,7 +390,7 @@ that carry Cosmos&nbsp;3 **do not transfer**.
 
 ![Cosmos 2 vs Cosmos 3 across matched configs](assets/cosmos3/fig_headtohead.png)
 
-**Figure 7.** The same four configurations on both models (27 human-labeled clips).
+**Figure 8.** The same four configurations on both models (27 human-labeled clips).
 The two models respond *oppositely*: Cosmos&nbsp;2 is **best in its native 4 fps
 config (0.74)** and every "fix" leaves it flat or slightly worse, whereas
 Cosmos&nbsp;3 climbs from below-baseline to 0.93 as frames and ROI tokens are added.
