@@ -12,6 +12,33 @@ Clips can be a single forward camera (`front_only`, BATON/openpilot) or a
 multi-camera **mosaic** (`front_mosaic3`, nuScenes): `CAM_FRONT` on top at higher
 resolution, with `CAM_FRONT_LEFT | CAM_FRONT_RIGHT` below at lower resolution.
 
+## 📊 Reports & key findings
+
+Two written studies (figures + analysis) live in [`docs/`](docs/):
+
+| Report | What it shows |
+|---|---|
+| **[Cosmos 3 — staged diagnosis](docs/cosmos3_report.md)** | Turning Cosmos 3-Super from below-baseline to near-saturated by fixing **temporal sampling** (4→8 fps, greedy) then **targeted spatial tokens** (ROI-crop + zoom). **Accuracy 0.56 → 0.93** on 27 human-labeled clips. Includes the negative result that a naive whole-frame upscale *hurts*. |
+| **[Cosmos 2 — frame-rate study & plateau](docs/cosmos2_report.md)** | Frame rate is the dominant lever for Cosmos-Reason2-32B: **1 fps → 4 fps roughly doubles lane-change recall** (0.15 → 0.38). But Cosmos 2 **plateaus at native 4 fps (0.74)** — more frames/pixels don't help (a capability ceiling). |
+
+**Headline result (27 human-labeled clips, accuracy):**
+
+| config | Cosmos 2 | Cosmos 3 |
+|---|---|---|
+| 4 fps native | **0.74** | 0.56 |
+| 8 fps native | 0.67 | 0.78 |
+| 8 fps + whole-frame 2× | 0.69 | 0.74 |
+| 8 fps + ROI-crop + zoom | 0.67 | **0.93** |
+
+The two models respond **oppositely** to the same input-budget levers — the fixes are
+model-specific. A consolidated, reproducible scoring of every run is in
+`results/headtohead.json` (`scripts/headtohead.py`).
+
+**At scale (full 150-clip BATON set, openpilot pseudo-labels):** agreement is much
+lower (Cosmos 2 ≈ 0.52) than on human ground truth, because the pseudo-labels are
+noisy — so the full-set run is best read as a *pseudo-label audit* rather than a model
+score. **Human labels are the trustworthy metric.**
+
 ## Taxonomy
 
 Each clip is described by a **road geometry** and a **time-ordered list of lane
@@ -154,8 +181,13 @@ Full raw model responses are saved under `results/logs/<clip_id>.log`.
 
 Clips are authored at **4 Hz (48 frames / 12 s)** and inference requests the
 server at `--fps 4.0`. Sampling lower (e.g. 1 Hz) makes Cosmos miss short
-maneuvers — a lane change spanning ~3 s gets smeared into 2–3 frames and is
+maneuvers — a lane change spanning ~1 s gets smeared into 1–2 frames and is
 reported as `keep_within_lane`. Keep the request fps equal to the clip fps.
+
+This is quantified in the [Cosmos 2 report](docs/cosmos2_report.md): **1 fps → 4 fps
+roughly doubles lane-change recall** (0.15 → 0.38 on human-labeled clips). The
+optimal rate is **model-specific**, though — Cosmos 3 keeps improving up to **8 fps**
+(then regresses at higher rates); see the [Cosmos 3 report](docs/cosmos3_report.md).
 
 ## Pseudo-labels: caveats
 
