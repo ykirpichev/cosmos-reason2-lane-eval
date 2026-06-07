@@ -28,6 +28,12 @@ if [ ! -x "$VENV/bin/vllm" ]; then
   exit 1
 fi
 
+# vLLM JIT-compiles the FlashInfer sampler kernel during memory profiling and
+# needs `ninja` on PATH; it ships in the venv's bin, which is not otherwise on
+# PATH when launched from a bare shell. Without this the engine core dies with
+# FileNotFoundError: 'ninja'.
+export PATH="$VENV/bin:$PATH"
+
 ARGS=(
   "$VENV/bin/vllm" serve "$MODEL"
   --hf-overrides '{"architectures": ["Cosmos3ReasonerForConditionalGeneration"]}'

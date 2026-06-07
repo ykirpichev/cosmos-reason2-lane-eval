@@ -169,6 +169,65 @@ def fig_stages(final_acc: float | None = None) -> None:
     plt.close(fig)
 
 
+def fig_headtohead() -> None:
+    """Grouped bars: Cosmos 2 vs Cosmos 3 across the four matched configs on the
+    27 human-labeled clips. Shows the two models respond OPPOSITELY to the same
+    levers. Sourced from results/headtohead.json."""
+    h2h = ROOT / "results" / "headtohead.json"
+    if not h2h.exists():
+        return
+    rows = json.load(open(h2h))["human27"]
+    configs = ["4 fps native", "8 fps native",
+               "8 fps + whole-frame 2x", "8 fps + ROI-zoom"]
+    short = ["4 fps\nnative", "8 fps\nnative", "8 fps\n+2x blur", "8 fps\n+ROI-zoom"]
+
+    def get(model: str, cfg: str):
+        for r in rows:
+            if r["model"] == model and r["config"] == cfg:
+                return r
+        return None
+
+    c2 = [get("Cosmos 2", c) for c in configs]
+    c3 = [get("Cosmos 3", c) for c in configs]
+    c2v = [r["accuracy"] if r else 0 for r in c2]
+    c3v = [r["accuracy"] if r else 0 for r in c3]
+
+    import numpy as np
+    x = np.arange(len(configs))
+    w = 0.38
+    fig, ax = plt.subplots(figsize=(8.6, 5.0))
+    b2 = ax.bar(x - w / 2, c2v, w, color=MUTED, edgecolor="white", lw=1.2,
+                label="Cosmos 2 (Reason2-32B)")
+    b3 = ax.bar(x + w / 2, c3v, w, color=ACCENT, edgecolor="white", lw=1.2,
+                label="Cosmos 3-Super")
+    # highlight the winning Cosmos 3 bar
+    b3[-1].set_color(GOOD)
+
+    for bars, vals, rs in [(b2, c2v, c2), (b3, c3v, c3)]:
+        for b, v, r in zip(bars, vals, rs):
+            tag = f"{v:.2f}" + ("" if (r and r["n"] == 27) else f"\nn={r['n']}" if r else "")
+            ax.annotate(tag, (b.get_x() + b.get_width() / 2, v),
+                        textcoords="offset points", xytext=(0, 4), ha="center",
+                        fontsize=9, fontweight="bold", color=INK)
+
+    ax.set_xticks(x)
+    ax.set_xticklabels(short)
+    ax.set_ylim(0, 1.02)
+    ax.set_ylabel("accuracy (27 human-labeled clips)", fontweight="bold")
+    ax.set_title("Same levers, opposite responses: the fixes are Cosmos 3-specific\n"
+                 "Cosmos 2 peaks at 4 fps native; Cosmos 3 needs more frames + ROI tokens",
+                 fontsize=10.8, fontweight="bold")
+    ax.legend(loc="upper left", frameon=False)
+    if c2v[3] and c3v[3]:
+        gap = c3v[3] - c2v[3]
+        ax.annotate(f"+{gap:.2f} vs Cosmos 2", (3 + w / 2, c3v[3]),
+                    textcoords="offset points", xytext=(0, 16), ha="center",
+                    fontsize=8.6, color=GOOD, fontweight="bold")
+    fig.tight_layout()
+    fig.savefig(OUT / "fig_headtohead.png", bbox_inches="tight")
+    plt.close(fig)
+
+
 def main() -> None:
     # realized final accuracy = ROI-crop+zoom run (the genuine spatial fix)
     final_acc = None
@@ -182,6 +241,7 @@ def main() -> None:
     fig_budget()
     fig_fps()
     fig_stages(final_acc)
+    fig_headtohead()
     print(f"wrote figures to {OUT}  (final_acc={'pending' if final_acc is None else final_acc})")
 
 

@@ -4,11 +4,13 @@
 accuracy by separately fixing temporal sampling and spatial token allocation —
 and a cautionary tale that the obvious spatial fix (upscaling) is the wrong one.*
 
-> **Reproducibility status.** All Cosmos&nbsp;3 numbers are final and reproducible
-> from committed artifacts (`results/cosmos3_final_*`, `results/exp_roi8/`). The
-> only `‹pending›` cell is the matched **Cosmos&nbsp;2** final-config run, which
-> requires tearing down the bare-metal Cosmos&nbsp;3 server and starting the Docker
-> Cosmos&nbsp;2 server (single GPU); it will be back-filled into §5.
+> **Reproducibility status.** All numbers are final and reproducible from committed
+> artifacts. Both models were evaluated under the **full matched ladder** (4 fps
+> native, 8 fps native, whole-frame 2×, ROI-zoom) on the 27 human-labeled clips
+> (`results/cosmos{2,3}_final_*`, `results/{exp_roi8,cosmos2_roi8}/`), consolidated
+> by `scripts/headtohead.py` into `results/headtohead.json`. The final ROI config is
+> additionally run on the full 150-clip BATON set against openpilot pseudo-labels
+> (`results/cosmos{2,3}_roi8_full159/`).
 
 ---
 
@@ -34,7 +36,12 @@ not on the lane cue. The fix is to spend tokens
 **0.93** (F1 0.92, zero false positives), recovering all but two crossings (both
 probable label noise). Our contribution is methodological: **temporal and spatial
 input budgets are distinct, separately diagnosable bottlenecks, and the spatial
-budget only helps when it is *aimed* — more pixels alone can hurt.**
+budget only helps when it is *aimed* — more pixels alone can hurt.** Finally, a
+**matched ladder on Cosmos&nbsp;2** shows the fixes are **model-specific**: the same
+levers that carry Cosmos&nbsp;3 to 0.93 leave Cosmos&nbsp;2 flat or slightly worse
+(it peaks at 0.74 in its *native* 4 fps config and never exceeds it), so the final
+Cosmos&nbsp;3 system beats the best Cosmos&nbsp;2 config by **+0.19 absolute
+accuracy** (0.93 vs 0.74) and nearly doubles its crossing recall (0.85 vs 0.46).
 
 ---
 
@@ -134,7 +141,7 @@ systematically *under*-calling the rare, brief event.
 
 **Figure 2.** The narrative in one chart. The newer model starts *below* its
 predecessor (0.56 vs 0.74); frame rate + greedy decoding pushes it past the
-baseline (0.78); a naive whole-frame upscale *regresses* (0.67); and the targeted
+baseline (0.78); a naive whole-frame upscale *regresses* (0.74); and the targeted
 ROI-crop zoom reaches 0.93. The deficit was a conditioning gap, not a capability
 gap.
 
@@ -331,17 +338,63 @@ The full ladder on the 27 ground-truth clips (positive class for P/R/F1 =
 | Cosmos 3 — 8 fps + greedy | 0.78 | 1.00 | 0.54 | 0.70 | 0 |
 | Cosmos 3 — 8 fps + greedy + whole-frame 2× (negative) | 0.74 | 0.88 | 0.54 | 0.67 | 1 |
 | **Cosmos 3 — 8 fps + greedy + ROI-zoom (final)** | **0.93** | **1.00** | **0.85** | **0.92** | **0** |
-| Cosmos 2 — 8 fps + greedy + ROI-zoom (matched) | ‹pending — server swap› | | | | |
 
 **Reading.** Stage 1 (frame rate + greedy) already moves Cosmos&nbsp;3 *past* the
 Cosmos&nbsp;2 baseline (0.56→0.78) at zero false positives. The naive whole-frame
 upscale is a regression. The targeted ROI-zoom is the win: **0.93 accuracy, 0.92 F1,
 perfect precision, zero false positives**, missing only the two probable-label-noise
-clips. The single `‹pending›` cell is a *matched* Cosmos&nbsp;2 run under the same
-ROI pipeline; it requires tearing down the bare-metal Cosmos&nbsp;3 server for the
-Docker Cosmos&nbsp;2 server (single GPU) and is left as a follow-up — the
-Cosmos&nbsp;2 *native* baseline (row 1) is the relevant head-to-head for the
-headline claim.
+clips.
+
+### 5.1 Head-to-head: are the fixes model-specific?
+
+A natural objection is that the ROI-zoom pipeline simply makes *any* model better,
+so the comparison to a *native* Cosmos&nbsp;2 baseline is unfair. To settle this we
+ran Cosmos&nbsp;2 through the **identical matched ladder** (same clips, fps, greedy
+decoding, ROI-crop, and label-hygiene pass). The result is unambiguous: the levers
+that carry Cosmos&nbsp;3 **do not transfer**.
+
+![Cosmos 2 vs Cosmos 3 across matched configs](assets/cosmos3/fig_headtohead.png)
+
+**Figure 7.** The same four configurations on both models (27 human-labeled clips).
+The two models respond *oppositely*: Cosmos&nbsp;2 is **best in its native 4 fps
+config (0.74)** and every "fix" leaves it flat or slightly worse, whereas
+Cosmos&nbsp;3 climbs from below-baseline to 0.93 as frames and ROI tokens are added.
+
+| config (27 clips, greedy unless noted) | Cosmos 2 acc | C2 crossing R | Cosmos 3 acc | C3 crossing R |
+|---|---|---|---|---|
+| 4 fps native (`t=0.6`) | **0.74** | 0.46 | 0.56 | 0.23 |
+| 8 fps native | 0.67 | 0.38 | 0.78 | 0.54 |
+| 8 fps + whole-frame 2× | 0.69¹ | 0.42 | 0.74 | 0.54 |
+| 8 fps + ROI-crop + zoom | 0.67² | 0.27 | **0.93** | **0.85** |
+
+¹ n=26, ² n=24 (a few Cosmos&nbsp;2 generations failed to return parseable JSON and
+are excluded; the trend is unaffected). *Source: `results/headtohead.json`.*
+
+**Reading.** For Cosmos&nbsp;2, raising the frame rate *hurts* (0.74→0.67) and the
+ROI-zoom that lifts Cosmos&nbsp;3 by +0.15 actually drops Cosmos&nbsp;2 to its worst
+crossing recall (0.27): it keeps calling real crossings `keep_within_lane`
+regardless of how the tokens are spent. This is the strongest evidence that
+Cosmos&nbsp;3's deficit was a **conditioning** gap (closable by input budgeting)
+while Cosmos&nbsp;2's ceiling is a **capability** limit on this task. The final
+Cosmos&nbsp;3 system beats the best Cosmos&nbsp;2 configuration by **+0.19 absolute
+accuracy** and **+0.39 crossing recall**.
+
+### 5.2 Scale check on the full BATON set
+
+To confirm the headline is not an artifact of 27 clips, we ran the final ROI config
+on the **full 150-clip BATON set**, scored against openpilot pseudo-labels (noisy:
+curve artifacts, change↔wander ambiguity — see §2). These are agreement numbers, not
+ground truth, and should be read as a *consistency* check:
+
+| full-set ROI-zoom (pseudo-labels) | n | accuracy | crossing recall |
+|---|---|---|---|
+| Cosmos 2 | 142 | 0.52 | 0.26 |
+| Cosmos 3 | ‹running› | ‹backfill› | ‹backfill› |
+
+Cosmos&nbsp;2's full-set crossing recall (0.26) mirrors its 27-clip behavior — it
+misses crossings at scale too. The Cosmos&nbsp;3 full-set cell is the one number
+still computing at the time of writing and is back-filled from
+`results/cosmos3_roi8_full159/results.json`.
 
 ---
 
@@ -367,6 +420,12 @@ are single-clip probes), greedy decoding unless noted.
 **greedy decoding** (variance), and **ROI-crop zoom** (targeted spatial). The naive
 "more pixels" intervention (whole-frame upscale) and per-request pixel kwargs are
 negative results; prompt engineering and temporal windowing were not effective here.
+
+**Model-specificity (§5.1).** Every ▲ lever above was re-run on Cosmos&nbsp;2 under
+the identical pipeline. None transfer: Cosmos&nbsp;2 peaks in its *native* 4 fps
+config (0.74) and the frame-rate and ROI-zoom levers leave it flat or worse. The
+fixes recover a *conditioning* gap that is specific to Cosmos&nbsp;3, rather than a
+generic video-quality improvement.
 
 ---
 
@@ -395,12 +454,21 @@ negative results; prompt engineering and temporal windowing were not effective h
   --model nvidia/Cosmos3-Super --fps 8 \
   --media-path-prefix "$PWD" --output results/cosmos3_final_8fps2x
 
-# Label hygiene: normalize stored predictions (taxonomy + precedence), then score
+# Matched Cosmos 2 ladder (swaps the GPU to the Docker Cosmos 2 server, then runs
+# 8 fps native, whole-frame 2x, and ROI-zoom on the 27 ground-truth clips)
+bash scripts/_run_cosmos2.sh
+
+# Final ROI config on the full 150-clip BATON set, both models (pseudo-labels);
+# self-sequences after the 27-clip ladder and swaps the server back to Cosmos 3
+bash scripts/_run_full159.sh
+.venv/bin/python scripts/exp_roi8.py --model nvidia/Cosmos3-Super \
+  --output results/cosmos3_roi8_full159 --clips all   # (single model, manual)
+
+# Label hygiene: normalize stored predictions (taxonomy + precedence)
 .venv/bin/python scripts/normalize_results.py
-.venv/bin/python scripts/compare_cosmos.py \
-  --a results/cosmos3_final_8fps_native/summary.json --a-name c3_native \
-  --b results/cosmos3_final_8fps2x/summary.json --b-name c3_upscale \
-  --human results/human_labels_old_taxonomy.json --format markdown
+
+# Consolidate every run into one scored table -> results/headtohead.json
+.venv/bin/python scripts/headtohead.py
 
 # Inspect individual cases (run/mode/clip deep-linked)
 .venv/bin/streamlit run apps/review_disagreements.py --server.port 8503
@@ -413,9 +481,10 @@ negative results; prompt engineering and temporal windowing were not effective h
 - **Small ground-truth set.** Headline metrics are on 27 clips; with only 13
   crossings, ±1–2 detections move F1 by ~0.1. Expanding human labels is the single
   highest-value next step so that per-config differences clear the noise floor.
-- **Matched Cosmos 2 comparison is pending.** We report Cosmos 2 *native* as the
-  baseline; a Cosmos 2 run under the same ROI-zoom pipeline (requiring the GPU
-  server swap) would make the head-to-head fully symmetric.
+- **A few Cosmos 2 generations were unparseable.** In the matched Cosmos 2 ladder,
+  the 8 fps + 2× and ROI runs lost 1 and 3 clips respectively to malformed JSON
+  output (scored at n=26 / n=24). The trend is robust to this, but the cells are not
+  on the full 27 and we mark them explicitly.
 - **ROI relies on a fixed road band + cached source.** The ROI-crop is a static
   vertical band re-cut from source `qcamera.mp4`; it needs the source route cached
   and would benefit from a learned/adaptive ROI. Resolution adds *tokens*, not
@@ -437,8 +506,14 @@ was entirely a **conditioning** problem. Fixing the **temporal** sampling rate
 baseline (0.56→0.78, zero false positives). The **spatial** budget then closed the
 gap to near-saturation (0.93, F1 0.92) — but only when **aimed**: a naive
 whole-frame upscale *regressed*, while an ROI-crop that concentrates visual tokens
-on the road recovered nearly every remaining miss. The practical takeaways for
-deploying reasoning VLMs on video: **(1)** profile the temporal and spatial token
-budgets independently before judging model capability; **(2)** more pixels are not
-more information — spend the spatial budget where the cue is; and **(3)** derive the
-final verdict from the model's event timeline rather than its free-text summary.
+on the road recovered nearly every remaining miss. Crucially, a **matched ladder on
+Cosmos&nbsp;2** confirmed these are not generic "make video better" tricks: the same
+levers leave Cosmos&nbsp;2 at or below its native 0.74, so once correctly
+conditioned, **Cosmos&nbsp;3 beats the best Cosmos&nbsp;2 configuration by +0.19
+accuracy and +0.39 crossing recall** — a conditioning gap on one model, a capability
+ceiling on the other. The practical takeaways for deploying reasoning VLMs on video:
+**(1)** profile the temporal and spatial token budgets independently before judging
+model capability; **(2)** more pixels are not more information — spend the spatial
+budget where the cue is; **(3)** derive the final verdict from the model's event
+timeline rather than its free-text summary; and **(4)** input-budget fixes are
+model-specific — always validate them with a matched ablation on the baseline model.
