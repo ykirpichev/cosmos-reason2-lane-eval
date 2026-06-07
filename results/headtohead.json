@@ -1,0 +1,174 @@
+{
+  "human27": [
+    {
+      "model": "Cosmos 2",
+      "config": "4 fps native",
+      "n": 27,
+      "accuracy": 0.741,
+      "lane_change": {
+        "tp": 6,
+        "fn": 7,
+        "fp": 0,
+        "recall": 0.462,
+        "precision": 1.0,
+        "f1": 0.632
+      }
+    },
+    {
+      "model": "Cosmos 2",
+      "config": "8 fps native",
+      "n": 27,
+      "accuracy": 0.667,
+      "lane_change": {
+        "tp": 5,
+        "fn": 8,
+        "fp": 1,
+        "recall": 0.385,
+        "precision": 0.833,
+        "f1": 0.526
+      }
+    },
+    {
+      "model": "Cosmos 2",
+      "config": "8 fps + whole-frame 2x",
+      "n": 26,
+      "accuracy": 0.692,
+      "lane_change": {
+        "tp": 5,
+        "fn": 7,
+        "fp": 1,
+        "recall": 0.417,
+        "precision": 0.833,
+        "f1": 0.556
+      }
+    },
+    {
+      "model": "Cosmos 2",
+      "config": "8 fps + ROI-zoom",
+      "n": 24,
+      "accuracy": 0.667,
+      "lane_change": {
+        "tp": 3,
+        "fn": 8,
+        "fp": 0,
+        "recall": 0.273,
+        "precision": 1.0,
+        "f1": 0.429
+      }
+    },
+    {
+      "model": "Cosmos 3",
+      "config": "4 fps native",
+      "n": 27,
+      "accuracy": 0.556,
+      "lane_change": {
+        "tp": 3,
+        "fn": 10,
+        "fp": 1,
+        "recall": 0.231,
+        "precision": 0.75,
+        "f1": 0.353
+      }
+    },
+    {
+      "model": "Cosmos 3",
+      "config": "8 fps native",
+      "n": 27,
+      "accuracy": 0.778,
+      "lane_change": {
+        "tp": 7,
+        "fn": 6,
+        "fp": 0,
+        "recall": 0.538,
+        "precision": 1.0,
+        "f1": 0.7
+      }
+    },
+    {
+      "model": "Cosmos 3",
+      "config": "8 fps + whole-frame 2x",
+      "n": 27,
+      "accuracy": 0.741,
+      "lane_change": {
+        "tp": 7,
+        "fn": 6,
+        "fp": 1,
+        "recall": 0.538,
+        "precision": 0.875,
+        "f1": 0.667
+      }
+    },
+    {
+      "model": "Cosmos 3",
+      "config": "8 fps + ROI-zoom",
+      "n": 27,
+      "accuracy": 0.926,
+      "lane_change": {
+        "tp": 11,
+        "fn": 2,
+        "fp": 0,
+        "recall": 0.846,
+        "precision": 1.0,
+        "f1": 0.917
+      }
+    }
+  ],
+  "full159": [
+    {
+      "model": "Cosmos 2",
+      "config": "8 fps + ROI-zoom (full set)",
+      "pseudo": {
+        "n": 142,
+        "accuracy": 0.521,
+        "lane_change": {
+          "tp": 15,
+          "fn": 42,
+          "fp": 12,
+          "recall": 0.263,
+          "precision": 0.556,
+          "f1": 0.357
+        }
+      },
+      "human27": {
+        "n": 24,
+        "accuracy": 0.667,
+        "lane_change": {
+          "tp": 3,
+          "fn": 8,
+          "fp": 0,
+          "recall": 0.273,
+          "precision": 1.0,
+          "f1": 0.429
+        }
+      }
+    },
+    {
+      "model": "Cosmos 3",
+      "config": "8 fps + ROI-zoom (full set)",
+      "pseudo": {
+        "n": 150,
+        "accuracy": 0.553,
+        "lane_change": {
+          "tp": 24,
+          "fn": 36,
+          "fp": 17,
+          "recall": 0.4,
+          "precision": 0.585,
+          "f1": 0.475
+        }
+      },
+      "human27": {
+        "n": 27,
+        "accuracy": 0.815,
+        "lane_change": {
+          "tp": 8,
+          "fn": 5,
+          "fp": 0,
+          "recall": 0.615,
+          "precision": 1.0,
+          "f1": 0.762
+        }
+      }
+    }
+  ]
+}

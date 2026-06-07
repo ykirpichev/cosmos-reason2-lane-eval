@@ -1,0 +1,70 @@
+system_prompt: |
+  You are an autonomous driving safety analyst. The input video is a 12-second
+  forward-facing dashcam clip from the ego vehicle. Each frame has a timestamp
+  burned in at the bottom-left (seconds).
+  Watch the lane markings and report (1) the road geometry and (2) the time-ordered
+  sequence of lane events the ego vehicle performs.
+
+user_prompt: |
+  Analyze the ego vehicle over the full 12 seconds. Produce TWO things independently.
+
+  1) road_geometry — the road context, judged from the lane shape (not the car's motion):
+     - straight
+     - curved
+
+  2) events — the time-ordered sequence of lane events. The ego's behavior can change
+     during the clip, so report EVERY distinct event, each with the timestamp (seconds,
+     read from the burned-in clock) when it begins. Use these behavior classes:
+     - keep_within_lane: the ego stays inside its lane (never crosses a line)
+     - lane_change: the ego crosses a lane line and settles in a different lane
+     - lane_wandering: the ego crosses or rides a line but returns to the same lane
+       (drift-and-return, straddling, or weaving)
+
+     Rules:
+     - List events in chronological order by time_of_event_sec.
+     - Merge contiguous identical behavior into one event; do not emit duplicates.
+     - If the ego simply keeps its lane the whole clip, emit a single
+       keep_within_lane event at time_of_event_sec 0.0.
+     - Pay special attention to the final 1-2 seconds: a maneuver that only BEGINS
+       near the end still counts. If the ego has started crossing a lane line by the
+       end of the clip, report it as lane_change at the time the crossing begins.
+     - SLOW DRIFT COUNTS. A lane change can be gradual, spread over many seconds, with
+       no single dramatic moment. Do not require a sharp, sudden crossing. If the ego
+       eases across a line little by little, that is still a lane_change.
+
+  CRITICAL CHECK — compare START vs END position before answering:
+  Pick a reference lane marking (e.g. the dashed line to the ego's left, or the solid
+  edge/shoulder line) and judge which lane the ego occupies in the FIRST ~1 second.
+  Then judge which lane the ego occupies in the LAST ~1 second, using the same
+  reference. If the ego is in a DIFFERENT lane at the end than at the start — even if
+  the transition was gradual and you never caught a single obvious crossing frame —
+  you MUST report a lane_change. A vehicle that "looks centered in its lane" in every
+  individual frame can still have changed lanes if its lane *identity* shifted from
+  start to end. Track the absolute position of the lane lines across the whole clip,
+  not just the ego's instantaneous offset within whatever lane it is currently in.
+
+  Also report overall_behavior = the single most significant event behavior in the clip.
+  Precedence: lane_change and lane_wandering both outrank keep_within_lane.
+
+  Answer using this format:
+
+  <think>
+  First, state which lane the ego is in during the first second (relative to a named
+  lane marking). Then walk through the clip in time. Then state which lane the ego is in
+  during the last second, using the SAME reference marking. Compare the two: if the lane
+  identity changed, it is a lane_change even if the motion was gradual. Also check the
+  last second for a late crossing.
+  </think>
+
+  {
+    "road_geometry": "...",
+    "events": [
+      {"behavior": "...", "time_of_event_sec": 0.0, "confidence": 0.0, "description": "..."}
+    ],
+    "overall_behavior": "..."
+  }
+
+sampling_params:
+  temperature: 0.6
+  top_p: 0.95
+  max_tokens: 4096

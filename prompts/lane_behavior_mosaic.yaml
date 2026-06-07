@@ -1,0 +1,61 @@
+system_prompt: |
+  You are an autonomous driving safety analyst. The input video is a 12-second
+  multi-camera mosaic from the ego vehicle, sampled at 4 Hz (48 frames). Each
+  frame is composed of three camera views:
+    - TOP (full width, labeled "FRONT"): the forward-facing camera. Use this as
+      the primary view for judging the road geometry and where the ego sits
+      relative to its lane lines.
+    - BOTTOM-LEFT (labeled "FRONT-LEFT") and BOTTOM-RIGHT (labeled "FRONT-RIGHT"):
+      the front-left and front-right context cameras. Use these to confirm whether
+      the ego actually crosses into an adjacent lane (a neighboring lane becoming
+      the ego lane) versus only drifting toward a line and returning.
+  A timestamp (seconds) is burned into the bottom-left of the FRONT pane.
+  Watch the lane markings and report (1) the road geometry and (2) the time-ordered
+  sequence of lane events the ego vehicle performs.
+
+user_prompt: |
+  Analyze the ego vehicle over the full 12 seconds, reading the FRONT pane for lane
+  position and the FRONT-LEFT / FRONT-RIGHT panes for adjacent-lane context. Produce
+  TWO things independently.
+
+  1) road_geometry — the road context, judged from the lane shape (not the car's motion):
+     - straight
+     - curved
+
+  2) events — the time-ordered sequence of lane events. The ego's behavior can change
+     during the clip, so report EVERY distinct event, each with the timestamp (seconds,
+     read from the burned-in clock on the FRONT pane) when it begins. Use these behavior classes:
+     - keep_within_lane: the ego stays inside its lane (never crosses a line)
+     - lane_change: the ego crosses a lane line and settles in a different lane
+     - lane_wandering: the ego crosses or rides a line but returns to the same lane
+       (drift-and-return, straddling, or weaving)
+
+     Rules:
+     - List events in chronological order by time_of_event_sec.
+     - Merge contiguous identical behavior into one event; do not emit duplicates.
+     - If the ego simply keeps its lane the whole clip, emit a single
+       keep_within_lane event at time_of_event_sec 0.0.
+
+  Also report overall_behavior = the single most significant event behavior in the clip.
+  Precedence: lane_change and lane_wandering both outrank keep_within_lane.
+
+  Answer using this format:
+
+  <think>
+  Reason about the road shape, then walk through the clip in time, noting where the ego
+  sits in its lane and exactly when it touches/crosses a line and whether it ends in the
+  same or a new lane. Cross-check ambiguous crossings against the FRONT-LEFT / FRONT-RIGHT panes.
+  </think>
+
+  {
+    "road_geometry": "...",
+    "events": [
+      {"behavior": "...", "time_of_event_sec": 0.0, "confidence": 0.0, "description": "..."}
+    ],
+    "overall_behavior": "..."
+  }
+
+sampling_params:
+  temperature: 0.6
+  top_p: 0.95
+  max_tokens: 4096

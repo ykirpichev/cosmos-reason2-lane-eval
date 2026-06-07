@@ -25,7 +25,11 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import config  # noqa: E402
 
 CLASSES = ["keep_within_lane", "lane_change", "lane_wandering"]
 HUMAN_MAP = {
@@ -42,7 +46,9 @@ def load_preds(path: Path) -> dict[str, str | None]:
     out: dict[str, str | None] = {}
     for e in data:
         parsed = e.get("parsed") or {}
-        out[e["id"]] = parsed.get("overall_behavior")
+        # Derive the label from the event timeline (taxonomy-normalized, correct
+        # precedence) rather than the model's free-text overall_behavior.
+        out[e["id"]] = config.overall_behavior(parsed)
     return out
 
 

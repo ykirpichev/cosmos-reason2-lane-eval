@@ -56,11 +56,35 @@ MEDIA_ROOT = CLIPS_DIR.parent
 # --- code-tracked assets -----------------------------------------------------
 PROMPTS_DIR = REPO_ROOT / "prompts"
 PROMPT_FILE = PROMPTS_DIR / "lane_behavior.yaml"
+# Prompt variant describing the 3-pane multi-camera mosaic (see CAMERA_LAYOUTS).
+PROMPT_FILE_MOSAIC = PROMPTS_DIR / "lane_behavior_mosaic.yaml"
+
+# --- raw dataset locations ---------------------------------------------------
+# nuScenes devkit data root (expects v1.0-mini, samples/, sweeps/, maps/ with the
+# unzipped map-expansion under maps/expansion). Override with NUSCENES_DATAROOT.
+NUSCENES_DATAROOT = Path(
+    os.environ.get("NUSCENES_DATAROOT", str(DATASETS_DIR / "nuscenes"))
+).expanduser()
+NUSCENES_VERSION = os.environ.get("NUSCENES_VERSION", "v1.0-mini")
 
 # --- clip geometry (kept in sync with ingestion) -----------------------------
 CLIP_SECONDS = 12.0
 CLIP_FPS = 4
 FRAMES_PER_CLIP = int(CLIP_SECONDS * CLIP_FPS)
+
+# --- camera layouts ----------------------------------------------------------
+# How the frames in a clip are composed. "front_only" is a single forward camera
+# (BATON/openpilot); "front_mosaic3" is a 2-row mosaic with CAM_FRONT on top
+# (full width, higher res) and CAM_FRONT_LEFT | CAM_FRONT_RIGHT below (lower res).
+CAMERA_LAYOUTS = ["front_only", "front_mosaic3"]
+DEFAULT_CAMERA_LAYOUT = "front_only"
+
+# Mosaic canvas geometry (pixels). Front pane spans the full width on top; the two
+# side panes split the width on the bottom row.
+MOSAIC_WIDTH = 1280
+MOSAIC_FRONT_HEIGHT = 720
+MOSAIC_SIDE_HEIGHT = 360
+MOSAIC_HEIGHT = MOSAIC_FRONT_HEIGHT + MOSAIC_SIDE_HEIGHT
 
 # --- model / serving ---------------------------------------------------------
 MODEL = os.environ.get("COSMOS_MODEL", "nvidia/Cosmos-Reason2-32B")
@@ -72,7 +96,53 @@ MEDIA_PATH_PREFIX = os.environ.get("VLLM_MEDIA_PATH_PREFIX", "/workspace")
 # Behavior taxonomy (lateral) and ordering for "most significant" reduction.
 BEHAVIORS = ["keep_within_lane", "lane_change", "lane_wandering"]
 GEOMETRIES = ["straight", "curved"]
-BEHAVIOR_SEVERITY = {"keep_within_lane": 1, "lane_wandering": 2, "lane_change": 2}
+# Precedence for reducing a multi-event timeline to one label: a completed
+# crossing (lane_change) outranks a drift-and-return (lane_wandering), which
+# outranks staying put (keep_within_lane).
+BEHAVIOR_SEVERITY = {"keep_within_lane": 1, "lane_wandering": 2, "lane_change": 3}
+
+# The model occasionally emits behaviors outside the 3-class taxonomy (e.g. a
+# "right_turn" through an intersection, or "merging"). Snap them to the closest
+# in-taxonomy class so they don't leak into overall_behavior / scoring.
+BEHAVIOR_SYNONYMS = {
+    "right_turn": "keep_within_lane",
+    "left_turn": "keep_within_lane",
+    "turn": "keep_within_lane",
+    "turning": "keep_within_lane",
+    "intersection": "keep_within_lane",
+    "stationary": "keep_within_lane",
+    "stopped": "keep_within_lane",
+    "stopping": "keep_within_lane",
+    "decelerating": "keep_within_lane",
+    "accelerating": "keep_within_lane",
+    "straight": "keep_within_lane",
+    "merge": "lane_change",
+    "merging": "lane_change",
+    "lane_merge": "lane_change",
+    "exit": "lane_change",
+    "exiting": "lane_change",
+    "overtake": "lane_change",
+    "overtaking": "lane_change",
+    "lane_departure": "lane_change",
+    "drift": "lane_wandering",
+    "drifting": "lane_wandering",
+    "swerve": "lane_wandering",
+    "swerving": "lane_wandering",
+    "weaving": "lane_wandering",
+    "wandering": "lane_wandering",
+    "straddle": "lane_wandering",
+    "straddling": "lane_wandering",
+}
+
+
+def normalize_behavior(b: str | None) -> str | None:
+    """Map a raw behavior string to the 3-class taxonomy (or None if unknown)."""
+    if not b:
+        return None
+    key = str(b).strip().lower().replace(" ", "_").replace("-", "_")
+    if key in BEHAVIORS:
+        return key
+    return BEHAVIOR_SYNONYMS.get(key)
 
 
 def ensure_dirs() -> None:
@@ -87,15 +157,28 @@ def resolve_media(rel_path: str) -> Path:
     return p if p.is_absolute() else MEDIA_ROOT / p
 
 
+def prompt_file_for_layout(layout: str | None) -> Path:
+    """Return the prompt template matching a clip's camera layout."""
+    return PROMPT_FILE_MOSAIC if layout == "front_mosaic3" else PROMPT_FILE
+
+
 def overall_behavior(parsed: dict) -> str | None:
-    """Reduce a (possibly multi-event) prediction to one behavior label."""
+    """Reduce a (possibly multi-event) prediction to one taxonomy label.
+
+    The label is DERIVED from the event timeline by precedence (lane_change >
+    lane_wandering > keep_within_lane) rather than trusting the model's free-text
+    ``overall_behavior``, which was observed to (a) emit out-of-taxonomy classes
+    and (b) pick the wrong winner when a clip contains both a wander and a change.
+    The model's self-summary is only a fallback when no events are present.
+    """
     if not parsed:
         return None
-    if parsed.get("overall_behavior"):
-        return parsed["overall_behavior"]
     events = parsed.get("events") or []
-    if events:
-        return max(
-            events, key=lambda e: BEHAVIOR_SEVERITY.get(e.get("behavior"), 0)
-        ).get("behavior")
-    return parsed.get("behavior")
+    behs = [normalize_behavior(e.get("behavior")) for e in events]
+    behs = [b for b in behs if b in BEHAVIORS]
+    if behs:
+        return max(behs, key=lambda b: BEHAVIOR_SEVERITY.get(b, 0))
+    # No usable events: fall back to the (normalized) model summary or single label.
+    return normalize_behavior(parsed.get("overall_behavior")) or normalize_behavior(
+        parsed.get("behavior")
+    )
