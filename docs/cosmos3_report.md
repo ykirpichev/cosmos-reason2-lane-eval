@@ -258,9 +258,34 @@ false positive. More pixels are not the same as more *useful* pixels.
 
 ### 4.5 The fix that works: aim the tokens (ROI-crop + zoom)
 
-Instead of enlarging the whole frame, we **crop to the road band and zoom it**, so
-the visual-token budget lands on the lane markings the model must actually track
-(re-cut from source, 8 fps, greedy). This is the genuine spatial fix:
+**What "ROI" means here.** ROI = *region of interest* — the part of the frame that
+actually carries the lane cue. In a forward dashcam view that is a horizontal **road
+band** in the middle of the image: the top third is sky/horizon and the bottom strip
+is the car's own hood, neither of which tells you whether the ego crossed a line. A
+VLM's image processor turns each frame into a fixed-size grid of patches under a
+pixel cap and emits one visual token per patch; if a third of those patches are spent
+on sky, a third of the model's *spatial* budget is wasted. **ROI-crop + zoom** simply
+stops paying for the useless regions and re-spends that budget on the road.
+
+**How it works (mechanically).** For every clip we re-cut from the source
+`qcamera.mp4` (`scripts/exp_variant.py::make_variant`, used by `scripts/exp_roi8.py`)
+in three steps:
+
+1. **Crop** the vertical band `ROI = (0.36, 0.95)` of the frame height — i.e. drop
+   the top 36 % (sky/horizon) and the bottom 5 % (hood), keeping the ~59 % road band.
+   On the native 526×330 frame this is a 526×195 strip.
+2. **Zoom** that strip to width `SCALE_W = 1052` (2× the native width) with Lanczos
+   resampling, preserving aspect ratio → a 1052×390 frame. The lane markings now span
+   roughly twice as many pixels, so they survive patch-grid downsampling.
+3. **Re-encode** at 8 fps with the burned-in timestamp, identical to every other run.
+
+The key difference from §4.4: the whole-frame 2× upscale *also* enlarges the sky and
+hood, so the extra tokens are spent on blur. ROI-crop + zoom enlarges **only the road
+band**, so essentially the entire added spatial budget lands on the cue the model has
+to read. Same idea ("more tokens per frame"), but *aimed*.
+
+With that one change (re-cut from source, 8 fps, greedy), this is the genuine spatial
+fix:
 
 | config (8 fps, greedy, 27 clips) | accuracy | lane_change P | R | F1 | false-pos |
 |---|---|---|---|---|---|
