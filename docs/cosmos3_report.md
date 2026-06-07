@@ -424,12 +424,24 @@ ground truth, and should be read as a *consistency* check:
 | full-set ROI-zoom (pseudo-labels) | n | accuracy | crossing recall |
 |---|---|---|---|
 | Cosmos 2 | 142 | 0.52 | 0.26 |
-| Cosmos 3 | ‹running› | ‹backfill› | ‹backfill› |
+| **Cosmos 3** | 150 | **0.55** | **0.40** |
 
-Cosmos&nbsp;2's full-set crossing recall (0.26) mirrors its 27-clip behavior — it
-misses crossings at scale too. The Cosmos&nbsp;3 full-set cell is the one number
-still computing at the time of writing and is back-filled from
-`results/cosmos3_roi8_full159/results.json`.
+**Reading.** Cosmos&nbsp;3 edges Cosmos&nbsp;2 at scale too (0.55 vs 0.52 accuracy,
+0.40 vs 0.26 crossing recall), preserving the ordering from the human-labeled set.
+But both absolute numbers are **far below** the 0.93 human-labeled accuracy — and the
+gap is the *pseudo-labels*, not the models: where Cosmos and the openpilot offset
+heuristic disagree, the human-labeled subset shows Cosmos is usually right. The
+full-set run is therefore best read as a **pseudo-label audit** (the offset signal
+cannot cleanly separate `lane_change` from `lane_wandering` after the car re-centers;
+see §2), which is exactly why the 27 human labels — not the 150 pseudo-labels — carry
+the headline claims.
+
+> **Determinism caveat.** Re-scoring the 27 human-labeled clips from *this* full-set
+> run gives accuracy **0.82**, vs **0.93** for the dedicated ROI run (§5/§4.5) — a
+> ~3-clip swing on identical inputs and greedy decoding, attributable to
+> nondeterminism in the vLLM serving stack (continuous batching / async scheduling)
+> compounded by the small sample. It sits inside the ±0.1 noise floor of a 27-clip /
+> 13-crossing set (§8) and is the practical reason to expand the human-labeled set.
 
 ---
 

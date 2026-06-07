@@ -146,27 +146,27 @@
       "model": "Cosmos 3",
       "config": "8 fps + ROI-zoom (full set)",
       "pseudo": {
-        "n": 2,
-        "accuracy": 1.0,
+        "n": 150,
+        "accuracy": 0.553,
         "lane_change": {
-          "tp": 0,
-          "fn": 0,
-          "fp": 0,
-          "recall": null,
-          "precision": null,
-          "f1": null
+          "tp": 24,
+          "fn": 36,
+          "fp": 17,
+          "recall": 0.4,
+          "precision": 0.585,
+          "f1": 0.475
         }
       },
       "human27": {
-        "n": 0,
-        "accuracy": null,
+        "n": 27,
+        "accuracy": 0.815,
         "lane_change": {
-          "tp": 0,
-          "fn": 0,
+          "tp": 8,
+          "fn": 5,
           "fp": 0,
-          "recall": null,
-          "precision": null,
-          "f1": null
+          "recall": 0.615,
+          "precision": 1.0,
+          "f1": 0.762
         }
       }
     }
