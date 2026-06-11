@@ -1,10 +1,10 @@
-# Frame Rate Is the Dominant Lever for Cosmos 2 on Ego-Lane Behavior — and Where It Plateaus
+# Frame Rate Is the Dominant Input Lever for Cosmos 2 on Ego-Lane Behavior
 
-*A companion study to the Cosmos 3 report. We isolate the single most important
-input knob for **Cosmos-Reason2-32B** on ego-lane behavior recognition — the video
-frame rate — and show that, unlike Cosmos 3, Cosmos 2 saturates early: 4 fps native
-is its best configuration, and the spatial levers that lift Cosmos 3 to 0.93 leave
-Cosmos 2 flat or worse.*
+*A companion study to the Cosmos 3 report. We isolate the most influential input
+setting for **Cosmos-Reason2-32B** on ego-lane behavior recognition — the video
+frame rate — and find that Cosmos 2 reaches its best score at its native 4 fps
+configuration; the additional input-budget levers that benefit Cosmos 3 did not
+improve Cosmos 2 in our experiments.*
 
 > **Reproducibility status.** All numbers are recomputed from committed artifacts by
 > `scripts/make_cosmos2_figs.py` and `scripts/headtohead.py`. The controlled
@@ -18,19 +18,19 @@ Cosmos 2 flat or worse.*
 
 We study **Cosmos-Reason2-32B** ("Cosmos 2") on ego-lane behavior recognition —
 classifying a 12-second dashcam clip as *lane keep*, *lane change*, or *lane
-wandering*. The practically dangerous error is the **silent miss**: declaring
-`keep_within_lane` on a clip that contains a real lane change. We show that for
+wandering*. The practically important error is the **silent miss**: declaring
+`keep_within_lane` on a clip that contains a real lane change. We find that for
 Cosmos 2 the dominant driver of this error is the **temporal sampling rate**. In a
 controlled, prompt-matched experiment, raising the frame rate **1 fps → 4 fps**
-nearly doubles lane-change recall (0.15 → 0.38 on 27 human-labeled clips; 0.07 →
+roughly doubles lane-change recall (0.15 → 0.38 on 27 human-labeled clips; 0.07 →
 0.18 on the full 150-clip set) and lifts accuracy 0.59 → 0.70 — because the
-≈1-second crossing event is simply not sampled densely enough at 1 fps. We then show
-the **opposite** of the Cosmos 3 result: pushing further (8 fps), or spending more
-*spatial* tokens (whole-frame 2× upscale, ROI-crop + zoom), does **not** help
-Cosmos 2 — its best configuration is **native 4 fps (accuracy 0.74)**, and every
-additional lever is flat or slightly worse. Cosmos 2's ceiling on this task is a
-**capability** limit, not a conditioning gap; the same input-budget fixes that are
-decisive for Cosmos 3 (see the Cosmos 3 report) do not transfer.
+≈1-second crossing event is not sampled densely enough at 1 fps. Beyond that
+point, the pattern differs from Cosmos 3: pushing further (8 fps), or spending
+more *spatial* tokens (whole-frame 2× upscale, ROI-crop + zoom), did **not**
+improve Cosmos 2 in our experiments — its best configuration is **native 4 fps
+(accuracy 0.74)**, with each additional lever flat or slightly lower. The
+input-budget adjustments that are decisive for Cosmos 3 (see the Cosmos 3 report)
+did not transfer to Cosmos 2 on this task.
 
 ---
 
@@ -44,13 +44,14 @@ just to model scale. This report isolates that effect for the previous-generatio
 1. **(§3) How much does frame rate matter?** A controlled 1 fps vs 4 fps comparison
    (identical clips, prompt, and decoding) shows frame rate is the dominant lever:
    at 1 fps the brief lane-crossing event is undersampled and recall collapses.
-2. **(§4–5) Does Cosmos 2 keep improving with more budget?** No. Beyond 4 fps,
-   neither more frames nor more (even targeted) pixels help. Cosmos 2 plateaus at
-   its native 4 fps configuration.
+2. **(§4–5) Does Cosmos 2 keep improving with more budget?** In our experiments,
+   no. Beyond 4 fps, neither more frames nor more (even targeted) pixels improved
+   its scores; Cosmos 2 performed best at its native 4 fps configuration.
 
-This is the mirror image of the Cosmos 3 finding (`docs/cosmos3_report.md`), where
-8 fps + ROI-crop zoom is decisive. Read together, the two reports make a single
-point: **input-budget fixes are model-specific and must be validated per model.**
+This complements the Cosmos 3 finding (`docs/cosmos3_report.md`), where 8 fps +
+ROI-crop zoom gives the largest gain. Read together, the two reports make a single
+point: **input-budget adjustments are model-specific and should be validated per
+model.**
 
 ---
 
@@ -102,27 +103,29 @@ noisier, but directionally identical):
 | 1 fps | 150 | 0.42 | 0.07 (4 / 60) |
 | 4 fps | 149 | 0.48 | 0.18 (11 / 60) |
 
-**Finding.** Frame rate is the dominant lever for Cosmos 2. At 1 fps the model is
-*structurally* unable to see most crossings; 4 fps recovers a large fraction of them
-without any change to the model, prompt, or labels. We therefore use **4 fps** as the
-Cosmos 2 reference rate.
+**Finding.** Frame rate is the dominant lever for Cosmos 2. At 1 fps most
+crossings are simply not present in the sampled frames; 4 fps recovers a large
+fraction of them without any change to the model, prompt, or labels. We therefore
+use **4 fps** as the Cosmos 2 reference rate.
 
 ---
 
-## 4. The plateau: levers beyond 4 fps do not help
+## 4. Beyond 4 fps: additional levers did not improve Cosmos 2
 
-Having established that 4 fps beats 1 fps, the natural next step — and the one that
-*works for Cosmos 3* — is to push the budget further: more frames (8 fps), more
-pixels (whole-frame 2× upscale), or *targeted* pixels (ROI-crop + zoom on the road
-band; see the Cosmos 3 report §4.5 for the mechanics). For Cosmos 2, none of them
-help. All runs below use greedy decoding and the taxonomy-normalized scorer.
+Having established that 4 fps outperforms 1 fps, the natural next step — and the
+one that benefits Cosmos 3 — is to push the budget further: more frames (8 fps),
+more pixels (whole-frame 2× upscale), or *targeted* pixels (ROI-crop + zoom on the
+road band; see the Cosmos 3 report §4.5 for the mechanics). For Cosmos 2, none of
+these improved its scores in our experiments. All runs below use greedy decoding
+and the taxonomy-normalized scorer.
 
-![Cosmos 2 plateaus across configs](assets/cosmos2/fig_c2_ladder.png)
+![Cosmos 2 across the config ladder](assets/cosmos2/fig_c2_ladder.png)
 
 **Figure 2.** Cosmos 2 across the config ladder (27 human-labeled clips; accuracy =
-bars, lane-change recall = line). Native **4 fps is the ceiling (0.74)**; 8 fps
-*regresses*, the whole-frame 2× upscale does not recover it, and ROI-crop + zoom —
-the decisive lever for Cosmos 3 — drops crossing recall to its lowest (0.27).
+bars, lane-change recall = line). Native 4 fps gives the highest score (0.74);
+8 fps scores lower, the whole-frame 2× upscale does not recover it, and ROI-crop +
+zoom — the most effective lever for Cosmos 3 — coincides with the lowest crossing
+recall (0.27).
 
 | config (27 clips, greedy) | accuracy | crossing P | R | F1 | false-pos |
 |---|---|---|---|---|---|
@@ -134,32 +137,34 @@ the decisive lever for Cosmos 3 — drops crossing recall to its lowest (0.27).
 ¹ n=26, ² n=24 — a few Cosmos 2 generations returned unparseable JSON and are
 excluded; the trend is unaffected. *Source: `results/headtohead.json`.*
 
-For Cosmos 2, raising the frame rate past 4 fps actually **hurts** (0.74 → 0.67), and
-the ROI-zoom that lifts Cosmos 3 by +0.15 instead drops Cosmos 2 to its **worst**
-crossing recall (0.27): it keeps calling real crossings `keep_within_lane` no matter
-how the spatial budget is spent.
+For Cosmos 2, raising the frame rate past 4 fps lowers accuracy (0.74 → 0.67), and
+the ROI-zoom that lifts Cosmos 3 by +0.15 coincides with Cosmos 2's lowest
+crossing recall (0.27): its missed crossings are not converted into detections by
+reallocating the spatial budget.
 
 ---
 
-## 5. Why Cosmos 2 plateaus
+## 5. Interpreting the Cosmos 2 results
 
 The error signature is consistent across every configuration: **high precision,
-collapsed recall.** Cosmos 2 almost never *invents* a lane change (precision stays at
-0.83–1.00), but it systematically *misses* them. Unlike Cosmos 3 — whose misses were
-recoverable by giving it more legible road pixels — Cosmos 2's misses do **not**
-respond to the spatial budget: enlarging the lane markings (ROI-zoom) does not
-convert them into detections. This is the fingerprint of a **capability ceiling** on
-this fine-grained temporal task rather than a presentation/conditioning gap.
+low recall.** Cosmos 2 rarely reports a lane change that did not occur (precision
+stays at 0.83–1.00), but it misses a substantial fraction of real ones. Unlike
+Cosmos 3 — whose misses were recoverable by giving it more legible road pixels —
+Cosmos 2's misses did not respond to the spatial budget in our experiments:
+enlarging the lane markings (ROI-zoom) did not convert them into detections. This
+suggests that, on this fine-grained temporal task, Cosmos 2's recall is not
+limited by input presentation alone — though we cannot rule out that other
+interventions (e.g. different prompting or framing) would change the picture.
 
-On the full 150-clip set at the final ROI configuration, Cosmos 2 lands at **accuracy
-0.52, crossing recall 0.26** (pseudo-labels) — mirroring its 27-clip behavior at
-scale.
+On the full 150-clip set at the final ROI configuration, Cosmos 2 lands at
+**accuracy 0.52, crossing recall 0.26** (pseudo-labels) — consistent with its
+27-clip behavior at scale.
 
 ---
 
 ## 6. Relation to Cosmos 3
 
-The two models respond *oppositely* to the same levers (matched ladder, 27 clips):
+The two models respond differently to the same levers (matched ladder, 27 clips):
 
 | config | Cosmos 2 acc | Cosmos 3 acc |
 |---|---|---|
@@ -168,22 +173,22 @@ The two models respond *oppositely* to the same levers (matched ladder, 27 clips
 | 8 fps + whole-frame 2× | 0.69 | 0.74 |
 | 8 fps + ROI-crop + zoom | 0.67 | **0.93** |
 
-- **Cosmos 2** peaks at **native 4 fps** and degrades with more budget.
-- **Cosmos 3** starts *below* Cosmos 2 at its native rate but, once correctly
-  conditioned (8 fps + ROI-zoom), reaches **0.93** — a **+0.19 accuracy / +0.39
-  crossing-recall** win over the best Cosmos 2 config.
+- **Cosmos 2** scores highest at **native 4 fps**; additional budget did not help.
+- **Cosmos 3** starts below Cosmos 2 at its native rate but, once its input is
+  tuned (8 fps + ROI-zoom), reaches **0.93** — +0.19 accuracy / +0.39
+  crossing recall relative to the best Cosmos 2 configuration on this set.
 
-The takeaway is not "Cosmos 3 > Cosmos 2" but that **the right input budget is
-model-specific**: Cosmos 2 needs 4 fps and is then saturated; Cosmos 3 needs more
-frames *and* targeted spatial tokens. See `docs/cosmos3_report.md` §5.1 for the full
-head-to-head figure and discussion.
+The takeaway is not a model ranking but that **the right input budget is
+model-specific**: Cosmos 2 performs best at 4 fps with no further gains from added
+budget, while Cosmos 3 benefits from more frames *and* targeted spatial tokens.
+See `docs/cosmos3_report.md` §5.1 for the full head-to-head figure and discussion.
 
 ---
 
 ## 7. Reproducibility
 
 ```bash
-# Cosmos 2 figures (1 fps vs 4 fps; the config-ladder plateau)
+# Cosmos 2 figures (1 fps vs 4 fps; the config ladder)
 .venv/bin/python scripts/make_cosmos2_figs.py     # -> docs/assets/cosmos2/
 
 # Controlled frame-rate runs (matched prompt; full BATON set)
@@ -222,11 +227,11 @@ bash scripts/_run_cosmos2.sh
 
 For Cosmos 2 on ego-lane behavior, **frame rate is the dominant input lever**:
 moving from 1 fps to 4 fps roughly doubles lane-change recall by sampling the brief
-crossing event densely enough to see it. But Cosmos 2 **saturates at native 4 fps** —
-more frames regress, and more pixels (even ROI-targeted) do not convert its
-systematic misses into detections, indicating a capability ceiling rather than a
-conditioning gap. This is the opposite of Cosmos 3, which only reaches its potential
-once given a higher frame rate *and* a targeted spatial token budget. The practical
-lesson for deploying reasoning VLMs on video: **profile the frame-rate sensitivity of
-each model first, and never assume an input-budget fix transfers across model
-generations.**
+crossing event densely enough to see it. Beyond that, Cosmos 2 reached its best
+score at native 4 fps in our experiments — additional frames lowered accuracy, and
+additional pixels (even ROI-targeted) did not convert its misses into detections.
+This contrasts with Cosmos 3, which improves substantially when given a higher
+frame rate *and* a targeted spatial token budget. The practical lesson for
+deploying reasoning VLMs on video: **profile the frame-rate sensitivity of each
+model first, and validate input-budget adjustments per model rather than assuming
+they transfer across model generations.**

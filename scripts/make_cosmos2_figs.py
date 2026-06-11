@@ -3,7 +3,7 @@
 fig_c2_fps.png    - controlled 1 fps vs 4 fps experiment (matched prompt/old taxonomy):
                     accuracy + lane-change recall on the 27 human-labeled clips.
 fig_c2_ladder.png - the config ladder (4 fps native, 8 fps, 8 fps+2x, ROI-zoom):
-                    Cosmos 2 plateaus/regresses (new-taxonomy runs via headtohead.json).
+                    Cosmos 2 is flat or lower (new-taxonomy runs via headtohead.json).
 
 All numbers are recomputed from results/*.json so the figures are reproducible.
 """
@@ -109,7 +109,7 @@ def fig_c2_ladder() -> None:
             if r["model"] == "Cosmos 2"}
     order = ["4 fps native", "8 fps native",
              "8 fps + whole-frame 2x", "8 fps + ROI-zoom"]
-    short = ["4 fps\nnative", "8 fps\nnative", "8 fps\n+2x blur", "8 fps\n+ROI-zoom"]
+    short = ["4 fps\nnative", "8 fps\nnative", "8 fps\n+2x upscale", "8 fps\n+ROI-zoom"]
     acc = [rows[c]["accuracy"] for c in order]
     rec = [rows[c]["lane_change"]["recall"] for c in order]
     colors = [GOOD, MUTED, AMBER, MUTED]
@@ -118,7 +118,7 @@ def fig_c2_ladder() -> None:
     bars = ax.bar(short, acc, width=0.6, color=colors, edgecolor="white", lw=1.2)
     ax.plot(short, rec, "-s", color=BAD, lw=2, ms=7, label="lane-change recall")
     ax.axhline(acc[0], color=GOOD, ls="--", lw=1.2, zorder=0)
-    ax.annotate("native 4 fps is the ceiling", (3.4, acc[0]),
+    ax.annotate("native 4 fps scores highest", (3.4, acc[0]),
                 textcoords="offset points", xytext=(0, 5), ha="right",
                 fontsize=8.4, color=GOOD)
     for b, v in zip(bars, acc):
@@ -130,7 +130,7 @@ def fig_c2_ladder() -> None:
                     xytext=(0, -15), ha="center", fontsize=8.6, color=BAD)
     ax.set_ylim(0, 1.0)
     ax.set_ylabel("score (27 human-labeled clips)", fontweight="bold")
-    ax.set_title("Cosmos 2 plateaus: every lever beyond native 4 fps is flat or worse\n"
+    ax.set_title("Cosmos 2: levers beyond native 4 fps are flat or lower\n"
                  "(accuracy = bars, lane-change recall = line)",
                  fontsize=10.8, fontweight="bold")
     ax.legend(loc="upper right", frameon=False)

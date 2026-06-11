@@ -43,8 +43,8 @@ plt.rcParams.update({
 
 def fig_budget() -> None:
     """Two input budgets. The y-axis is the *effective* spatial budget spent on the
-    lane cue: a naive whole-frame upscale wastes tokens on sky/blur (stays low),
-    while ROI-crop+zoom concentrates them on the road (reaches the sweet spot)."""
+    lane cue: a whole-frame upscale spends tokens on sky/blur (stays low),
+    while ROI-crop+zoom concentrates them on the road."""
     AMBER = "#e08e0b"
     fig, ax = plt.subplots(figsize=(7.6, 5.4))
 
@@ -55,9 +55,9 @@ def fig_budget() -> None:
     # (label, fps, effective-spatial-y, accuracy, color, note, dx, dy, ha)
     pts = [
         ("native, 4 fps", 4, 0.20, 0.56, BAD, "below baseline", 10, -30, "center"),
-        ("+fps & greedy, 8 fps", 8, 0.20, 0.78, ACCENT, "beats baseline", 14, -22, "left"),
-        ("naive 2x upscale, 8 fps", 8, 0.52, 0.74, AMBER, "whole-frame blur, regresses", 16, 4, "left"),
-        ("ROI-crop + zoom, 8 fps", 8, 0.82, 0.93, GOOD, "near-saturated", 16, 4, "left"),
+        ("+fps & greedy, 8 fps", 8, 0.20, 0.78, ACCENT, "above baseline", 14, -22, "left"),
+        ("whole-frame 2x upscale, 8 fps", 8, 0.52, 0.74, AMBER, "tokens on sky/hood; acc drops", 16, 4, "left"),
+        ("ROI-crop + zoom, 8 fps", 8, 0.82, 0.93, GOOD, "best config", 16, 4, "left"),
     ]
     for label, x, y, acc, c, note, dx, dy, ha in pts:
         ax.scatter([x], [y], s=260, color=c, zorder=5, edgecolor="white", lw=1.5)
@@ -75,7 +75,7 @@ def fig_budget() -> None:
                  shrinkA=6, shrinkB=6))
     ax.text(6, 0.265, "Stage 1: temporal", ha="center", fontsize=8.5, color=INK)
     ax.text(7.25, 0.54, "Stage 2:\ntargeted\nspatial", ha="right", fontsize=8.5, color=INK)
-    ax.text(10.4, 0.99, "sweet spot", ha="center", va="top", fontsize=9,
+    ax.text(10.4, 0.99, "target region", ha="center", va="top", fontsize=9,
             color=GOOD, fontweight="bold")
 
     ax.set_xlim(2.2, 22)
@@ -123,8 +123,8 @@ def fig_fps() -> None:
     ax.set_xlabel("frames per second (temporal token budget)", fontweight="bold")
     ax.set_ylabel("score (27 human-labeled clips)", fontweight="bold")
     ax.set_ylim(0.3, 0.85)
-    ax.set_title("Stage 1: correcting the frame rate erases the Cosmos 3 deficit\n"
-                 "mean of two runs; 20 fps is worst and ~2x the compute",
+    ax.set_title("Stage 1: adjusting the frame rate closes the Cosmos 3 gap\n"
+                 "mean of two runs; 20 fps scores lowest at ~2x the compute",
                  fontsize=11, fontweight="bold")
     ax.legend(loc="lower center", frameon=False, ncol=2)
     fig.tight_layout()
@@ -137,7 +137,7 @@ def fig_stages(final_acc: float | None = None) -> None:
     AMBER = "#e08e0b"
     roi = final_acc if final_acc is not None else 0.926
     labels = ["Cosmos 2\nnative", "Cosmos 3\nnative\n(4 fps)",
-              "Cosmos 3\n+fps & greedy\n(8 fps)", "Cosmos 3\n+naive 2x\nupscale",
+              "Cosmos 3\n+fps & greedy\n(8 fps)", "Cosmos 3\n+whole-frame\n2x upscale",
               "Cosmos 3 final\nROI-zoom\n(8 fps)"]
     vals = [0.741, 0.556, 0.778, 0.741, roi]
     colors = [MUTED, BAD, ACCENT, AMBER, GOOD]
@@ -156,12 +156,12 @@ def fig_stages(final_acc: float | None = None) -> None:
 
     ax.set_ylim(0, 1.0)
     ax.set_ylabel("accuracy (27 human-labeled clips)", fontweight="bold")
-    ax.set_title("Staged recovery: a conditioning gap, not a capability gap",
+    ax.set_title("Staged progression: an input-conditioning gap",
                  fontsize=11, fontweight="bold")
-    ax.annotate("worse than\nprevious gen", (1, 0.556),
+    ax.annotate("below\nprevious gen", (1, 0.556),
                 textcoords="offset points", xytext=(0, 22), ha="center",
                 fontsize=8.3, color=BAD, fontweight="bold")
-    ax.annotate("naive upscale\nregresses (+1 FP)", (3, 0.741),
+    ax.annotate("whole-frame upscale\n-0.04 (+1 FP)", (3, 0.741),
                 textcoords="offset points", xytext=(0, 22), ha="center",
                 fontsize=8.3, color=AMBER, fontweight="bold")
     fig.tight_layout()
@@ -215,7 +215,7 @@ def fig_roi(clip: str = "lane_recovery__17", t: float = 5.0) -> None:
              bbox=dict(boxstyle="round,pad=0.25", fc=GOOD, ec="none", alpha=0.9))
     axL.set_xlim(0, w); axL.set_ylim(h, 0)
     axL.set_xticks([]); axL.set_yticks([])
-    axL.set_title("Native frame (526×330)\n~⅓ of tokens wasted on sky + hood",
+    axL.set_title("Native frame (526×330)\n~⅓ of tokens spent on sky + hood",
                   fontsize=9.5, fontweight="bold")
 
     # --- right: ROI-crop + zoom (what the model sees) ---
@@ -228,7 +228,7 @@ def fig_roi(clip: str = "lane_recovery__17", t: float = 5.0) -> None:
                  color="white", ha="center", fontsize=9, fontweight="bold",
                  bbox=dict(boxstyle="round,pad=0.3", fc="#2e8b57", ec="none", alpha=0.85))
 
-    fig.suptitle("Aiming the spatial token budget: crop to the road band, then zoom it",
+    fig.suptitle("Targeting the spatial token budget: crop to the road band, then zoom it",
                  fontsize=11.5, fontweight="bold", y=1.02)
     fig.tight_layout()
     fig.savefig(OUT / "fig_roi.png", bbox_inches="tight")
@@ -237,7 +237,7 @@ def fig_roi(clip: str = "lane_recovery__17", t: float = 5.0) -> None:
 
 def fig_headtohead() -> None:
     """Grouped bars: Cosmos 2 vs Cosmos 3 across the four matched configs on the
-    27 human-labeled clips. Shows the two models respond OPPOSITELY to the same
+    27 human-labeled clips. Shows the two models respond differently to the same
     levers. Sourced from results/headtohead.json."""
     h2h = ROOT / "results" / "headtohead.json"
     if not h2h.exists():
@@ -245,7 +245,7 @@ def fig_headtohead() -> None:
     rows = json.load(open(h2h))["human27"]
     configs = ["4 fps native", "8 fps native",
                "8 fps + whole-frame 2x", "8 fps + ROI-zoom"]
-    short = ["4 fps\nnative", "8 fps\nnative", "8 fps\n+2x blur", "8 fps\n+ROI-zoom"]
+    short = ["4 fps\nnative", "8 fps\nnative", "8 fps\n+2x upscale", "8 fps\n+ROI-zoom"]
 
     def get(model: str, cfg: str):
         for r in rows:
@@ -266,7 +266,7 @@ def fig_headtohead() -> None:
                 label="Cosmos 2 (Reason2-32B)")
     b3 = ax.bar(x + w / 2, c3v, w, color=ACCENT, edgecolor="white", lw=1.2,
                 label="Cosmos 3-Super")
-    # highlight the winning Cosmos 3 bar
+    # highlight the final Cosmos 3 bar
     b3[-1].set_color(GOOD)
 
     for bars, vals, rs in [(b2, c2v, c2), (b3, c3v, c3)]:
@@ -280,8 +280,8 @@ def fig_headtohead() -> None:
     ax.set_xticklabels(short)
     ax.set_ylim(0, 1.02)
     ax.set_ylabel("accuracy (27 human-labeled clips)", fontweight="bold")
-    ax.set_title("Same levers, opposite responses: the fixes are Cosmos 3-specific\n"
-                 "Cosmos 2 peaks at 4 fps native; Cosmos 3 needs more frames + ROI tokens",
+    ax.set_title("Same levers, different responses: the adjustments are model-specific\n"
+                 "Cosmos 2 scores highest at 4 fps native; Cosmos 3 benefits from more frames + ROI tokens",
                  fontsize=10.8, fontweight="bold")
     ax.legend(loc="upper left", frameon=False)
     if c2v[3] and c3v[3]:
@@ -295,7 +295,7 @@ def fig_headtohead() -> None:
 
 
 def main() -> None:
-    # realized final accuracy = ROI-crop+zoom run (the genuine spatial fix)
+    # realized final accuracy = ROI-crop+zoom run (the adopted spatial config)
     final_acc = None
     roi = ROOT / "results" / "exp_roi8" / "results.json"
     if roi.exists():

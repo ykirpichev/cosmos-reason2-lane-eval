@@ -1,8 +1,8 @@
 # Detecting Ego-Lane Behavior with Vision–Language Reasoners: A Staged Diagnosis of Cosmos&nbsp;3
 
-*A case study in turning a reasoning VLM from below-baseline to near-saturated
-accuracy by separately fixing temporal sampling and spatial token allocation —
-and a cautionary tale that the obvious spatial fix (upscaling) is the wrong one.*
+*A case study in improving a reasoning VLM's accuracy on a lane-behavior task by
+separately tuning temporal sampling and spatial token allocation, including a
+negative result for whole-frame upscaling.*
 
 > **Reproducibility status.** All numbers are final and reproducible from committed
 > artifacts. Both models were evaluated under the **full matched ladder** (4 fps
@@ -18,74 +18,78 @@ and a cautionary tale that the obvious spatial fix (upscaling) is the wrong one.
 
 We study **ego-lane behavior recognition** — classifying a 12-second dashcam clip
 as *lane keep*, *lane change*, or *lane wandering* — using two reasoning
-vision–language models, **Cosmos&nbsp;3-Super** and **Cosmos-Reason2-32B**. Out of
-the box, the newer and larger Cosmos&nbsp;3 is **worse than the previous-generation
-Cosmos&nbsp;2** on this task (accuracy 0.56 vs 0.74; lane-change recall 0.23 vs
-0.46 on 27 human-labeled clips). We show this is not a capability gap but a
-**conditioning gap**, and we close it in two independent stages. **Stage&nbsp;1
-(temporal):** the deficit is caused by the frame-rate — the default sampling
-under-samples the brief (≈1 s) lane-crossing event; correcting it (4→8 fps) and
-switching to greedy decoding lifts Cosmos&nbsp;3 **past** Cosmos&nbsp;2
-(0.56→0.78, zero false positives). **Stage&nbsp;2 (spatial):** the residual errors
-are confident *missed* changes whose cue (a lane line sliding under the hood) is
-below the model's effective spatial resolution. Here we report a sharp negative
-result: a **naive whole-frame 2× upscale makes things worse** (0.78→0.74, and adds
-a false positive) — it spends the larger token budget on blurred sky and hood,
-not on the lane cue. The fix is to spend tokens
-*where the cue is*: an **ROI-crop + zoom** on the road region lifts accuracy to
-**0.93** (F1 0.92, zero false positives), recovering all but two crossings (both
-probable label noise). Our contribution is methodological: **temporal and spatial
-input budgets are distinct, separately diagnosable bottlenecks, and the spatial
-budget only helps when it is *aimed* — more pixels alone can hurt.** Finally, a
-**matched ladder on Cosmos&nbsp;2** shows the fixes are **model-specific**: the same
-levers that carry Cosmos&nbsp;3 to 0.93 leave Cosmos&nbsp;2 flat or slightly worse
-(it peaks at 0.74 in its *native* 4 fps config and never exceeds it), so the final
-Cosmos&nbsp;3 system beats the best Cosmos&nbsp;2 config by **+0.19 absolute
-accuracy** (0.93 vs 0.74) and nearly doubles its crossing recall (0.85 vs 0.46).
+vision–language models, **Cosmos&nbsp;3-Super** and **Cosmos-Reason2-32B**. At
+default settings, Cosmos&nbsp;3 scores below Cosmos&nbsp;2 on this task (accuracy
+0.56 vs 0.74; lane-change recall 0.23 vs 0.46 on 27 human-labeled clips). We find
+this gap is largely attributable to **input conditioning** rather than model
+capability, and we close it in two independent stages. **Stage&nbsp;1
+(temporal):** the default sampling rate under-samples the brief (≈1 s)
+lane-crossing event; adjusting it (4→8 fps) and switching to greedy decoding
+brings Cosmos&nbsp;3 above the Cosmos&nbsp;2 baseline (0.56→0.78, zero false
+positives). **Stage&nbsp;2 (spatial):** the residual errors are confident *missed*
+changes whose cue (a lane line sliding under the hood) is below the model's
+effective spatial resolution. Here we report a negative result: a **whole-frame 2×
+upscale slightly reduces accuracy** (0.78→0.74, and adds a false positive),
+because the additional token budget is spent on regions that carry no lane
+information (sky, hood). Allocating tokens *where the cue is* — an **ROI-crop +
+zoom** on the road region — raises accuracy to **0.93** (F1 0.92, zero false
+positives), recovering all but two crossings (both flagged for label re-review).
+The methodological observation is that **temporal and spatial input budgets are
+distinct, separately diagnosable factors, and the spatial budget helps most when
+it is targeted at the relevant region.** Finally, a **matched ladder on
+Cosmos&nbsp;2** indicates the adjustments are **model-specific**: the same levers
+that benefit Cosmos&nbsp;3 leave Cosmos&nbsp;2 flat or slightly lower (it scores
+highest, 0.74, in its native 4 fps configuration). On this evaluation set, the
+tuned Cosmos&nbsp;3 configuration exceeds the best Cosmos&nbsp;2 configuration by
++0.19 accuracy (0.93 vs 0.74) and +0.39 crossing recall (0.85 vs 0.46), subject
+to the small-sample caveats of §8.
 
 ---
 
 ## 1. Introduction
 
 Reasoning-oriented vision–language models (VLMs) are increasingly applied to
-driving perception as zero-shot classifiers and explainers. A natural assumption
-is that a newer, larger reasoner dominates its predecessor. We report a concrete
-counterexample and, more usefully, a **repeatable diagnostic procedure** that
-explains it.
+driving perception as zero-shot classifiers and explainers. Their measured
+accuracy, however, can depend as much on **how the video is presented** (frame
+rate, resolution, framing) as on the model itself. We document a case where
+default input settings substantially understate a model's ability on a task, and
+describe a **repeatable diagnostic procedure** for separating input-conditioning
+effects from model capability.
 
 The task is ego-lane behavior recognition on openpilot dashcam clips. The
 practically important error is the **silent miss**: the model declares
 `keep_within_lane` with high confidence on a clip that contains a real lane change.
-Such errors are dangerous for downstream mining (they remove positive examples)
+Such errors are costly for downstream mining (they remove positive examples)
 and are invisible without ground truth.
 
 We make three claims, each backed by controlled experiments:
 
-1. **(§3) Cosmos&nbsp;3's initial deficit is a temporal-sampling artifact, not a
-   model regression.** A frame-rate sweep moves accuracy from 0.56→0.74 with no
-   change to the model, prompt, or labels; greedy decoding then removes the
-   remaining sampling variance and lifts it to **0.78**, *past* the baseline.
-2. **(§4) The residual errors are a spatial token-*allocation* problem — and the
-   obvious fix is wrong.** Naively raising the per-frame token budget by upscaling
-   the whole frame **regresses** (0.78→0.74, and introduces a false positive): the
-   extra tokens are spent on blurred sky and hood. *Aiming* the budget at the road
-   region (ROI-crop + zoom) instead lifts accuracy to **0.93** (F1 0.92, zero false
-   positives).
-3. **(§5–6) The effective fixes are independent and composable** — corrected frame
-   rate + greedy decoding (temporal) and ROI-crop zoom (targeted spatial) — while
-   whole-frame upscaling and per-request pixel kwargs are documented negative
-   results. We additionally harden the output parser so out-of-taxonomy labels and
-   timeline/summary disagreements cannot corrupt scoring (§4.5).
+1. **(§3) Cosmos&nbsp;3's initial gap is a temporal-sampling artifact.** A
+   frame-rate sweep moves accuracy from 0.56→0.74 with no change to the model,
+   prompt, or labels; greedy decoding then removes the remaining sampling variance
+   and lifts it to **0.78**, above the baseline.
+2. **(§4) The residual errors trace to spatial token *allocation*, and the most
+   obvious intervention does not help.** Raising the per-frame token budget by
+   upscaling the whole frame slightly lowers accuracy (0.78→0.74, with one added
+   false positive): the extra tokens go to regions without lane information.
+   Directing the budget at the road region (ROI-crop + zoom) instead lifts
+   accuracy to **0.93** (F1 0.92, zero false positives).
+3. **(§5–6) The effective adjustments are independent and composable** — corrected
+   frame rate + greedy decoding (temporal) and ROI-crop zoom (targeted spatial) —
+   while whole-frame upscaling and per-request pixel kwargs are documented
+   negative results. We additionally harden the output parser so out-of-taxonomy
+   labels and timeline/summary disagreements cannot corrupt scoring (§4.5).
 
 ![two orthogonal input budgets](assets/cosmos3/fig_budget.png)
 
-**Figure 1.** The central thesis. A video reasoner consumes two distinct input
-budgets — *temporal* (frames/fps, x-axis) and *effective spatial* (visual tokens
-spent **on the lane cue**, y-axis). The native operating point (4 fps) is below the
-previous-generation baseline; Stage 1 moves it right (frame rate + greedy, acc
-0.78). For Stage 2, a naive whole-frame 2× upscale (amber) *wastes* the extra
-tokens on blur and regresses (acc 0.74, +1 false positive), while an ROI-crop +
-zoom that concentrates tokens on the road reaches the sweet spot (acc 0.93).
+**Figure 1.** The central observation. A video reasoner consumes two distinct
+input budgets — *temporal* (frames/fps, x-axis) and *effective spatial* (visual
+tokens spent **on the lane cue**, y-axis). The default operating point (4 fps)
+scores below the previous-generation baseline; Stage 1 moves it right (frame rate
++ greedy, acc 0.78). For Stage 2, a whole-frame 2× upscale (amber) spends the
+extra tokens on low-information regions and slightly lowers accuracy (0.74, +1
+false positive), while an ROI-crop + zoom that concentrates tokens on the road
+reaches 0.93.
 
 ---
 
@@ -122,7 +126,7 @@ sequential.
 
 ## 3. Stage 1 — The temporal-sampling bottleneck
 
-### 3.1 Symptom: the newer model is worse
+### 3.1 Symptom: the newer model scores lower at defaults
 
 On the 27 ground-truth clips, with each model at its default configuration:
 
@@ -139,11 +143,11 @@ systematically *under*-calling the rare, brief event.
 
 ![staged recovery](assets/cosmos3/fig_stages.png)
 
-**Figure 2.** The narrative in one chart. The newer model starts *below* its
-predecessor (0.56 vs 0.74); frame rate + greedy decoding pushes it past the
-baseline (0.78); a naive whole-frame upscale *regresses* (0.74); and the targeted
-ROI-crop zoom reaches 0.93. The deficit was a conditioning gap, not a capability
-gap.
+**Figure 2.** The progression in one chart. At default settings the newer model
+scores below its predecessor (0.56 vs 0.74); frame rate + greedy decoding moves it
+above the baseline (0.78); a whole-frame upscale slightly lowers accuracy (0.74);
+and the targeted ROI-crop zoom reaches 0.93. The initial gap is explained by input
+conditioning rather than model capability.
 
 ### 3.2 Diagnosis: frames per second
 
@@ -170,12 +174,13 @@ both peak in the 8–10 fps band and fall at 20 fps; 8 fps reaches the Cosmos 2
 baseline with no model change.
 
 **Findings.**
-- Cosmos&nbsp;3's quality **peaks at 8–10 fps** and is **worst at 20 fps** —
-  *more* frames hurt while costing ≈2× compute, because additional temporal tokens
-  dilute per-frame motion cues and crowd the 32k context.
-- Correcting the frame rate alone (4→8 fps) lifts mean accuracy **0.63→0.74**,
-  erasing the gap to Cosmos&nbsp;2 with **no change to the model or prompt**. The
-  Stage-1 deficit was a conditioning artifact, not a capability regression.
+- Cosmos&nbsp;3's quality **peaks at 8–10 fps** and is lowest at 20 fps in this
+  sweep — additional frames beyond the peak reduce accuracy while costing ≈2×
+  compute, consistent with additional temporal tokens diluting per-frame motion
+  cues and crowding the 32k context.
+- Adjusting the frame rate alone (4→8 fps) lifts mean accuracy **0.63→0.74**,
+  closing the gap to Cosmos&nbsp;2 with **no change to the model or prompt**. The
+  Stage-1 gap is therefore attributable to input conditioning.
 
 We adopt **8 fps** as the default (tied-best quality, lower cost than 10 fps).
 Full per-run and per-clip tables are in `docs/fps_sweep.md`.
@@ -239,33 +244,34 @@ encouraging: raising the **per-frame visual token budget** flips a confident mis
 pixels → more patches → **more visual tokens per frame** (4.6k→12.2k), because the
 processor maps each frame to a patch grid under a pixel cap. The hypothesis: the
 *spatial* token budget is the bottleneck, orthogonal to the temporal budget of §3
-(where *more* tokens hurt).
+(where *more* tokens reduced accuracy).
 
-### 4.4 The negative result: a naive whole-frame upscale makes it worse
+### 4.4 A negative result: whole-frame upscaling does not generalize
 
-The hypothesis fails when scaled to the full ground-truth set. Re-encoding **every**
-clip with a whole-frame 2× upscale (greedy) **regresses** relative to 8 fps-native
-and even *re-breaks* `lane_violation_left__14`:
+The single-clip result does not hold on the full ground-truth set. Re-encoding
+**every** clip with a whole-frame 2× upscale (greedy) scores slightly below
+8 fps-native and reverts `lane_violation_left__14` to a miss:
 
 | config (8 fps, greedy, 27 clips) | accuracy | lane_change R | F1 | false-pos |
 |---|---|---|---|---|
 | native resolution | **0.78** | 0.54 | **0.70** | **0** |
 | whole-frame 2× upscale | 0.74 | 0.54 | 0.67 | 1 |
 
-The single-clip win did not generalize: a uniform upscale spends the larger budget
-on **blurred, irrelevant pixels** (sky, hood, adjacent lanes) and even introduces a
-false positive. More pixels are not the same as more *useful* pixels.
+The single-clip improvement did not generalize: a uniform upscale spends the
+larger budget on regions with little lane information (sky, hood, adjacent lanes)
+and introduces a false positive. More pixels are not the same as more *useful*
+pixels.
 
-### 4.5 The fix that works: aim the tokens (ROI-crop + zoom)
+### 4.5 The effective intervention: targeted tokens (ROI-crop + zoom)
 
 **What "ROI" means here.** ROI = *region of interest* — the part of the frame that
 actually carries the lane cue. In a forward dashcam view that is a horizontal **road
 band** in the middle of the image: the top third is sky/horizon and the bottom strip
 is the car's own hood, neither of which tells you whether the ego crossed a line. A
 VLM's image processor turns each frame into a fixed-size grid of patches under a
-pixel cap and emits one visual token per patch; if a third of those patches are spent
-on sky, a third of the model's *spatial* budget is wasted. **ROI-crop + zoom** simply
-stops paying for the useless regions and re-spends that budget on the road.
+pixel cap and emits one visual token per patch; if a third of those patches cover
+sky, a third of the model's *spatial* budget carries no task-relevant signal.
+**ROI-crop + zoom** reallocates that budget to the road region.
 
 **How it works (mechanically).** For every clip we re-cut from the source
 `qcamera.mp4` (`scripts/exp_variant.py::make_variant`, used by `scripts/exp_roi8.py`)
@@ -279,10 +285,11 @@ in three steps:
    roughly twice as many pixels, so they survive patch-grid downsampling.
 3. **Re-encode** at 8 fps with the burned-in timestamp, identical to every other run.
 
-The key difference from §4.4: the whole-frame 2× upscale *also* enlarges the sky and
-hood, so the extra tokens are spent on blur. ROI-crop + zoom enlarges **only the road
-band**, so essentially the entire added spatial budget lands on the cue the model has
-to read. Same idea ("more tokens per frame"), but *aimed*.
+The key difference from §4.4: the whole-frame 2× upscale also enlarges the sky and
+hood, so much of the added budget goes to low-information regions. ROI-crop + zoom
+enlarges **only the road band**, so essentially the entire added spatial budget
+lands on the cue the model has to read. Same idea ("more tokens per frame"), but
+targeted.
 
 ![ROI-crop + zoom illustrated on a real crossing frame](assets/cosmos3/fig_roi.png)
 
@@ -294,8 +301,7 @@ spatial budget is spent on the lane markings, and the lane line the model previo
 missed is now legible. This is the difference between "more pixels" (§4.4) and "more
 *useful* pixels".
 
-With that one change (re-cut from source, 8 fps, greedy), this is the genuine spatial
-fix:
+With that one change (re-cut from source, 8 fps, greedy), the results are:
 
 | config (8 fps, greedy, 27 clips) | accuracy | lane_change P | R | F1 | false-pos |
 |---|---|---|---|---|---|
@@ -315,23 +321,24 @@ false positives:
 | `lane_violation_left__18` | miss | miss |
 | `lane_violation_left__20` | miss | miss |
 
-The two stragglers (`left__18`, `left__20`) are missed by **every** configuration we
-tried and are flagged as probable label noise (§8).
+The two remaining clips (`left__18`, `left__20`) are missed by **every**
+configuration we tried and are flagged for label re-review (§8).
 
-> **The clean lesson.** Temporal tokens (frames) and spatial tokens (pixels/frame)
-> are independent budgets, but the spatial budget only helps when it is **aimed at
-> the cue**. This task is *temporally over-sampled past 8 fps* and *spatially
-> under-budgeted unless tokens are concentrated on the road*.
+> **Takeaway.** Temporal tokens (frames) and spatial tokens (pixels/frame) are
+> independent budgets, and the spatial budget is most effective when it is
+> **concentrated on the task-relevant region**. In our experiments this task is
+> temporally over-sampled past 8 fps and spatially under-budgeted unless tokens
+> are concentrated on the road.
 
 ### 4.6 What did not work
 
 - **Per-request pixel kwargs.** `mm_processor_kwargs={min_pixels,max_pixels}` would
-  be the cleanest lever, but in this vLLM/Cosmos build they are **silently ignored
-  on the `video_url` path** (token count identical, prediction unchanged).
+  be the cleanest lever, but in the vLLM build we used they had **no effect on the
+  `video_url` path** (token count identical, prediction unchanged).
 - **Whole-frame upscale of the already-decimated clip** — §4.4.
 - **3×6 s overlapping temporal split** — did not recover the hard cases, 3× cost.
-- **A "grounded" prompt rewrite** (forcing a per-second position log) — over-cautious,
-  worse than the baseline prompt at greedy decoding.
+- **A "grounded" prompt rewrite** (forcing a per-second position log) —
+  over-cautious; scored below the baseline prompt at greedy decoding.
 
 ### 4.7 Label hygiene: derive the verdict from the timeline
 
@@ -356,7 +363,7 @@ forbid out-of-taxonomy labels and to enforce the precedence at the source.
 
 ## 5. The final system and results
 
-The final Cosmos&nbsp;3 system composes the two effective fixes:
+The final Cosmos&nbsp;3 configuration composes the two effective adjustments:
 
 1. **Corrected temporal budget** — 8 fps sampling (§3).
 2. **Greedy decoding** — `temperature 0` to remove sampler variance (§4.2).
@@ -371,29 +378,29 @@ The full ladder on the 27 ground-truth clips (positive class for P/R/F1 =
 | Cosmos 2 — native, `t=0.6` (baseline) | 0.74 | 1.00 | 0.46 | 0.63 | 0 |
 | Cosmos 3 — native, 4 fps, `t=0.6` | 0.56 | 0.75 | 0.23 | 0.35 | 1 |
 | Cosmos 3 — 8 fps + greedy | 0.78 | 1.00 | 0.54 | 0.70 | 0 |
-| Cosmos 3 — 8 fps + greedy + whole-frame 2× (negative) | 0.74 | 0.88 | 0.54 | 0.67 | 1 |
+| Cosmos 3 — 8 fps + greedy + whole-frame 2× (negative result) | 0.74 | 0.88 | 0.54 | 0.67 | 1 |
 | **Cosmos 3 — 8 fps + greedy + ROI-zoom (final)** | **0.93** | **1.00** | **0.85** | **0.92** | **0** |
 
-**Reading.** Stage 1 (frame rate + greedy) already moves Cosmos&nbsp;3 *past* the
-Cosmos&nbsp;2 baseline (0.56→0.78) at zero false positives. The naive whole-frame
-upscale is a regression. The targeted ROI-zoom is the win: **0.93 accuracy, 0.92 F1,
-perfect precision, zero false positives**, missing only the two probable-label-noise
-clips.
+**Reading.** Stage 1 (frame rate + greedy) already moves Cosmos&nbsp;3 above the
+Cosmos&nbsp;2 baseline (0.56→0.78) at zero false positives. The whole-frame upscale
+scores slightly lower. The targeted ROI-zoom gives the largest gain: **0.93
+accuracy, 0.92 F1, zero false positives**, missing only the two clips flagged for
+label re-review.
 
-### 5.1 Head-to-head: are the fixes model-specific?
+### 5.1 Head-to-head: are the adjustments model-specific?
 
-A natural objection is that the ROI-zoom pipeline simply makes *any* model better,
-so the comparison to a *native* Cosmos&nbsp;2 baseline is unfair. To settle this we
-ran Cosmos&nbsp;2 through the **identical matched ladder** (same clips, fps, greedy
-decoding, ROI-crop, and label-hygiene pass). The result is unambiguous: the levers
-that carry Cosmos&nbsp;3 **do not transfer**.
+A natural question is whether the ROI-zoom pipeline simply improves *any* model,
+which would make the comparison to a *native* Cosmos&nbsp;2 baseline misleading. To
+check this we ran Cosmos&nbsp;2 through the **identical matched ladder** (same
+clips, fps, greedy decoding, ROI-crop, and label-hygiene pass). In our experiments,
+the levers that benefit Cosmos&nbsp;3 **did not transfer**.
 
 ![Cosmos 2 vs Cosmos 3 across matched configs](assets/cosmos3/fig_headtohead.png)
 
 **Figure 8.** The same four configurations on both models (27 human-labeled clips).
-The two models respond *oppositely*: Cosmos&nbsp;2 is **best in its native 4 fps
-config (0.74)** and every "fix" leaves it flat or slightly worse, whereas
-Cosmos&nbsp;3 climbs from below-baseline to 0.93 as frames and ROI tokens are added.
+The two models respond differently: Cosmos&nbsp;2 scores highest in its native
+4 fps configuration (0.74), with each additional lever flat or slightly lower,
+whereas Cosmos&nbsp;3 climbs from 0.56 to 0.93 as frames and ROI tokens are added.
 
 | config (27 clips, greedy unless noted) | Cosmos 2 acc | C2 crossing R | Cosmos 3 acc | C3 crossing R |
 |---|---|---|---|---|
@@ -405,14 +412,15 @@ Cosmos&nbsp;3 climbs from below-baseline to 0.93 as frames and ROI tokens are ad
 ¹ n=26, ² n=24 (a few Cosmos&nbsp;2 generations failed to return parseable JSON and
 are excluded; the trend is unaffected). *Source: `results/headtohead.json`.*
 
-**Reading.** For Cosmos&nbsp;2, raising the frame rate *hurts* (0.74→0.67) and the
-ROI-zoom that lifts Cosmos&nbsp;3 by +0.15 actually drops Cosmos&nbsp;2 to its worst
-crossing recall (0.27): it keeps calling real crossings `keep_within_lane`
-regardless of how the tokens are spent. This is the strongest evidence that
-Cosmos&nbsp;3's deficit was a **conditioning** gap (closable by input budgeting)
-while Cosmos&nbsp;2's ceiling is a **capability** limit on this task. The final
-Cosmos&nbsp;3 system beats the best Cosmos&nbsp;2 configuration by **+0.19 absolute
-accuracy** and **+0.39 crossing recall**.
+**Reading.** For Cosmos&nbsp;2, raising the frame rate lowers accuracy (0.74→0.67)
+and the ROI-zoom that lifts Cosmos&nbsp;3 by +0.15 coincides with Cosmos&nbsp;2's
+lowest crossing recall (0.27): its misses are not converted into detections by
+reallocating the spatial budget. This supports the interpretation that
+Cosmos&nbsp;3's initial gap was a **conditioning** effect (closable by input
+budgeting), while Cosmos&nbsp;2's performance on this task is not limited by input
+presentation in the same way. On this evaluation set, the tuned Cosmos&nbsp;3
+configuration exceeds the best Cosmos&nbsp;2 configuration by +0.19 accuracy and
++0.39 crossing recall (small-sample caveats in §8).
 
 ### 5.2 Scale check on the full BATON set
 
@@ -426,15 +434,16 @@ ground truth, and should be read as a *consistency* check:
 | Cosmos 2 | 142 | 0.52 | 0.26 |
 | **Cosmos 3** | 150 | **0.55** | **0.40** |
 
-**Reading.** Cosmos&nbsp;3 edges Cosmos&nbsp;2 at scale too (0.55 vs 0.52 accuracy,
-0.40 vs 0.26 crossing recall), preserving the ordering from the human-labeled set.
-But both absolute numbers are **far below** the 0.93 human-labeled accuracy — and the
-gap is the *pseudo-labels*, not the models: where Cosmos and the openpilot offset
-heuristic disagree, the human-labeled subset shows Cosmos is usually right. The
-full-set run is therefore best read as a **pseudo-label audit** (the offset signal
-cannot cleanly separate `lane_change` from `lane_wandering` after the car re-centers;
-see §2), which is exactly why the 27 human labels — not the 150 pseudo-labels — carry
-the headline claims.
+**Reading.** Cosmos&nbsp;3 scores slightly higher than Cosmos&nbsp;2 at scale as
+well (0.55 vs 0.52 accuracy, 0.40 vs 0.26 crossing recall), preserving the ordering
+from the human-labeled set. Both absolute numbers are well below the 0.93
+human-labeled accuracy — and the evidence points to the *pseudo-labels* rather than
+the models: on clips where Cosmos and the openpilot offset heuristic disagree, the
+human-labeled subset more often agrees with Cosmos. The full-set run is therefore
+best read as a **pseudo-label agreement check** (the offset signal cannot cleanly
+separate `lane_change` from `lane_wandering` after the car re-centers; see §2),
+which is why the 27 human labels — not the 150 pseudo-labels — carry the headline
+metrics.
 
 > **Determinism caveat.** Re-scoring the 27 human-labeled clips from *this* full-set
 > run gives accuracy **0.82**, vs **0.93** for the dedicated ROI run (§5/§4.5) — a
@@ -450,29 +459,29 @@ the headline claims.
 Levers evaluated on the 27 ground-truth clips (▲ = measured on the full set; others
 are single-clip probes), greedy decoding unless noted.
 
-| lever | effect | verdict |
+| lever | effect | assessment |
 |---|---|---|
-| frame rate 4 → 8 fps ▲ | 0.56 → 0.74; erases the gap to Cosmos 2 | ✅ ship |
-| `temperature 0.6 → 0` (greedy) ▲ | removes variance; 0.74 → 0.78, FP → 0 | ✅ ship |
-| **ROI-crop + zoom @ 8 fps** ▲ | **0.78 → 0.93**, F1 0.92, FP 0 | ✅✅ the win |
-| derive `overall_behavior` from timeline ▲ | fixes out-of-taxonomy + precedence; +0.07 on affected runs | ✅ ship |
-| whole-frame 2× upscale @ 8 fps ▲ | **regresses** 0.78 → 0.74, +1 false positive | ✗ drop |
-| frame rate 20 fps ▲ | worst setting, ~2× compute | ✗ drop |
-| maneuver-centered / shorter clip | recovers `__14` (single clip) | ✅ optional mining-time change |
-| 3×6 s overlapping temporal split | does not recover hard cases; 3× cost | ✗ weak |
-| "grounded" prompt rewrite (forced position log) | over-cautious, worse | ✗ drop |
-| `min_pixels`/`max_pixels` per request | no effect (video tokens unchanged) | ✗ not plumbed for video |
+| frame rate 4 → 8 fps ▲ | 0.56 → 0.74; closes the gap to Cosmos 2 | adopted |
+| `temperature 0.6 → 0` (greedy) ▲ | removes variance; 0.74 → 0.78, FP → 0 | adopted |
+| **ROI-crop + zoom @ 8 fps** ▲ | **0.78 → 0.93**, F1 0.92, FP 0 | adopted (largest gain) |
+| derive `overall_behavior` from timeline ▲ | fixes out-of-taxonomy + precedence; +0.07 on affected runs | adopted |
+| whole-frame 2× upscale @ 8 fps ▲ | 0.78 → 0.74, +1 false positive | not adopted |
+| frame rate 20 fps ▲ | lowest accuracy in the sweep, ~2× compute | not adopted |
+| maneuver-centered / shorter clip | recovers `__14` (single clip) | optional mining-time change |
+| 3×6 s overlapping temporal split | does not recover hard cases; 3× cost | not adopted |
+| "grounded" prompt rewrite (forced position log) | over-cautious; below baseline | not adopted |
+| `min_pixels`/`max_pixels` per request | no effect (video tokens unchanged) | not available for video in this build |
 
-**Summary of the design space.** Three levers carry the result: **8 fps** (temporal),
-**greedy decoding** (variance), and **ROI-crop zoom** (targeted spatial). The naive
-"more pixels" intervention (whole-frame upscale) and per-request pixel kwargs are
-negative results; prompt engineering and temporal windowing were not effective here.
+**Summary of the design space.** Three levers carry the result: **8 fps**
+(temporal), **greedy decoding** (variance), and **ROI-crop zoom** (targeted
+spatial). The whole-frame upscale and per-request pixel kwargs are negative
+results; prompt engineering and temporal windowing were not effective here.
 
 **Model-specificity (§5.1).** Every ▲ lever above was re-run on Cosmos&nbsp;2 under
-the identical pipeline. None transfer: Cosmos&nbsp;2 peaks in its *native* 4 fps
-config (0.74) and the frame-rate and ROI-zoom levers leave it flat or worse. The
-fixes recover a *conditioning* gap that is specific to Cosmos&nbsp;3, rather than a
-generic video-quality improvement.
+the identical pipeline. None transferred: Cosmos&nbsp;2 scores highest in its
+native 4 fps configuration (0.74), and the frame-rate and ROI-zoom levers leave it
+flat or lower. The adjustments address an input-conditioning gap specific to
+Cosmos&nbsp;3 rather than acting as a generic video-quality improvement.
 
 ---
 
@@ -491,10 +500,10 @@ generic video-quality improvement.
   --model nvidia/Cosmos3-Super --fps 8 \
   --media-path-prefix "$PWD" --output results/cosmos3_final_8fps_native
 
-# Stage 2 — the FINAL system: ROI-crop + zoom @ 8 fps, greedy (the win)
+# Stage 2 — the final config: ROI-crop + zoom @ 8 fps, greedy
 .venv/bin/python scripts/exp_roi8.py           # -> results/exp_roi8/
 
-# Negative control: whole-frame 2x upscale (regresses)
+# Negative control: whole-frame 2x upscale
 .venv/bin/python scripts/upscale_clips.py --factor 2
 .venv/bin/python scripts/run_batch.py \
   --manifest clips/manifest_final27.json \
@@ -547,20 +556,21 @@ bash scripts/_run_full159.sh
 
 ## 9. Conclusion
 
-A larger reasoning VLM appeared to regress on ego-lane behavior, but the deficit
-was entirely a **conditioning** problem. Fixing the **temporal** sampling rate
-(4→8 fps) with greedy decoding moved Cosmos&nbsp;3 *past* the previous-generation
-baseline (0.56→0.78, zero false positives). The **spatial** budget then closed the
-gap to near-saturation (0.93, F1 0.92) — but only when **aimed**: a naive
-whole-frame upscale *regressed*, while an ROI-crop that concentrates visual tokens
-on the road recovered nearly every remaining miss. Crucially, a **matched ladder on
-Cosmos&nbsp;2** confirmed these are not generic "make video better" tricks: the same
-levers leave Cosmos&nbsp;2 at or below its native 0.74, so once correctly
-conditioned, **Cosmos&nbsp;3 beats the best Cosmos&nbsp;2 configuration by +0.19
-accuracy and +0.39 crossing recall** — a conditioning gap on one model, a capability
-ceiling on the other. The practical takeaways for deploying reasoning VLMs on video:
-**(1)** profile the temporal and spatial token budgets independently before judging
-model capability; **(2)** more pixels are not more information — spend the spatial
-budget where the cue is; **(3)** derive the final verdict from the model's event
-timeline rather than its free-text summary; and **(4)** input-budget fixes are
-model-specific — always validate them with a matched ablation on the baseline model.
+At default input settings, Cosmos&nbsp;3 scored below its predecessor on ego-lane
+behavior, but the gap was explained by **input conditioning** rather than model
+capability. Adjusting the **temporal** sampling rate (4→8 fps) with greedy decoding
+moved Cosmos&nbsp;3 above the previous-generation baseline (0.56→0.78, zero false
+positives). Targeting the **spatial** budget then closed most of the remaining gap
+(0.93, F1 0.92) — but only when concentrated on the relevant region: a whole-frame
+upscale scored slightly lower, while an ROI-crop that concentrates visual tokens on
+the road recovered nearly every remaining miss. A **matched ladder on
+Cosmos&nbsp;2** indicated these are not generic video-preprocessing improvements:
+the same levers leave Cosmos&nbsp;2 at or below its native 0.74, and the tuned
+Cosmos&nbsp;3 configuration exceeds the best Cosmos&nbsp;2 configuration by +0.19
+accuracy and +0.39 crossing recall on this evaluation set. The practical takeaways
+for deploying reasoning VLMs on video: **(1)** profile the temporal and spatial
+token budgets independently before drawing conclusions about model capability;
+**(2)** more pixels are not necessarily more information — spend the spatial budget
+where the cue is; **(3)** derive the final verdict from the model's event timeline
+rather than its free-text summary; and **(4)** input-budget adjustments can be
+model-specific — validate them with a matched ablation on the baseline model.
