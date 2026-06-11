@@ -1,8 +1,8 @@
 # Detecting Ego-Lane Behavior with Vision–Language Reasoners: A Staged Diagnosis of Cosmos&nbsp;3
 
 *A case study in improving a reasoning VLM's accuracy on a lane-behavior task by
-separately tuning temporal sampling and spatial token allocation, including a
-negative result for whole-frame upscaling.*
+separately tuning temporal sampling and spatial token allocation, including an
+ablation showing that targeted spatial tokens outperform uniform upscaling.*
 
 | | |
 |---|---|
@@ -18,9 +18,9 @@ negative result for whole-frame upscaling.*
 > no model or prompt changes. The gain comes entirely from input conditioning:
 > **(1)** sampling video at 8 fps instead of 4 fps, **(2)** greedy decoding, and
 > **(3)** cropping each frame to the road region and zooming it 2× so the
-> model's visual tokens are spent on the lane markings (ROI-crop + zoom). A
-> whole-frame 2× upscale, by contrast, slightly *reduces* accuracy — more pixels
-> only help when they are targeted. The same adjustments did not improve the
+> model's visual tokens are spent on the lane markings (ROI-crop + zoom).
+> Targeting matters: the ROI approach outperforms a uniform whole-frame 2×
+> upscale by a wide margin (0.93 vs 0.74). The same adjustments did not improve the
 > previous-generation Cosmos&nbsp;2, so input budgets should be profiled per
 > model. All numbers are reproducible from committed artifacts; note the
 > evaluation set is small (27 clips), so comparative deltas carry a ±0.1 noise

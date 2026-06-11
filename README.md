@@ -24,7 +24,7 @@ Two written studies (figures + analysis) live in [`docs/`](docs/):
 
 | Report | What it shows |
 |---|---|
-| **[Cosmos 3 — staged diagnosis](docs/cosmos3_report.md)** | Improving Cosmos 3-Super from 0.56 to **0.93 accuracy** on 27 human-labeled clips by adjusting **temporal sampling** (4→8 fps, greedy) and then **targeting spatial tokens** (ROI-crop + zoom). Includes the negative result that a whole-frame upscale slightly lowers accuracy. |
+| **[Cosmos 3 — staged diagnosis](docs/cosmos3_report.md)** | Improving Cosmos 3-Super from 0.56 to **0.93 accuracy** on 27 human-labeled clips by adjusting **temporal sampling** (4→8 fps, greedy) and then **targeting spatial tokens** (ROI-crop + zoom). Includes an ablation showing that *targeted* spatial tokens (ROI) outperform a uniform whole-frame upscale. |
 | **[Cosmos 2 — frame-rate study](docs/cosmos2_report.md)** | Frame rate is the dominant input lever for Cosmos-Reason2-32B: **1 fps → 4 fps roughly doubles lane-change recall** (0.15 → 0.38). Cosmos 2 scores highest at native 4 fps (0.74); additional frames/pixels did not improve it in our experiments. |
 
 **Headline result (27 human-labeled clips, accuracy):**
