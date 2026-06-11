@@ -4,6 +4,28 @@
 separately tuning temporal sampling and spatial token allocation, including a
 negative result for whole-frame upscaling.*
 
+| | |
+|---|---|
+| **Version** | 1.0 — June 11, 2026 |
+| **Repository** | [`ykirpichev/cosmos-reason2-lane-eval`](https://github.com/ykirpichev/cosmos-reason2-lane-eval) |
+| **Models** | `nvidia/Cosmos3-Super` (primary), `nvidia/Cosmos-Reason2-32B` (baseline), both served via vLLM |
+| **Evaluation set** | 27 human-labeled BATON dashcam clips (13 lane-crossings, 14 lane-keeps); 150-clip pseudo-label scale check |
+| **Companion report** | [Cosmos 2 frame-rate study](cosmos2_report.md) |
+
+> **Executive summary.** Cosmos&nbsp;3-Super reaches **0.93 accuracy / 0.92 F1
+> (zero false positives)** on ego-lane behavior classification over 27
+> human-labeled dashcam clips — up from **0.56 at default input settings** — with
+> no model or prompt changes. The gain comes entirely from input conditioning:
+> **(1)** sampling video at 8 fps instead of 4 fps, **(2)** greedy decoding, and
+> **(3)** cropping each frame to the road region and zooming it 2× so the
+> model's visual tokens are spent on the lane markings (ROI-crop + zoom). A
+> whole-frame 2× upscale, by contrast, slightly *reduces* accuracy — more pixels
+> only help when they are targeted. The same adjustments did not improve the
+> previous-generation Cosmos&nbsp;2, so input budgets should be profiled per
+> model. All numbers are reproducible from committed artifacts; note the
+> evaluation set is small (27 clips), so comparative deltas carry a ±0.1 noise
+> floor (§8).
+
 > **Reproducibility status.** All numbers are final and reproducible from committed
 > artifacts. Both models were evaluated under the **full matched ladder** (4 fps
 > native, 8 fps native, whole-frame 2×, ROI-zoom) on the 27 human-labeled clips

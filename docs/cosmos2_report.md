@@ -6,6 +6,26 @@ frame rate — and find that Cosmos 2 reaches its best score at its native 4 fps
 configuration; the additional input-budget levers that benefit Cosmos 3 did not
 improve Cosmos 2 in our experiments.*
 
+| | |
+|---|---|
+| **Version** | 1.0 — June 11, 2026 |
+| **Repository** | [`ykirpichev/cosmos-reason2-lane-eval`](https://github.com/ykirpichev/cosmos-reason2-lane-eval) |
+| **Model** | `nvidia/Cosmos-Reason2-32B`, served via Docker vLLM |
+| **Evaluation set** | 27 human-labeled BATON dashcam clips (13 lane-crossings, 14 lane-keeps); 150-clip pseudo-label scale check |
+| **Companion report** | [Cosmos 3 staged diagnosis](cosmos3_report.md) |
+
+> **Executive summary.** For Cosmos-Reason2-32B on ego-lane behavior
+> classification, the **video frame rate is the dominant input setting**: raising
+> it from 1 fps to 4 fps roughly **doubles lane-change recall** (0.15 → 0.38) and
+> lifts accuracy 0.59 → 0.70 on 27 human-labeled dashcam clips, because the
+> ≈1-second crossing event is undersampled at 1 fps. Cosmos&nbsp;2 reaches its
+> best score at **native 4 fps (accuracy 0.74)**; further increases in frames or
+> pixels (including the ROI-crop + zoom that benefits Cosmos&nbsp;3) did not
+> improve it in our experiments. Practical guidance: profile each model's
+> frame-rate sensitivity first, and validate input-budget adjustments per model.
+> The evaluation set is small (27 clips), so comparative deltas carry a ±0.1
+> noise floor (§8).
+
 > **Reproducibility status.** All numbers are recomputed from committed artifacts by
 > `scripts/make_cosmos2_figs.py` and `scripts/headtohead.py`. The controlled
 > frame-rate experiment uses a **matched prompt** (`results/summary_fps1.json` at
