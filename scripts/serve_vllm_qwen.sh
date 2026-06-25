@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Serve the Qwen3.5-MoE vision-language model (Qwen/Qwen3.6-35B-A3B-FP8) with vLLM,
+# Serve the Qwen3.6-MoE vision-language model (Qwen/Qwen3.6-35B-A3B-FP8) with vLLM,
 # bare-metal, for the lane-behavior eval.
 #
 # Reuses the same vLLM 0.21 venv as the Cosmos 3 server ($COSMOS3_VENV); that vLLM

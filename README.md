@@ -1,18 +1,20 @@
-# Cosmos-Reason Lane-Behavior Eval (Cosmos 2 & Cosmos 3)
+# Cosmos-Reason Lane-Behavior Eval (Cosmos 2, Cosmos 3 & Qwen)
 
-Evaluate NVIDIA's **Cosmos** video reasoning VLMs — **Cosmos-Reason2-32B**
-("Cosmos 2") and **Cosmos3-Super** ("Cosmos 3") — on ego-vehicle lane behavior,
-using real dashcam clips with lane signals mined from
+Evaluate video reasoning VLMs on ego-vehicle lane behavior — NVIDIA's
+**Cosmos-Reason2-32B** ("Cosmos 2") and **Cosmos3-Super** ("Cosmos 3"), plus the
+open-weight **Qwen3.6-35B-A3B-FP8** ("Qwen 3.6") as a cross-family check — using
+real dashcam clips with lane signals mined from
 [BATON-Sample](https://huggingface.co/datasets/HenryYHW/BATON-Sample) (openpilot's
 production lane model) and from [nuScenes](https://www.nuscenes.org/) (HD-map +
 ego-pose projection). The pipeline mines 12 s / 4 Hz clips, derives pseudo-labels,
-runs inference on **either model**, and provides Streamlit apps for human labeling
-and disagreement review. The two models are compared head-to-head in the
+runs inference on **any of the models**, and provides Streamlit apps for human
+labeling and disagreement review. The models are compared head-to-head in the
 [reports below](#reports--key-findings).
 
-Cosmos 2 is served via Docker vLLM (`scripts/serve_vllm.sh`); Cosmos 3 is served
-bare-metal via vLLM (`scripts/serve_vllm_cosmos3.sh`). They share one GPU and cannot
-co-reside, so cross-model runs are sequential.
+Cosmos 2 is served via Docker vLLM (`scripts/serve_vllm.sh`); Cosmos 3 and Qwen are
+served bare-metal via vLLM (`scripts/serve_vllm_cosmos3.sh`,
+`scripts/serve_vllm_qwen.sh`). They share one GPU and cannot co-reside, so
+cross-model runs are sequential.
 
 Clips can be a single forward camera (`front_only`, BATON/openpilot) or a
 multi-camera **mosaic** (`front_mosaic3`, nuScenes): `CAM_FRONT` on top at higher
@@ -26,11 +28,11 @@ Two written studies (figures + analysis) live in [`docs/`](docs/):
 |---|---|
 | **[Cosmos 3 — staged diagnosis](docs/cosmos3_report.md)** | Improving Cosmos 3-Super from 0.56 to **0.93 accuracy** on 27 human-labeled clips by adjusting **temporal sampling** (4→8 fps, greedy) and then **targeting spatial tokens** (ROI-crop + zoom). Includes an ablation showing that *targeted* spatial tokens (ROI) outperform a uniform whole-frame upscale. |
 | **[Cosmos 2 — frame-rate study](docs/cosmos2_report.md)** | Frame rate is the dominant input lever for Cosmos-Reason2-32B: **1 fps → 4 fps roughly doubles lane-change recall** (0.15 → 0.38). Cosmos 2 scores highest at native 4 fps (0.74); additional frames/pixels did not improve it in our experiments. |
-| **[Qwen 3.5 (MoE) — general-VLM comparison](docs/qwen_report.md)** | A general-purpose reasoning VLM run through the same matched ladder. Best config (8 fps + ROI-zoom) reaches **0.69 accuracy** — between the native Cosmos 2 baseline and the tuned Cosmos 3. High precision, low recall; only the targeted ROI lever helps. |
+| **[Qwen3.6-35B-A3B-FP8 — matched-ladder cross-check](docs/qwen_report.md)** | Open-weight Qwen (`Qwen3.6-35B-A3B-FP8`) run through the *same* matched ladder lands **third (0.69)**. Its best lever is ROI-zoom and whole-frame upscale is worst — the same *direction* as Cosmos 3 — but a strong **conservative bias** (precision 1.00, recall ≤0.39, zero false positives) caps its accuracy; input budgeting can't convert that bias into crossing detections. |
 
 **Headline result (27 human-labeled clips, accuracy):**
 
-| config | Cosmos 2 | Cosmos 3 | Qwen 3.5 |
+| config | Cosmos 2 | Cosmos 3 | Qwen3.6-35B-A3B-FP8 |
 |---|---|---|---|
 | 4 fps native | **0.74** | 0.56 | 0.63 |
 | 8 fps native | 0.67 | 0.78 | 0.63 |
@@ -76,7 +78,7 @@ scripts/
   run_batch.py                 # batch inference via vLLM OpenAI API (--model picks the model; --concurrency batches)
   serve_vllm.sh                # start the Cosmos-Reason2 (Cosmos 2) vLLM server (Docker)
   serve_vllm_cosmos3.sh        # start the Cosmos3-Super (Cosmos 3) vLLM server (bare-metal)
-  serve_vllm_qwen.sh           # start the Qwen 3.5 MoE vLLM server (bare-metal)
+  serve_vllm_qwen.sh           # start the Qwen3.6-35B-A3B-FP8 MoE vLLM server (bare-metal)
   headtohead.py                # consolidate all runs -> results/headtohead.json
   make_report_figs.py          # figures for docs/cosmos3_report.md
   make_cosmos2_figs.py         # figures for docs/cosmos2_report.md
@@ -129,13 +131,15 @@ cp .env.example .env          # optional: edit cache dir / model / ports
 # 2. Derive offset-based 3-class pseudo-labels (artifact-gated).
 .venv/bin/python scripts/remap_pseudo_3class.py
 
-# 3. Start a Cosmos vLLM server (GPU). Pick ONE (they can't co-reside):
+# 3. Start a vLLM server (GPU). Pick ONE (they can't co-reside):
 scripts/serve_vllm.sh                          # Cosmos 2 (Reason2-32B, Docker)
 scripts/serve_vllm_cosmos3.sh                  # Cosmos 3 (Cosmos3-Super, bare-metal)
+scripts/serve_vllm_qwen.sh                     # Qwen3.6-35B-A3B-FP8 (bare-metal)
 
 # 4. Run inference over all clips (choose the model matching the server above).
 .venv/bin/python scripts/run_batch.py        # Cosmos 2 default; config.py for defaults
-.venv/bin/python scripts/run_batch.py --model nvidia/Cosmos3-Super --fps 8   # Cosmos 3
+.venv/bin/python scripts/run_batch.py --model nvidia/Cosmos3-Super --fps 8         # Cosmos 3
+.venv/bin/python scripts/run_batch.py --model Qwen/Qwen3.6-35B-A3B-FP8 --fps 8     # Qwen
 
 # 5. Explore / label / review.
 .venv/bin/streamlit run apps/view_examples.py          # dashboard

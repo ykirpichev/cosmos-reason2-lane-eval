@@ -1,10 +1,10 @@
 """Figures for docs/qwen_report.md -> docs/assets/qwen/.
 
-fig_qwen_ladder.png - Qwen 3.5 across the matched config ladder (4 fps native,
-                      8 fps native, 8 fps + whole-frame 2x, 8 fps + ROI-zoom):
+fig_qwen_ladder.png - Qwen3.6-35B-A3B-FP8 across the matched config ladder (4 fps
+                      native, 8 fps native, 8 fps + whole-frame 2x, 8 fps + ROI-zoom):
                       accuracy (bars) + lane-change recall (line).
-fig_qwen_3way.png   - 3-way accuracy comparison Cosmos 2 vs Cosmos 3 vs Qwen 3.5
-                      across the same four configs.
+fig_qwen_3way.png   - 3-way accuracy comparison Cosmos 2 vs Cosmos 3 vs
+                      Qwen3.6-35B-A3B-FP8 across the same four configs.
 
 All numbers are read from results/headtohead.json so the figures are reproducible
 (run scripts/headtohead.py first).
@@ -44,6 +44,11 @@ CONFIGS = ["4 fps native", "8 fps native",
            "8 fps + whole-frame 2x", "8 fps + ROI-zoom"]
 SHORT = ["4 fps\nnative", "8 fps\nnative", "8 fps\n+2x upscale", "8 fps\n+ROI-zoom"]
 
+# Join key into headtohead.json (must match scripts/headtohead.py) and the shorter
+# string used for figure titles/legends.
+QWEN_KEY = "Qwen3.6-35B-A3B-FP8"
+QWEN_DISPLAY = "Qwen 3.6"
+
 
 def _rows() -> list[dict]:
     return json.load(open(ROOT / "results/headtohead.json"))["human27"]
@@ -58,7 +63,7 @@ def _get(rows: list[dict], model: str, cfg: str) -> dict | None:
 
 def fig_qwen_ladder() -> None:
     rows = _rows()
-    runs = [_get(rows, "Qwen 3.5", c) for c in CONFIGS]
+    runs = [_get(rows, QWEN_KEY, c) for c in CONFIGS]
     acc = [r["accuracy"] if r else 0 for r in runs]
     rec = [(r["lane_change"]["recall"] or 0) if r else 0 for r in runs]
 
@@ -78,8 +83,8 @@ def fig_qwen_ladder() -> None:
                     xytext=(0, -15), ha="center", fontsize=8.6, color=BAD)
     ax.set_ylim(0, 1.0)
     ax.set_ylabel("score (27 human-labeled clips)", fontweight="bold")
-    ax.set_title("Qwen 3.5 across the matched input-budget ladder\n"
-                 "(accuracy = bars, lane-change recall = line)",
+    ax.set_title(f"{QWEN_DISPLAY} (Qwen3.6-35B-A3B-FP8) across the matched "
+                 "input-budget ladder\n(accuracy = bars, lane-change recall = line)",
                  fontsize=10.8, fontweight="bold")
     ax.legend(loc="upper right", frameon=False)
     fig.tight_layout()
@@ -89,18 +94,19 @@ def fig_qwen_ladder() -> None:
 
 def fig_qwen_3way() -> None:
     rows = _rows()
-    models = [("Cosmos 2", MUTED), ("Cosmos 3", ACCENT), ("Qwen 3.5", PURPLE)]
-    vals = {m: [(_get(rows, m, c) or {}).get("accuracy") or 0 for c in CONFIGS]
-            for m, _ in models}
+    models = [("Cosmos 2", "Cosmos 2", MUTED), ("Cosmos 3", "Cosmos 3", ACCENT),
+              (QWEN_KEY, QWEN_DISPLAY, PURPLE)]
+    vals = {key: [(_get(rows, key, c) or {}).get("accuracy") or 0 for c in CONFIGS]
+            for key, _, _ in models}
 
     x = np.arange(len(CONFIGS))
     w = 0.26
     fig, ax = plt.subplots(figsize=(9.2, 5.0))
-    for i, (m, col) in enumerate(models):
+    for i, (key, disp, col) in enumerate(models):
         off = (i - 1) * w
-        bars = ax.bar(x + off, vals[m], w, color=col, edgecolor="white", lw=1.0,
-                      label=m)
-        for b, v in zip(bars, vals[m]):
+        bars = ax.bar(x + off, vals[key], w, color=col, edgecolor="white", lw=1.0,
+                      label=disp)
+        for b, v in zip(bars, vals[key]):
             if v:
                 ax.annotate(f"{v:.2f}", (b.get_x() + b.get_width() / 2, v),
                             textcoords="offset points", xytext=(0, 3),

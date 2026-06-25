@@ -113,7 +113,7 @@
       }
     },
     {
-      "model": "Qwen 3.5",
+      "model": "Qwen3.6-35B-A3B-FP8",
       "config": "4 fps native",
       "n": 27,
       "accuracy": 0.63,
@@ -127,7 +127,7 @@
       }
     },
     {
-      "model": "Qwen 3.5",
+      "model": "Qwen3.6-35B-A3B-FP8",
       "config": "8 fps native",
       "n": 27,
       "accuracy": 0.63,
@@ -141,7 +141,7 @@
       }
     },
     {
-      "model": "Qwen 3.5",
+      "model": "Qwen3.6-35B-A3B-FP8",
       "config": "8 fps + whole-frame 2x",
       "n": 27,
       "accuracy": 0.593,
@@ -155,7 +155,7 @@
       }
     },
     {
-      "model": "Qwen 3.5",
+      "model": "Qwen3.6-35B-A3B-FP8",
       "config": "8 fps + ROI-zoom",
       "n": 26,
       "accuracy": 0.692,
@@ -227,7 +227,7 @@
       }
     },
     {
-      "model": "Qwen 3.5",
+      "model": "Qwen3.6-35B-A3B-FP8",
       "config": "8 fps + ROI-zoom (full set)",
       "pseudo": {
         "n": 145,

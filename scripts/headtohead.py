@@ -72,15 +72,15 @@ def main() -> None:
         ("Cosmos 3", "8 fps native", "results/cosmos3_final_8fps_native/summary.json", "summary"),
         ("Cosmos 3", "8 fps + whole-frame 2x", "results/cosmos3_final_8fps2x/summary.json", "summary"),
         ("Cosmos 3", "8 fps + ROI-zoom", "results/exp_roi8/results.json", "results"),
-        ("Qwen 3.5", "4 fps native", "results/qwen_4fps_native/summary.json", "summary"),
-        ("Qwen 3.5", "8 fps native", "results/qwen_8fps_native/summary.json", "summary"),
-        ("Qwen 3.5", "8 fps + whole-frame 2x", "results/qwen_8fps2x/summary.json", "summary"),
-        ("Qwen 3.5", "8 fps + ROI-zoom", "results/qwen_roi8/results.json", "results"),
+        ("Qwen3.6-35B-A3B-FP8", "4 fps native", "results/qwen_4fps_native/summary.json", "summary"),
+        ("Qwen3.6-35B-A3B-FP8", "8 fps native", "results/qwen_8fps_native/summary.json", "summary"),
+        ("Qwen3.6-35B-A3B-FP8", "8 fps + whole-frame 2x", "results/qwen_8fps2x/summary.json", "summary"),
+        ("Qwen3.6-35B-A3B-FP8", "8 fps + ROI-zoom", "results/qwen_roi8/results.json", "results"),
     ]
     full = [
         ("Cosmos 2", "8 fps + ROI-zoom (full set)", "results/cosmos2_roi8_full159/results.json"),
         ("Cosmos 3", "8 fps + ROI-zoom (full set)", "results/cosmos3_roi8_full159/results.json"),
-        ("Qwen 3.5", "8 fps + ROI-zoom (full set)", "results/qwen_roi8_full159/results.json"),
+        ("Qwen3.6-35B-A3B-FP8", "8 fps + ROI-zoom (full set)", "results/qwen_roi8_full159/results.json"),
     ]
 
     out = {"human27": [], "full159": []}
