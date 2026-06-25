@@ -26,19 +26,21 @@ Two written studies (figures + analysis) live in [`docs/`](docs/):
 |---|---|
 | **[Cosmos 3 — staged diagnosis](docs/cosmos3_report.md)** | Improving Cosmos 3-Super from 0.56 to **0.93 accuracy** on 27 human-labeled clips by adjusting **temporal sampling** (4→8 fps, greedy) and then **targeting spatial tokens** (ROI-crop + zoom). Includes an ablation showing that *targeted* spatial tokens (ROI) outperform a uniform whole-frame upscale. |
 | **[Cosmos 2 — frame-rate study](docs/cosmos2_report.md)** | Frame rate is the dominant input lever for Cosmos-Reason2-32B: **1 fps → 4 fps roughly doubles lane-change recall** (0.15 → 0.38). Cosmos 2 scores highest at native 4 fps (0.74); additional frames/pixels did not improve it in our experiments. |
+| **[Qwen 3.5 (MoE) — general-VLM comparison](docs/qwen_report.md)** | A general-purpose reasoning VLM run through the same matched ladder. Best config (8 fps + ROI-zoom) reaches **0.69 accuracy** — between the native Cosmos 2 baseline and the tuned Cosmos 3. High precision, low recall; only the targeted ROI lever helps. |
 
 **Headline result (27 human-labeled clips, accuracy):**
 
-| config | Cosmos 2 | Cosmos 3 |
-|---|---|---|
-| 4 fps native | **0.74** | 0.56 |
-| 8 fps native | 0.67 | 0.78 |
-| 8 fps + whole-frame 2× | 0.69 | 0.74 |
-| 8 fps + ROI-crop + zoom | 0.67 | **0.93** |
+| config | Cosmos 2 | Cosmos 3 | Qwen 3.5 |
+|---|---|---|---|
+| 4 fps native | **0.74** | 0.56 | 0.63 |
+| 8 fps native | 0.67 | 0.78 | 0.63 |
+| 8 fps + whole-frame 2× | 0.69 | 0.74 | 0.59 |
+| 8 fps + ROI-crop + zoom | 0.67 | **0.93** | 0.69 |
 
-The two models respond differently to the same input-budget levers — the
-adjustments are model-specific. A consolidated, reproducible scoring of every run
-is in `results/headtohead.json` (`scripts/headtohead.py`).
+The three models respond differently to the same input-budget levers — the
+adjustments are model-specific, but the targeted ROI-crop + zoom is the most broadly
+useful spatial lever. A consolidated, reproducible scoring of every run is in
+`results/headtohead.json` (`scripts/headtohead.py`).
 
 **At scale (full 150-clip BATON set, openpilot pseudo-labels):** agreement is much
 lower (Cosmos 2 ≈ 0.52) than on human ground truth, because the pseudo-labels are
@@ -71,12 +73,14 @@ scripts/
   ingest_nuscenes.py           # mine mosaic clips from nuScenes (map + ego pose)
   mosaic_utils.py              # compose CAM_FRONT/FRONT_LEFT/FRONT_RIGHT into a mosaic
   remap_pseudo_3class.py       # offset -> 3-class pseudo-label (artifact-gated)
-  run_batch.py                 # batch Cosmos inference via vLLM OpenAI API (--model picks C2/C3)
+  run_batch.py                 # batch inference via vLLM OpenAI API (--model picks the model; --concurrency batches)
   serve_vllm.sh                # start the Cosmos-Reason2 (Cosmos 2) vLLM server (Docker)
   serve_vllm_cosmos3.sh        # start the Cosmos3-Super (Cosmos 3) vLLM server (bare-metal)
+  serve_vllm_qwen.sh           # start the Qwen 3.5 MoE vLLM server (bare-metal)
   headtohead.py                # consolidate all runs -> results/headtohead.json
   make_report_figs.py          # figures for docs/cosmos3_report.md
   make_cosmos2_figs.py         # figures for docs/cosmos2_report.md
+  make_qwen_figs.py            # figures for docs/qwen_report.md
   video_utils.py               # browser-safe H.264 transcode helpers
 apps/
   view_examples.py             # dashboard: predictions + labels + metrics

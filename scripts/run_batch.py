@@ -6,7 +6,9 @@ from __future__ import annotations
 import argparse
 import json
 import sys
+import threading
 import time
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
 import yaml
@@ -43,6 +45,9 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--host", default=config.VLLM_HOST)
     p.add_argument("--port", type=int, default=config.VLLM_PORT)
     p.add_argument("--max-tokens", type=int, default=4096)
+    p.add_argument("--concurrency", type=int, default=1,
+                   help="number of clips to request in parallel; vLLM batches "
+                        "them server-side (default 1 = sequential)")
     p.add_argument("--ids", nargs="*", default=None,
                    help="only run these clip ids (debugging a subset)")
     p.add_argument(
@@ -173,23 +178,20 @@ def main() -> int:
             t += 1
         return c, t
 
-    results: list[dict] = []
     clips = manifest["clips"]
     if args.ids:
         idset = set(args.ids)
         clips = [c for c in clips if c["id"] in idset]
     total_clips = len(clips)
-    for ci, clip in enumerate(clips, 1):
+    order = {c["id"]: i for i, c in enumerate(clips)}
+
+    def process_clip(clip: dict) -> dict:
         clip_id = clip["id"]
         gt = clip["ground_truth_label"]
         tmpl = template_for(clip)
-        system = tmpl["system"]
-        user = tmpl["user"]
-        sampling = tmpl["sampling"]
+        system, user, sampling = tmpl["system"], tmpl["user"], tmpl["sampling"]
         video = clip["video"]
         log_path = log_dir / f"{clip_id}.log"
-
-        print(f"Running inference [{ci}/{total_clips}]: {clip_id} ...")
         t0 = time.time()
         output_text = ""
         reasoning = ""
@@ -210,7 +212,7 @@ def main() -> int:
             )
             msg = completion.choices[0].message
             output_text = msg.content or ""
-            # vLLM's qwen3 reasoning parser splits chain-of-thought out of
+            # A reasoning parser (if enabled) splits chain-of-thought out of
             # `content` into a separate `reasoning` field (exposed via model_extra,
             # not as a typed attribute). Capture it so misses are debuggable.
             _dump = msg.model_dump() if hasattr(msg, "model_dump") else {}
@@ -218,29 +220,47 @@ def main() -> int:
         except Exception as exc:
             rc = 1
             output_text = f"ERROR: {exc}"
-
         elapsed = time.time() - t0
         log_text = output_text if not reasoning else f"<think>\n{reasoning}\n</think>\n\n{output_text}"
         log_path.write_text(log_text)
         parsed = extract_json_block(log_text) if rc == 0 else None
-        results.append(
-            {
-                "id": clip_id,
-                "ground_truth": gt,
-                "video": video,
-                "scene": clip.get("scene"),
-                "return_code": rc,
-                "elapsed_sec": round(elapsed, 1),
-                "parsed": parsed,
-                "reasoning": reasoning or None,
-                "log": str(log_path),
-            }
-        )
-        # Persist incrementally so a long run can be monitored / resumed-safe.
-        summary_path.write_text(json.dumps(results, indent=2))
-        rc_correct, rc_total = running_accuracy(results)
-        acc = f"{rc_correct}/{rc_total}" if rc_total else "0/0"
-        print(f"  done in {elapsed:.1f}s (rc={rc}) | running acc {acc}")
+        return {
+            "id": clip_id,
+            "ground_truth": gt,
+            "video": video,
+            "scene": clip.get("scene"),
+            "return_code": rc,
+            "elapsed_sec": round(elapsed, 1),
+            "parsed": parsed,
+            "reasoning": reasoning or None,
+            "log": str(log_path),
+        }
+
+    results: list[dict] = []
+    lock = threading.Lock()
+    done = 0
+
+    def record(res: dict) -> None:
+        nonlocal done
+        with lock:
+            results.append(res)
+            results.sort(key=lambda r: order.get(r["id"], 0))
+            summary_path.write_text(json.dumps(results, indent=2))
+            done += 1
+            rc_correct, rc_total = running_accuracy(results)
+            acc = f"{rc_correct}/{rc_total}" if rc_total else "0/0"
+            print(f"[{done}/{total_clips}] {res['id']} done in "
+                  f"{res['elapsed_sec']}s (rc={res['return_code']}) | running acc {acc}",
+                  flush=True)
+
+    if args.concurrency <= 1:
+        for clip in clips:
+            record(process_clip(clip))
+    else:
+        with ThreadPoolExecutor(max_workers=args.concurrency) as ex:
+            futs = [ex.submit(process_clip, c) for c in clips]
+            for f in as_completed(futs):
+                record(f.result())
 
     correct, total = running_accuracy(results)
 

@@ -12,6 +12,8 @@ from __future__ import annotations
 
 import json
 import sys
+import threading
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -28,6 +30,7 @@ PFX = "/home/ykirpichev/sources/cosmos-reason-lane-test"
 ROI = (0.36, 0.95)
 SCALE_W = 1052
 DUR, FPS = 12.0, 8.0
+MAX_TOKENS = 4096
 
 HUMAN_MAP = {
     "lane_keeping": "keep_within_lane",
@@ -45,7 +48,7 @@ def run_clip(video: Path) -> str | None:
     client = OpenAI(api_key="EMPTY", base_url="http://localhost:8000/v1")
     msgs = build_messages(sysp, usr, str(video), Path(PFX), PFX)
     comp = client.chat.completions.create(
-        model=MODEL, messages=msgs, max_tokens=4096, temperature=0.0, top_p=1.0,
+        model=MODEL, messages=msgs, max_tokens=MAX_TOKENS, temperature=0.0, top_p=1.0,
         extra_body={"mm_processor_kwargs": {"fps": FPS, "do_sample_frames": True}},
     )
     msg = comp.choices[0].message
@@ -79,7 +82,7 @@ def score(gt: dict[str, str], preds: dict[str, str | None]) -> dict:
 
 
 def main() -> None:
-    global MODEL, OUTDIR
+    global MODEL, OUTDIR, MAX_TOKENS
     import argparse
     ap = argparse.ArgumentParser()
     ap.add_argument("--model", default=MODEL)
@@ -87,9 +90,14 @@ def main() -> None:
     ap.add_argument("--clips", choices=["human27", "all"], default="human27",
                     help="human27 = 27 human-labeled clips; all = full 159-clip "
                          "manifest scored against openpilot pseudo-labels")
+    ap.add_argument("--concurrency", type=int, default=1,
+                    help="clips requested in parallel (vLLM batches them)")
+    ap.add_argument("--max-tokens", type=int, default=MAX_TOKENS,
+                    help="output token budget; verbose reasoners need more")
     args = ap.parse_args()
     MODEL = args.model
     OUTDIR = args.output
+    MAX_TOKENS = args.max_tokens
     OUTDIR.mkdir(parents=True, exist_ok=True)
     CLIPDIR.mkdir(parents=True, exist_ok=True)
     man = {c["id"]: c for c in json.load(open(config.CLIPS_DIR / "manifest_all.json"))["clips"]}
@@ -121,27 +129,50 @@ def main() -> None:
 
     preds: dict[str, str | None] = {}
     print(f"scoring against {gt_name}; {len(gt)} clips")
-    print(f"{'clip':32s} {'pred':16s} {'label':16s} ok")
+
+    # 1) Build any missing ROI variants sequentially (ffmpeg is not thread-safe
+    #    for concurrent writes; cached clips are skipped, so this is usually a no-op).
+    runnable: list[str] = []
     for cid in sorted(gt):
-        c = man[cid]
-        route = c["scene"]
-        t0 = c["start_timestamp_us"] / 1e6
         out = CLIPDIR / f"{cid}.mp4"
         if not out.exists():
+            c = man[cid]
             try:
-                ok_build = make_variant(route, t0, DUR, FPS, out, roi=ROI, scale_w=SCALE_W)
+                ok_build = make_variant(c["scene"], c["start_timestamp_us"] / 1e6,
+                                        DUR, FPS, out, roi=ROI, scale_w=SCALE_W)
             except Exception as e:  # noqa: BLE001  (e.g. source scene not in cache)
                 print(f"{cid:32s} BUILD_ERROR {e}"); continue
             if not ok_build:
                 print(f"{cid:32s} BUILD_FAILED"); continue
+        runnable.append(cid)
+
+    # 2) Run inference, optionally in parallel (vLLM batches the requests).
+    lock = threading.Lock()
+    done = 0
+
+    def work(cid: str) -> tuple[str, str | None]:
         try:
-            p = run_clip(out)
+            return cid, run_clip(CLIPDIR / f"{cid}.mp4")
         except Exception as e:  # noqa: BLE001
-            print(f"{cid:32s} ERROR {e}"); p = None
-        preds[cid] = p
-        ok = "OK" if p == gt[cid] else "xx"
-        print(f"{cid:32s} {str(p):16s} {gt[cid]:16s} {ok}", flush=True)
-        dump(preds)  # incremental: a later crash never loses earlier work
+            print(f"{cid:32s} ERROR {e}"); return cid, None
+
+    def record(cid: str, p: str | None) -> None:
+        nonlocal done
+        with lock:
+            preds[cid] = p
+            done += 1
+            ok = "OK" if p == gt[cid] else "xx"
+            print(f"[{done}/{len(runnable)}] {cid:32s} {str(p):16s} {gt[cid]:16s} {ok}",
+                  flush=True)
+            dump(preds)  # incremental: a later crash never loses earlier work
+
+    if args.concurrency <= 1:
+        for cid in runnable:
+            record(*work(cid))
+    else:
+        with ThreadPoolExecutor(max_workers=args.concurrency) as ex:
+            for fut in as_completed([ex.submit(work, cid) for cid in runnable]):
+                record(*fut.result())
 
     dump(preds)
     final = json.load(open(OUTDIR / "results.json"))

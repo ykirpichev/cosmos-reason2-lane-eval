@@ -111,6 +111,62 @@
         "precision": 1.0,
         "f1": 0.917
       }
+    },
+    {
+      "model": "Qwen 3.5",
+      "config": "4 fps native",
+      "n": 27,
+      "accuracy": 0.63,
+      "lane_change": {
+        "tp": 3,
+        "fn": 10,
+        "fp": 0,
+        "recall": 0.231,
+        "precision": 1.0,
+        "f1": 0.375
+      }
+    },
+    {
+      "model": "Qwen 3.5",
+      "config": "8 fps native",
+      "n": 27,
+      "accuracy": 0.63,
+      "lane_change": {
+        "tp": 3,
+        "fn": 10,
+        "fp": 0,
+        "recall": 0.231,
+        "precision": 1.0,
+        "f1": 0.375
+      }
+    },
+    {
+      "model": "Qwen 3.5",
+      "config": "8 fps + whole-frame 2x",
+      "n": 27,
+      "accuracy": 0.593,
+      "lane_change": {
+        "tp": 2,
+        "fn": 11,
+        "fp": 0,
+        "recall": 0.154,
+        "precision": 1.0,
+        "f1": 0.267
+      }
+    },
+    {
+      "model": "Qwen 3.5",
+      "config": "8 fps + ROI-zoom",
+      "n": 26,
+      "accuracy": 0.692,
+      "lane_change": {
+        "tp": 5,
+        "fn": 8,
+        "fp": 0,
+        "recall": 0.385,
+        "precision": 1.0,
+        "f1": 0.556
+      }
     }
   ],
   "full159": [
@@ -167,6 +223,34 @@
           "recall": 0.615,
           "precision": 1.0,
           "f1": 0.762
+        }
+      }
+    },
+    {
+      "model": "Qwen 3.5",
+      "config": "8 fps + ROI-zoom (full set)",
+      "pseudo": {
+        "n": 145,
+        "accuracy": 0.462,
+        "lane_change": {
+          "tp": 7,
+          "fn": 49,
+          "fp": 9,
+          "recall": 0.125,
+          "precision": 0.438,
+          "f1": 0.194
+        }
+      },
+      "human27": {
+        "n": 27,
+        "accuracy": 0.63,
+        "lane_change": {
+          "tp": 4,
+          "fn": 9,
+          "fp": 1,
+          "recall": 0.308,
+          "precision": 0.8,
+          "f1": 0.444
         }
       }
     }
