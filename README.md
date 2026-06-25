@@ -22,7 +22,10 @@ resolution, with `CAM_FRONT_LEFT | CAM_FRONT_RIGHT` below at lower resolution.
 
 ## Reports & key findings
 
-Two written studies (figures + analysis) live in [`docs/`](docs/):
+**Start here:** [**Summary — head-to-head**](docs/summary_report.md) consolidates the
+three studies below into one page (figures + bottom line).
+
+The written studies (figures + analysis) live in [`docs/`](docs/):
 
 | Report | What it shows |
 |---|---|
