@@ -248,6 +248,46 @@ black pickup and never crosses a line.
 the clip — and, importantly, no spurious `lane_change` (zero false positives is a
 design goal, §4.5).*
 
+### 2.3 How the labels look
+
+Two label sources are used. Only the **human labels** are treated as ground truth;
+the **pseudo-labels** are used for large-scale agreement checks (§5.2).
+
+**Human labels** (`results/human_labels_old_taxonomy.json`) — one entry per clip,
+keyed by clip id, recorded in an earlier four-way taxonomy and mapped to the 3-class
+taxonomy at scoring time:
+
+```json
+"lane_recovery__17":        {"behavior": "lane_violation_left", "geometry": "straight", "unclear": false, "notes": "", "labeler": "", "ts": "2026-05-30T16:57:20"},
+"lane_keeping__straight__02":{"behavior": "lane_keeping",        "geometry": "straight", "unclear": false, "notes": "", "labeler": "", "ts": "2026-05-30T16:50:18"}
+```
+
+The stored `behavior` maps to the 3-class taxonomy as:
+
+| stored label (old taxonomy) | 3-class label |
+|---|---|
+| `lane_keeping` | `keep_within_lane` |
+| `lane_recovery` | `lane_wandering` |
+| `lane_violation_left` / `lane_violation_right` | `lane_change` |
+
+So the two worked examples above carry human ground truth `lane_change`
+(`lane_recovery__17`, from `lane_violation_left`) and `keep_within_lane`
+(`lane_keeping__straight__02`) — both of which the model matched. (Note the clip id
+prefix reflects how the clip was *mined*; the human `behavior` field is the
+authoritative label and can differ from the prefix.)
+
+**Pseudo-labels** (fields on each clip in `clips/manifest_all.json`) — derived
+automatically from openpilot's lateral-offset signal, available for all 150 clips:
+
+```json
+{"id": "lane_keeping__straight__02", "behavior": "lane_keeping", "pseudo_3class": "keep_within_lane",
+ "ground_truth_label": "lane_keeping / straight", "road_geometry": "straight", "...": "..."}
+```
+
+These are noisy (curve artifacts, change↔wander ambiguity after the car re-centers),
+which is why headline metrics use the 27 human labels and the full-150 pseudo-label
+run is read only as an agreement check (§5.2).
+
 ---
 
 ## 3. Stage 1 — The temporal-sampling bottleneck
