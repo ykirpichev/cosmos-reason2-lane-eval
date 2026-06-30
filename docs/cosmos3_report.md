@@ -144,6 +144,110 @@ computed on it. For the lane-change class we report precision/recall/F1
 The two models share one GPU and cannot co-reside, so cross-model runs are
 sequential.
 
+### 2.1 The prompt
+
+Every run uses the same prompt (`prompts/lane_behavior.yaml`). The model is asked to
+report the road geometry and a **time-ordered list of lane events**, each drawn from
+the 3-class taxonomy, plus a single `overall_behavior`; the final verdict is then
+derived from the event timeline by precedence (§4.7). Decoding is greedy
+(`temperature 0`).
+
+*System prompt:*
+
+```text
+You are an autonomous driving safety analyst. The input video is a 12-second
+forward-facing dashcam clip from the ego vehicle, sampled at 4 Hz (48 frames).
+Each frame has a timestamp burned in at the bottom-left (seconds).
+Watch the lane markings and report (1) the road geometry and (2) the time-ordered
+sequence of lane events the ego vehicle performs.
+```
+
+*User prompt (abridged — full text in `prompts/lane_behavior.yaml`):*
+
+```text
+Analyze the ego vehicle over the full 12 seconds. Produce TWO things independently.
+
+1) road_geometry — straight | curved (judged from the lane shape, not the car's motion).
+
+2) events — the time-ordered sequence of lane events, each with the timestamp it
+   begins. Use ONLY these three behavior classes (do NOT invent others):
+   - keep_within_lane : stays inside its lane (includes turning/braking in lane)
+   - lane_change      : crosses a lane line and settles in a different lane
+   - lane_wandering   : crosses/rides a line but returns to the same lane
+   Rules: chronological order; merge contiguous identical behavior; a normal change
+   reads keep -> lane_change -> keep; only emit lane_change if a crossing is seen;
+   pay special attention to a crossing that only BEGINS in the final 1-2 seconds.
+
+Also report overall_behavior = the single most significant event.
+Strict precedence: lane_change > lane_wandering > keep_within_lane.
+
+Answer using this format:
+
+<think> ...reason about road shape, then walk through the clip in time... </think>
+{
+  "road_geometry": "...",
+  "events": [
+    {"behavior": "...", "time_of_event_sec": 0.0, "confidence": 0.0, "description": "..."}
+  ],
+  "overall_behavior": "..."
+}
+```
+
+### 2.2 Worked examples
+
+The two examples below show the actual input (sampled frames from the clip) and the
+model's JSON output, from the final Cosmos 3 system (8 fps + ROI-crop + zoom,
+greedy). Labels, timestamps, and confidences are verbatim; the free-text
+`description` fields are lightly trimmed for space. Frames are shown at native
+resolution for legibility; the model sees the ROI-cropped + zoomed video (§4.5).
+
+**Example 1 — a lane change (`lane_recovery__17`).** The ego drifts from the right
+lane across the dashed line and settles in the left lane around t≈6 s.
+
+![input frames for lane_recovery__17](assets/cosmos3/lr17_frames.png)
+
+*Input: frames at t≈3, 5, 7 s (timestamp burned in bottom-left). Model output:*
+
+```json
+{
+  "road_geometry": "straight",
+  "events": [
+    {"behavior": "keep_within_lane", "time_of_event_sec": 0.0, "confidence": 0.9,
+     "description": "Ego travels straight in the rightmost lane, maintaining a consistent position between the lane markings."},
+    {"behavior": "lane_change", "time_of_event_sec": 6.0, "confidence": 0.9,
+     "description": "Ego begins a smooth lateral maneuver, crossing the dashed white line from the right lane into the adjacent left lane."},
+    {"behavior": "keep_within_lane", "time_of_event_sec": 9.0, "confidence": 0.9,
+     "description": "Ego completes the lane change and stabilizes in the left lane, continuing straight ahead."}
+  ],
+  "overall_behavior": "lane_change"
+}
+```
+
+*Verdict: `lane_change` ✓ (human label: lane change). The timeline correctly reads
+keep → change → keep, and precedence yields `lane_change`.*
+
+**Example 2 — staying in lane (`lane_keeping__straight__02`).** The ego follows a
+black pickup and never crosses a line.
+
+![input frames for lane_keeping__straight__02](assets/cosmos3/keep02_frames.png)
+
+*Input: frames at t≈3, 6, 9 s. Model output:*
+
+```json
+{
+  "road_geometry": "straight",
+  "events": [
+    {"behavior": "keep_within_lane", "time_of_event_sec": 0.0, "confidence": 1.0,
+     "description": "Ego maintains its position within the right lane, following a black pickup truck ahead, without any deviation or lane changes throughout the entire clip."}
+  ],
+  "overall_behavior": "keep_within_lane"
+}
+```
+
+*Verdict: `keep_within_lane` ✓ (human label: lane keep). A single keep event spanning
+the clip — and, importantly, no spurious `lane_change` (zero false positives is a
+design goal, §4.5).*
+
 ---
 
 ## 3. Stage 1 — The temporal-sampling bottleneck
