@@ -28,6 +28,12 @@ def parse_args() -> argparse.Namespace:
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--manifest", type=Path, default=config.MANIFEST)
     p.add_argument("--prompt-template", type=Path, default=config.PROMPT_FILE)
+    p.add_argument(
+        "--mosaic-prompt-template",
+        type=Path,
+        default=config.PROMPT_FILE_MOSAIC,
+        help="Prompt used for clips with camera_layout=front_mosaic3",
+    )
     p.add_argument("--model", default=config.MODEL)
     # Must match the clip authoring rate (12 s @ 4 Hz). At fps=1 the server
     # downsamples to ~12 frames and misses short maneuvers (lane changes /
@@ -37,6 +43,8 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--host", default=config.VLLM_HOST)
     p.add_argument("--port", type=int, default=config.VLLM_PORT)
     p.add_argument("--max-tokens", type=int, default=4096)
+    p.add_argument("--ids", nargs="*", default=None,
+                   help="only run these clip ids (debugging a subset)")
     p.add_argument(
         "--media-path-prefix",
         default=config.MEDIA_PATH_PREFIX,
@@ -129,10 +137,22 @@ def extract_json_block(text: str) -> dict | None:
 def main() -> int:
     args = parse_args()
     manifest = json.loads(args.manifest.read_text())
-    tmpl = yaml.safe_load(args.prompt_template.read_text())
-    system = tmpl.get("system_prompt", "")
-    user_tmpl = tmpl.get("user_prompt", "")
-    sampling = tmpl.get("sampling_params", {})
+
+    def load_template(path: Path) -> dict:
+        tmpl = yaml.safe_load(path.read_text())
+        return {
+            "system": tmpl.get("system_prompt", ""),
+            "user": tmpl.get("user_prompt", ""),
+            "sampling": tmpl.get("sampling_params", {}),
+        }
+
+    templates = {"front_only": load_template(args.prompt_template)}
+    if args.mosaic_prompt_template.exists():
+        templates["front_mosaic3"] = load_template(args.mosaic_prompt_template)
+
+    def template_for(clip: dict) -> dict:
+        layout = clip.get("camera_layout", config.DEFAULT_CAMERA_LAYOUT)
+        return templates.get(layout, templates["front_only"])
 
     client = OpenAI(api_key="EMPTY", base_url=f"http://{args.host}:{args.port}/v1")
     args.output.mkdir(parents=True, exist_ok=True)
@@ -154,17 +174,25 @@ def main() -> int:
         return c, t
 
     results: list[dict] = []
-    total_clips = len(manifest["clips"])
-    for ci, clip in enumerate(manifest["clips"], 1):
+    clips = manifest["clips"]
+    if args.ids:
+        idset = set(args.ids)
+        clips = [c for c in clips if c["id"] in idset]
+    total_clips = len(clips)
+    for ci, clip in enumerate(clips, 1):
         clip_id = clip["id"]
         gt = clip["ground_truth_label"]
-        user = user_tmpl
+        tmpl = template_for(clip)
+        system = tmpl["system"]
+        user = tmpl["user"]
+        sampling = tmpl["sampling"]
         video = clip["video"]
         log_path = log_dir / f"{clip_id}.log"
 
         print(f"Running inference [{ci}/{total_clips}]: {clip_id} ...")
         t0 = time.time()
         output_text = ""
+        reasoning = ""
         rc = 0
         try:
             completion = client.chat.completions.create(
@@ -180,14 +208,21 @@ def main() -> int:
                     }
                 },
             )
-            output_text = completion.choices[0].message.content or ""
+            msg = completion.choices[0].message
+            output_text = msg.content or ""
+            # vLLM's qwen3 reasoning parser splits chain-of-thought out of
+            # `content` into a separate `reasoning` field (exposed via model_extra,
+            # not as a typed attribute). Capture it so misses are debuggable.
+            _dump = msg.model_dump() if hasattr(msg, "model_dump") else {}
+            reasoning = _dump.get("reasoning") or getattr(msg, "reasoning_content", None) or ""
         except Exception as exc:
             rc = 1
             output_text = f"ERROR: {exc}"
 
         elapsed = time.time() - t0
-        log_path.write_text(output_text)
-        parsed = extract_json_block(output_text) if rc == 0 else None
+        log_text = output_text if not reasoning else f"<think>\n{reasoning}\n</think>\n\n{output_text}"
+        log_path.write_text(log_text)
+        parsed = extract_json_block(log_text) if rc == 0 else None
         results.append(
             {
                 "id": clip_id,
@@ -197,6 +232,7 @@ def main() -> int:
                 "return_code": rc,
                 "elapsed_sec": round(elapsed, 1),
                 "parsed": parsed,
+                "reasoning": reasoning or None,
                 "log": str(log_path),
             }
         )

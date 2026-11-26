@@ -1,0 +1,762 @@
+[
+  {
+    "id": "lane_keeping__curved__13",
+    "ground_truth": "lane_keeping / curved",
+    "video": "clips/baton_8fps/lane_keeping__curved__13.mp4",
+    "scene": "driver_97/route_13",
+    "return_code": 0,
+    "elapsed_sec": 68.8,
+    "parsed": {
+      "road_geometry": "straight",
+      "events": [
+        {
+          "behavior": "keep_within_lane",
+          "time_of_event_sec": 0.0,
+          "confidence": 1.0,
+          "description": "The ego vehicle maintains a steady position within its lane, following the black sedan ahead without any lateral movement or deviation from the lane markings throughout the entire clip.",
+          "behavior_raw": "keep_within_lane"
+        }
+      ],
+      "overall_behavior": "keep_within_lane",
+      "overall_behavior_raw": "keep_within_lane"
+    },
+    "reasoning": null,
+    "log": "results/cosmos3_final_8fps_native/logs/lane_keeping__curved__13.log"
+  },
+  {
+    "id": "lane_keeping__curved__15",
+    "ground_truth": "lane_keeping / curved",
+    "video": "clips/baton_8fps/lane_keeping__curved__15.mp4",
+    "scene": "driver_97/route_14",
+    "return_code": 0,
+    "elapsed_sec": 74.5,
+    "parsed": {
+      "road_geometry": "straight",
+      "events": [
+        {
+          "behavior": "keep_within_lane",
+          "time_of_event_sec": 0.0,
+          "confidence": 1.0,
+          "description": "The ego vehicle maintains a steady position within the rightmost lane, following the red pickup truck ahead while approaching a red traffic signal. No lane changes or lateral movements occur throughout the clip.",
+          "behavior_raw": "keep_within_lane"
+        }
+      ],
+      "overall_behavior": "keep_within_lane",
+      "overall_behavior_raw": "keep_within_lane"
+    },
+    "reasoning": null,
+    "log": "results/cosmos3_final_8fps_native/logs/lane_keeping__curved__15.log"
+  },
+  {
+    "id": "lane_keeping__straight__02",
+    "ground_truth": "lane_keeping / straight",
+    "video": "clips/baton_8fps/lane_keeping__straight__02.mp4",
+    "scene": "driver_97/route_14",
+    "return_code": 0,
+    "elapsed_sec": 107.0,
+    "parsed": {
+      "road_geometry": "straight",
+      "events": [
+        {
+          "behavior": "keep_within_lane",
+          "time_of_event_sec": 0.0,
+          "confidence": 1.0,
+          "description": "The ego vehicle maintains a steady position in the right lane, following a black pickup truck, and does not deviate from its lane for the entire duration of the clip.",
+          "behavior_raw": "keep_within_lane"
+        }
+      ],
+      "overall_behavior": "keep_within_lane",
+      "overall_behavior_raw": "keep_within_lane"
+    },
+    "reasoning": null,
+    "log": "results/cosmos3_final_8fps_native/logs/lane_keeping__straight__02.log"
+  },
+  {
+    "id": "lane_keeping__straight__13",
+    "ground_truth": "lane_keeping / straight",
+    "video": "clips/baton_8fps/lane_keeping__straight__13.mp4",
+    "scene": "driver_97/route_21",
+    "return_code": 0,
+    "elapsed_sec": 78.5,
+    "parsed": {
+      "road_geometry": "straight",
+      "events": [
+        {
+          "behavior": "keep_within_lane",
+          "time_of_event_sec": 0.0,
+          "confidence": 1.0,
+          "description": "The ego vehicle drives straight along a two-way rural road, maintaining a consistent position within its lane without any lateral movement or deviation from the lane markings for the entire duration of the clip.",
+          "behavior_raw": "keep_within_lane"
+        }
+      ],
+      "overall_behavior": "keep_within_lane",
+      "overall_behavior_raw": "keep_within_lane"
+    },
+    "reasoning": null,
+    "log": "results/cosmos3_final_8fps_native/logs/lane_keeping__straight__13.log"
+  },
+  {
+    "id": "lane_keeping__straight__17",
+    "ground_truth": "lane_keeping / straight",
+    "video": "clips/baton_8fps/lane_keeping__straight__17.mp4",
+    "scene": "driver_97/route_22",
+    "return_code": 0,
+    "elapsed_sec": 72.0,
+    "parsed": {
+      "road_geometry": "straight",
+      "events": [
+        {
+          "behavior": "keep_within_lane",
+          "time_of_event_sec": 0.0,
+          "confidence": 1.0,
+          "description": "The ego vehicle drives straight along a two-way rural road, maintaining a steady position within its lane for the entire duration of the clip without any lateral deviation or lane changes.",
+          "behavior_raw": "keep_within_lane"
+        }
+      ],
+      "overall_behavior": "keep_within_lane",
+      "overall_behavior_raw": "keep_within_lane"
+    },
+    "reasoning": null,
+    "log": "results/cosmos3_final_8fps_native/logs/lane_keeping__straight__17.log"
+  },
+  {
+    "id": "lane_keeping__straight__19",
+    "ground_truth": "lane_keeping / straight",
+    "video": "clips/baton_8fps/lane_keeping__straight__19.mp4",
+    "scene": "driver_97/route_22",
+    "return_code": 0,
+    "elapsed_sec": 68.9,
+    "parsed": {
+      "road_geometry": "straight",
+      "events": [
+        {
+          "behavior": "keep_within_lane",
+          "time_of_event_sec": 0.0,
+          "confidence": 1.0,
+          "description": "The ego vehicle maintains a steady position within its lane, following the white dashed lane markings without any lateral deviation or lane changes throughout the entire clip.",
+          "behavior_raw": "keep_within_lane"
+        }
+      ],
+      "overall_behavior": "keep_within_lane",
+      "overall_behavior_raw": "keep_within_lane"
+    },
+    "reasoning": null,
+    "log": "results/cosmos3_final_8fps_native/logs/lane_keeping__straight__19.log"
+  },
+  {
+    "id": "lane_keeping__straight__21",
+    "ground_truth": "lane_keeping / straight",
+    "video": "clips/baton_8fps/lane_keeping__straight__21.mp4",
+    "scene": "driver_97/route_23",
+    "return_code": 0,
+    "elapsed_sec": 66.7,
+    "parsed": {
+      "road_geometry": "straight",
+      "events": [
+        {
+          "behavior": "keep_within_lane",
+          "time_of_event_sec": 0.0,
+          "confidence": 1.0,
+          "description": "The ego vehicle drives straight in the second lane from the right on a four\u2011lane road, maintaining a steady speed and staying within the lane markings for the entire duration of the clip.",
+          "behavior_raw": "keep_within_lane"
+        }
+      ],
+      "overall_behavior": "keep_within_lane",
+      "overall_behavior_raw": "keep_within_lane"
+    },
+    "reasoning": null,
+    "log": "results/cosmos3_final_8fps_native/logs/lane_keeping__straight__21.log"
+  },
+  {
+    "id": "lane_keeping__straight__25",
+    "ground_truth": "lane_keeping / straight",
+    "video": "clips/baton_8fps/lane_keeping__straight__25.mp4",
+    "scene": "driver_97/route_23",
+    "return_code": 0,
+    "elapsed_sec": 67.6,
+    "parsed": {
+      "road_geometry": "straight",
+      "events": [
+        {
+          "behavior": "keep_within_lane",
+          "time_of_event_sec": 0.0,
+          "confidence": 1.0,
+          "description": "The ego vehicle maintains a steady position within its lane, following the dashed white lane markings without any lateral deviation or steering adjustments throughout the entire clip.",
+          "behavior_raw": "keep_within_lane"
+        }
+      ],
+      "overall_behavior": "keep_within_lane",
+      "overall_behavior_raw": "keep_within_lane"
+    },
+    "reasoning": null,
+    "log": "results/cosmos3_final_8fps_native/logs/lane_keeping__straight__25.log"
+  },
+  {
+    "id": "lane_keeping__straight__26",
+    "ground_truth": "lane_keeping / straight",
+    "video": "clips/baton_8fps/lane_keeping__straight__26.mp4",
+    "scene": "driver_97/route_23",
+    "return_code": 0,
+    "elapsed_sec": 71.1,
+    "parsed": {
+      "road_geometry": "straight",
+      "events": [
+        {
+          "behavior": "keep_within_lane",
+          "time_of_event_sec": 0.0,
+          "confidence": 1.0,
+          "description": "The ego vehicle maintains a steady position in the middle lane, driving straight and keeping within the lane markings for the entire duration of the clip.",
+          "behavior_raw": "keep_within_lane"
+        }
+      ],
+      "overall_behavior": "keep_within_lane",
+      "overall_behavior_raw": "keep_within_lane"
+    },
+    "reasoning": null,
+    "log": "results/cosmos3_final_8fps_native/logs/lane_keeping__straight__26.log"
+  },
+  {
+    "id": "lane_recovery__04",
+    "ground_truth": "lane_recovery / straight",
+    "video": "clips/baton_8fps/lane_recovery__04.mp4",
+    "scene": "driver_97/route_16",
+    "return_code": 0,
+    "elapsed_sec": 63.7,
+    "parsed": {
+      "road_geometry": "straight",
+      "events": [
+        {
+          "behavior": "keep_within_lane",
+          "time_of_event_sec": 0.0,
+          "confidence": 1.0,
+          "description": "The ego vehicle maintains its position within the left lane, following a white car ahead without any lane changes or deviations.",
+          "behavior_raw": "keep_within_lane"
+        }
+      ],
+      "overall_behavior": "keep_within_lane",
+      "overall_behavior_raw": "keep_within_lane"
+    },
+    "reasoning": null,
+    "log": "results/cosmos3_final_8fps_native/logs/lane_recovery__04.log"
+  },
+  {
+    "id": "lane_recovery__10",
+    "ground_truth": "lane_recovery / curved",
+    "video": "clips/baton_8fps/lane_recovery__10.mp4",
+    "scene": "driver_97/route_20",
+    "return_code": 0,
+    "elapsed_sec": 131.5,
+    "parsed": {
+      "road_geometry": "straight",
+      "events": [
+        {
+          "behavior": "keep_within_lane",
+          "time_of_event_sec": 0.0,
+          "confidence": 1.0,
+          "description": "The ego vehicle is stopped in the rightmost lane of a three\u2011lane road, positioned behind a black SUV, and remains within the lane markings while waiting at the intersection.",
+          "behavior_raw": "keep_within_lane"
+        }
+      ],
+      "overall_behavior": "keep_within_lane",
+      "overall_behavior_raw": "keep_within_lane"
+    },
+    "reasoning": null,
+    "log": "results/cosmos3_final_8fps_native/logs/lane_recovery__10.log"
+  },
+  {
+    "id": "lane_recovery__17",
+    "ground_truth": "lane_recovery / straight",
+    "video": "clips/baton_8fps/lane_recovery__17.mp4",
+    "scene": "driver_97/route_21",
+    "return_code": 0,
+    "elapsed_sec": 137.1,
+    "parsed": {
+      "road_geometry": "straight",
+      "events": [
+        {
+          "behavior": "keep_within_lane",
+          "time_of_event_sec": 0.0,
+          "confidence": 1.0,
+          "description": "The ego vehicle travels straight in the rightmost lane, maintaining a consistent position relative to the lane markings.",
+          "behavior_raw": "keep_within_lane"
+        },
+        {
+          "behavior": "lane_change",
+          "time_of_event_sec": 6.0,
+          "confidence": 1.0,
+          "description": "The ego vehicle initiates a smooth lateral maneuver, crossing the dashed white line to move from the rightmost lane into the adjacent left lane.",
+          "behavior_raw": "lane_change"
+        },
+        {
+          "behavior": "keep_within_lane",
+          "time_of_event_sec": 9.0,
+          "confidence": 1.0,
+          "description": "After completing the lane change, the ego vehicle stabilizes and continues driving straight within the new left lane.",
+          "behavior_raw": "keep_within_lane"
+        }
+      ],
+      "overall_behavior": "lane_change",
+      "overall_behavior_raw": "lane_change"
+    },
+    "reasoning": null,
+    "log": "results/cosmos3_final_8fps_native/logs/lane_recovery__17.log"
+  },
+  {
+    "id": "lane_violation_left__01",
+    "ground_truth": "lane_violation_left / straight",
+    "video": "clips/baton_8fps/lane_violation_left__01.mp4",
+    "scene": "driver_97/route_10",
+    "return_code": 0,
+    "elapsed_sec": 153.4,
+    "parsed": {
+      "road_geometry": "straight",
+      "events": [
+        {
+          "behavior": "keep_within_lane",
+          "time_of_event_sec": 0.0,
+          "confidence": 1.0,
+          "description": "The ego vehicle travels straight in the right lane, maintaining its position between the lane markings.",
+          "behavior_raw": "keep_within_lane"
+        },
+        {
+          "behavior": "lane_change",
+          "time_of_event_sec": 5.0,
+          "confidence": 1.0,
+          "description": "The ego vehicle crosses the dashed white line to the left, moving from the right lane into the left lane.",
+          "behavior_raw": "lane_change"
+        },
+        {
+          "behavior": "keep_within_lane",
+          "time_of_event_sec": 5.0,
+          "confidence": 1.0,
+          "description": "The ego vehicle continues driving straight in the left lane, maintaining its position between the lane markings.",
+          "behavior_raw": "keep_within_lane"
+        },
+        {
+          "behavior": "lane_change",
+          "time_of_event_sec": 10.0,
+          "confidence": 1.0,
+          "description": "The ego vehicle crosses the dashed white line to the right, moving from the left lane back into the right lane.",
+          "behavior_raw": "lane_change"
+        },
+        {
+          "behavior": "keep_within_lane",
+          "time_of_event_sec": 10.0,
+          "confidence": 1.0,
+          "description": "The ego vehicle continues driving straight in the right lane, maintaining its position between the lane markings.",
+          "behavior_raw": "keep_within_lane"
+        }
+      ],
+      "overall_behavior": "lane_change",
+      "overall_behavior_raw": "lane_change"
+    },
+    "reasoning": null,
+    "log": "results/cosmos3_final_8fps_native/logs/lane_violation_left__01.log"
+  },
+  {
+    "id": "lane_violation_left__05",
+    "ground_truth": "lane_violation_left / straight",
+    "video": "clips/baton_8fps/lane_violation_left__05.mp4",
+    "scene": "driver_97/route_14",
+    "return_code": 0,
+    "elapsed_sec": 152.8,
+    "parsed": {
+      "road_geometry": "straight",
+      "events": [
+        {
+          "behavior": "keep_within_lane",
+          "time_of_event_sec": 0.0,
+          "confidence": 1.0,
+          "description": "The ego vehicle travels straight in the second lane from the right on a multi-lane highway.",
+          "behavior_raw": "keep_within_lane"
+        },
+        {
+          "behavior": "lane_change",
+          "time_of_event_sec": 2.0,
+          "confidence": 1.0,
+          "description": "The ego vehicle moves from the second lane from the right into the third lane from the right.",
+          "behavior_raw": "lane_change"
+        },
+        {
+          "behavior": "keep_within_lane",
+          "time_of_event_sec": 2.0,
+          "confidence": 1.0,
+          "description": "The ego vehicle maintains its position in the third lane from the right.",
+          "behavior_raw": "keep_within_lane"
+        },
+        {
+          "behavior": "lane_change",
+          "time_of_event_sec": 9.0,
+          "confidence": 1.0,
+          "description": "The ego vehicle moves from the third lane from the right into the rightmost lane.",
+          "behavior_raw": "lane_change"
+        },
+        {
+          "behavior": "keep_within_lane",
+          "time_of_event_sec": 9.0,
+          "confidence": 1.0,
+          "description": "The ego vehicle continues straight in the rightmost lane until the end of the clip.",
+          "behavior_raw": "keep_within_lane"
+        }
+      ],
+      "overall_behavior": "lane_change",
+      "overall_behavior_raw": "lane_change"
+    },
+    "reasoning": null,
+    "log": "results/cosmos3_final_8fps_native/logs/lane_violation_left__05.log"
+  },
+  {
+    "id": "lane_violation_left__06",
+    "ground_truth": "lane_violation_left / straight",
+    "video": "clips/baton_8fps/lane_violation_left__06.mp4",
+    "scene": "driver_97/route_16",
+    "return_code": 0,
+    "elapsed_sec": 74.4,
+    "parsed": {
+      "road_geometry": "straight",
+      "events": [
+        {
+          "behavior": "keep_within_lane",
+          "time_of_event_sec": 0.0,
+          "confidence": 1.0,
+          "description": "The ego vehicle drives straight in the left lane of a two-lane highway, maintaining a steady position between the lane markings for the entire duration of the clip.",
+          "behavior_raw": "keep_within_lane"
+        }
+      ],
+      "overall_behavior": "keep_within_lane",
+      "overall_behavior_raw": "keep_within_lane"
+    },
+    "reasoning": null,
+    "log": "results/cosmos3_final_8fps_native/logs/lane_violation_left__06.log"
+  },
+  {
+    "id": "lane_violation_left__10",
+    "ground_truth": "lane_violation_left / straight",
+    "video": "clips/baton_8fps/lane_violation_left__10.mp4",
+    "scene": "driver_97/route_19",
+    "return_code": 0,
+    "elapsed_sec": 62.2,
+    "parsed": {
+      "road_geometry": "curved",
+      "events": [
+        {
+          "behavior": "keep_within_lane",
+          "time_of_event_sec": 0.0,
+          "confidence": 1.0,
+          "description": "The ego vehicle drives straight and maintains its position within the lane boundaries, following the curve of the road without any deviation or lane changes.",
+          "behavior_raw": "keep_within_lane"
+        }
+      ],
+      "overall_behavior": "keep_within_lane",
+      "overall_behavior_raw": "keep_within_lane"
+    },
+    "reasoning": null,
+    "log": "results/cosmos3_final_8fps_native/logs/lane_violation_left__10.log"
+  },
+  {
+    "id": "lane_violation_left__13",
+    "ground_truth": "lane_violation_left / curved",
+    "video": "clips/baton_8fps/lane_violation_left__13.mp4",
+    "scene": "driver_97/route_2",
+    "return_code": 0,
+    "elapsed_sec": 69.3,
+    "parsed": {
+      "road_geometry": "straight",
+      "events": [
+        {
+          "behavior": "keep_within_lane",
+          "time_of_event_sec": 0.0,
+          "confidence": 1.0,
+          "description": "The ego vehicle drives straight within the left-turn lane, following the painted left-pointing arrows and maintaining position between the solid white line and the dashed lane markings for the entire duration of the clip.",
+          "behavior_raw": "keep_within_lane"
+        }
+      ],
+      "overall_behavior": "keep_within_lane",
+      "overall_behavior_raw": "keep_within_lane"
+    },
+    "reasoning": null,
+    "log": "results/cosmos3_final_8fps_native/logs/lane_violation_left__13.log"
+  },
+  {
+    "id": "lane_violation_left__14",
+    "ground_truth": "lane_violation_left / straight",
+    "video": "clips/baton_8fps/lane_violation_left__14.mp4",
+    "scene": "driver_97/route_21",
+    "return_code": 0,
+    "elapsed_sec": 104.2,
+    "parsed": {
+      "road_geometry": "straight",
+      "events": [
+        {
+          "behavior": "keep_within_lane",
+          "time_of_event_sec": 0.0,
+          "confidence": 0.95,
+          "description": "The ego vehicle travels straight in its lane, maintaining a steady position between the dashed white lane markings for the first eight seconds.",
+          "behavior_raw": "keep_within_lane"
+        },
+        {
+          "behavior": "lane_change",
+          "time_of_event_sec": 8.0,
+          "confidence": 0.95,
+          "description": "The ego vehicle initiates a smooth rightward maneuver, crossing the dashed white line to merge into the adjacent right lane, completing the transition by the end of the clip.",
+          "behavior_raw": "lane_change"
+        }
+      ],
+      "overall_behavior": "lane_change",
+      "overall_behavior_raw": "lane_change"
+    },
+    "reasoning": null,
+    "log": "results/cosmos3_final_8fps_native/logs/lane_violation_left__14.log"
+  },
+  {
+    "id": "lane_violation_left__18",
+    "ground_truth": "lane_violation_left / straight",
+    "video": "clips/baton_8fps/lane_violation_left__18.mp4",
+    "scene": "driver_97/route_21",
+    "return_code": 0,
+    "elapsed_sec": 73.0,
+    "parsed": {
+      "road_geometry": "straight",
+      "events": [
+        {
+          "behavior": "keep_within_lane",
+          "time_of_event_sec": 0.0,
+          "confidence": 1.0,
+          "description": "The ego vehicle maintains a steady position in the leftmost lane of a multi-lane highway, following a black pickup truck without deviating from its lane for the entire duration of the clip.",
+          "behavior_raw": "keep_within_lane"
+        }
+      ],
+      "overall_behavior": "keep_within_lane",
+      "overall_behavior_raw": "keep_within_lane"
+    },
+    "reasoning": null,
+    "log": "results/cosmos3_final_8fps_native/logs/lane_violation_left__18.log"
+  },
+  {
+    "id": "lane_violation_left__20",
+    "ground_truth": "lane_violation_left / straight",
+    "video": "clips/baton_8fps/lane_violation_left__20.mp4",
+    "scene": "driver_97/route_22",
+    "return_code": 0,
+    "elapsed_sec": 69.8,
+    "parsed": {
+      "road_geometry": "straight",
+      "events": [
+        {
+          "behavior": "keep_within_lane",
+          "time_of_event_sec": 0.0,
+          "confidence": 1.0,
+          "description": "The ego vehicle maintains a steady position within its lane, following the dashed white lane markings without any lateral deviation or crossing of lane lines throughout the entire clip.",
+          "behavior_raw": "keep_within_lane"
+        }
+      ],
+      "overall_behavior": "keep_within_lane",
+      "overall_behavior_raw": "keep_within_lane"
+    },
+    "reasoning": null,
+    "log": "results/cosmos3_final_8fps_native/logs/lane_violation_left__20.log"
+  },
+  {
+    "id": "lane_violation_left__21",
+    "ground_truth": "lane_violation_left / straight",
+    "video": "clips/baton_8fps/lane_violation_left__21.mp4",
+    "scene": "driver_97/route_22",
+    "return_code": 0,
+    "elapsed_sec": 93.4,
+    "parsed": {
+      "road_geometry": "straight",
+      "events": [
+        {
+          "behavior": "keep_within_lane",
+          "time_of_event_sec": 0.0,
+          "confidence": 1.0,
+          "description": "The ego vehicle travels straight in the rightmost lane, maintaining a consistent position behind a white car.",
+          "behavior_raw": "keep_within_lane"
+        },
+        {
+          "behavior": "lane_change",
+          "time_of_event_sec": 10.0,
+          "confidence": 1.0,
+          "description": "The ego vehicle initiates a leftward maneuver, crossing the dashed white line to move from the rightmost lane into the middle lane.",
+          "behavior_raw": "lane_change"
+        }
+      ],
+      "overall_behavior": "lane_change",
+      "overall_behavior_raw": "lane_change"
+    },
+    "reasoning": null,
+    "log": "results/cosmos3_final_8fps_native/logs/lane_violation_left__21.log"
+  },
+  {
+    "id": "lane_violation_right__00",
+    "ground_truth": "lane_violation_right / straight",
+    "video": "clips/baton_8fps/lane_violation_right__00.mp4",
+    "scene": "driver_97/route_10",
+    "return_code": 0,
+    "elapsed_sec": 103.0,
+    "parsed": {
+      "road_geometry": "straight",
+      "events": [
+        {
+          "behavior": "keep_within_lane",
+          "time_of_event_sec": 0.0,
+          "confidence": 1.0,
+          "description": "The ego vehicle is driving straight in the right lane of a two-lane highway.",
+          "behavior_raw": "keep_within_lane"
+        },
+        {
+          "behavior": "lane_change",
+          "time_of_event_sec": 8.0,
+          "confidence": 1.0,
+          "description": "The ego vehicle begins to change lanes from the right lane to the left lane.",
+          "behavior_raw": "lane_change"
+        },
+        {
+          "behavior": "keep_within_lane",
+          "time_of_event_sec": 10.0,
+          "confidence": 1.0,
+          "description": "The ego vehicle completes the lane change and continues driving straight in the left lane.",
+          "behavior_raw": "keep_within_lane"
+        }
+      ],
+      "overall_behavior": "lane_change",
+      "overall_behavior_raw": "lane_change"
+    },
+    "reasoning": null,
+    "log": "results/cosmos3_final_8fps_native/logs/lane_violation_right__00.log"
+  },
+  {
+    "id": "lane_violation_right__09",
+    "ground_truth": "lane_violation_right / curved",
+    "video": "clips/baton_8fps/lane_violation_right__09.mp4",
+    "scene": "driver_97/route_2",
+    "return_code": 0,
+    "elapsed_sec": 75.7,
+    "parsed": {
+      "road_geometry": "straight",
+      "events": [
+        {
+          "behavior": "keep_within_lane",
+          "time_of_event_sec": 0.0,
+          "confidence": 1.0,
+          "description": "The ego vehicle maintains its position within the right lane, driving straight toward the intersection without any lateral movement or deviation from the lane markings.",
+          "behavior_raw": "keep_within_lane"
+        }
+      ],
+      "overall_behavior": "keep_within_lane",
+      "overall_behavior_raw": "keep_within_lane"
+    },
+    "reasoning": null,
+    "log": "results/cosmos3_final_8fps_native/logs/lane_violation_right__09.log"
+  },
+  {
+    "id": "lane_violation_right__13",
+    "ground_truth": "lane_violation_right / curved",
+    "video": "clips/baton_8fps/lane_violation_right__13.mp4",
+    "scene": "driver_97/route_21",
+    "return_code": 0,
+    "elapsed_sec": 142.5,
+    "parsed": {
+      "road_geometry": "straight",
+      "events": [
+        {
+          "behavior": "lane_wandering",
+          "time_of_event_sec": 0.0,
+          "confidence": 0.9,
+          "description": "The ego vehicle is positioned on the boundary between the rightmost lane and the adjacent lane, drifting slightly across the dashed white line while maintaining forward motion.",
+          "behavior_raw": "lane_wandering"
+        },
+        {
+          "behavior": "keep_within_lane",
+          "time_of_event_sec": 3.0,
+          "confidence": 0.9,
+          "description": "The ego vehicle fully enters and stabilizes within the rightmost right\u2011turn\u2011only lane, following the lane markings toward the intersection.",
+          "behavior_raw": "keep_within_lane"
+        }
+      ],
+      "overall_behavior": "lane_wandering",
+      "overall_behavior_raw": "right_turn"
+    },
+    "reasoning": null,
+    "log": "results/cosmos3_final_8fps_native/logs/lane_violation_right__13.log"
+  },
+  {
+    "id": "lane_violation_right__16",
+    "ground_truth": "lane_violation_right / straight",
+    "video": "clips/baton_8fps/lane_violation_right__16.mp4",
+    "scene": "driver_97/route_21",
+    "return_code": 0,
+    "elapsed_sec": 93.5,
+    "parsed": {
+      "road_geometry": "straight",
+      "events": [
+        {
+          "behavior": "keep_within_lane",
+          "time_of_event_sec": 0.0,
+          "confidence": 1.0,
+          "description": "The ego vehicle travels straight in the left lane, maintaining a consistent position within the lane boundaries.",
+          "behavior_raw": "keep_within_lane"
+        },
+        {
+          "behavior": "lane_change",
+          "time_of_event_sec": 11.0,
+          "confidence": 1.0,
+          "description": "The ego vehicle begins to move right, crossing the dashed white line to transition from the left lane into the right lane.",
+          "behavior_raw": "lane_change"
+        }
+      ],
+      "overall_behavior": "lane_change",
+      "overall_behavior_raw": "lane_change"
+    },
+    "reasoning": null,
+    "log": "results/cosmos3_final_8fps_native/logs/lane_violation_right__16.log"
+  },
+  {
+    "id": "lane_violation_right__18",
+    "ground_truth": "lane_violation_right / straight",
+    "video": "clips/baton_8fps/lane_violation_right__18.mp4",
+    "scene": "driver_97/route_21",
+    "return_code": 0,
+    "elapsed_sec": 72.8,
+    "parsed": {
+      "road_geometry": "straight",
+      "events": [
+        {
+          "behavior": "keep_within_lane",
+          "time_of_event_sec": 0.0,
+          "confidence": 1.0,
+          "description": "The ego vehicle maintains a steady position within its lane, driving straight along the highway without any lateral deviation or lane changes for the entire duration of the clip.",
+          "behavior_raw": "keep_within_lane"
+        }
+      ],
+      "overall_behavior": "keep_within_lane",
+      "overall_behavior_raw": "keep_within_lane"
+    },
+    "reasoning": null,
+    "log": "results/cosmos3_final_8fps_native/logs/lane_violation_right__18.log"
+  },
+  {
+    "id": "lane_violation_right__27",
+    "ground_truth": "lane_violation_right / straight",
+    "video": "clips/baton_8fps/lane_violation_right__27.mp4",
+    "scene": "driver_97/route_23",
+    "return_code": 0,
+    "elapsed_sec": 68.2,
+    "parsed": {
+      "road_geometry": "straight",
+      "events": [
+        {
+          "behavior": "keep_within_lane",
+          "time_of_event_sec": 0.0,
+          "confidence": 1.0,
+          "description": "The ego vehicle drives straight in the left lane of a multi-lane highway, maintaining a consistent position within the lane for the entire duration of the clip.",
+          "behavior_raw": "keep_within_lane"
+        }
+      ],
+      "overall_behavior": "keep_within_lane",
+      "overall_behavior_raw": "keep_within_lane"
+    },
+    "reasoning": null,
+    "log": "results/cosmos3_final_8fps_native/logs/lane_violation_right__27.log"
+  }
+]

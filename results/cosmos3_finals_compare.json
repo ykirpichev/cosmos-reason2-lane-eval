@@ -1,0 +1,226 @@
+{
+  "positive_class": "lane_change",
+  "models": {
+    "c3_4fps2x": "results/cosmos3_final_4fps2x/summary.json",
+    "c3_8fps2x": "results/cosmos3_final_8fps2x/summary.json"
+  },
+  "vs_human": {
+    "c3_4fps2x": {
+      "n": 27,
+      "accuracy": 0.6667,
+      "correct": 18,
+      "confusion": {
+        "keep_within_lane": {
+          "keep_within_lane": 13,
+          "lane_change": 0,
+          "lane_wandering": 1
+        },
+        "lane_change": {
+          "keep_within_lane": 6,
+          "lane_change": 5,
+          "lane_wandering": 2
+        },
+        "lane_wandering": {
+          "keep_within_lane": 0,
+          "lane_change": 0,
+          "lane_wandering": 0
+        }
+      },
+      "crossing": {
+        "positive_class": "lane_change",
+        "tp": 5,
+        "fp": 0,
+        "fn": 8,
+        "precision": 1.0,
+        "recall": 0.3846,
+        "f1": 0.5556
+      }
+    },
+    "c3_8fps2x": {
+      "n": 27,
+      "accuracy": 0.6667,
+      "correct": 18,
+      "confusion": {
+        "keep_within_lane": {
+          "keep_within_lane": 12,
+          "lane_change": 1,
+          "lane_wandering": 0
+        },
+        "lane_change": {
+          "keep_within_lane": 6,
+          "lane_change": 6,
+          "lane_wandering": 1
+        },
+        "lane_wandering": {
+          "keep_within_lane": 0,
+          "lane_change": 0,
+          "lane_wandering": 0
+        }
+      },
+      "crossing": {
+        "positive_class": "lane_change",
+        "tp": 6,
+        "fp": 1,
+        "fn": 7,
+        "precision": 0.8571,
+        "recall": 0.4615,
+        "f1": 0.6
+      }
+    }
+  },
+  "head_to_head": {
+    "n_both": 27,
+    "agree": 18,
+    "agreement_rate": 0.6667,
+    "n_flips": 9,
+    "flips": [
+      {
+        "id": "lane_keeping__straight__13",
+        "human": "keep_within_lane",
+        "c3_4fps2x": "lane_wandering",
+        "c3_8fps2x": "keep_within_lane"
+      },
+      {
+        "id": "lane_recovery__04",
+        "human": "lane_change",
+        "c3_4fps2x": "lane_change",
+        "c3_8fps2x": "keep_within_lane"
+      },
+      {
+        "id": "lane_recovery__10",
+        "human": "keep_within_lane",
+        "c3_4fps2x": "keep_within_lane",
+        "c3_8fps2x": "right_turn"
+      },
+      {
+        "id": "lane_violation_left__01",
+        "human": "lane_change",
+        "c3_4fps2x": "lane_wandering",
+        "c3_8fps2x": "lane_change"
+      },
+      {
+        "id": "lane_violation_left__10",
+        "human": "lane_change",
+        "c3_4fps2x": "keep_within_lane",
+        "c3_8fps2x": "lane_change"
+      },
+      {
+        "id": "lane_violation_right__00",
+        "human": "lane_change",
+        "c3_4fps2x": "lane_wandering",
+        "c3_8fps2x": "keep_within_lane"
+      },
+      {
+        "id": "lane_violation_right__09",
+        "human": "keep_within_lane",
+        "c3_4fps2x": "keep_within_lane",
+        "c3_8fps2x": "lane_change"
+      },
+      {
+        "id": "lane_violation_right__13",
+        "human": "lane_change",
+        "c3_4fps2x": "lane_change",
+        "c3_8fps2x": "lane_wandering"
+      },
+      {
+        "id": "lane_violation_right__27",
+        "human": "lane_change",
+        "c3_4fps2x": "keep_within_lane",
+        "c3_8fps2x": "lane_change"
+      }
+    ]
+  },
+  "human_crossings": [
+    {
+      "id": "lane_recovery__04",
+      "c3_4fps2x": "lane_change",
+      "c3_8fps2x": "keep_within_lane",
+      "c3_4fps2x_caught": true,
+      "c3_8fps2x_caught": false
+    },
+    {
+      "id": "lane_recovery__17",
+      "c3_4fps2x": "lane_change",
+      "c3_8fps2x": "lane_change",
+      "c3_4fps2x_caught": true,
+      "c3_8fps2x_caught": true
+    },
+    {
+      "id": "lane_violation_left__01",
+      "c3_4fps2x": "lane_wandering",
+      "c3_8fps2x": "lane_change",
+      "c3_4fps2x_caught": false,
+      "c3_8fps2x_caught": true
+    },
+    {
+      "id": "lane_violation_left__05",
+      "c3_4fps2x": "lane_change",
+      "c3_8fps2x": "lane_change",
+      "c3_4fps2x_caught": true,
+      "c3_8fps2x_caught": true
+    },
+    {
+      "id": "lane_violation_left__10",
+      "c3_4fps2x": "keep_within_lane",
+      "c3_8fps2x": "lane_change",
+      "c3_4fps2x_caught": false,
+      "c3_8fps2x_caught": true
+    },
+    {
+      "id": "lane_violation_left__14",
+      "c3_4fps2x": "keep_within_lane",
+      "c3_8fps2x": "keep_within_lane",
+      "c3_4fps2x_caught": false,
+      "c3_8fps2x_caught": false
+    },
+    {
+      "id": "lane_violation_left__18",
+      "c3_4fps2x": "keep_within_lane",
+      "c3_8fps2x": "keep_within_lane",
+      "c3_4fps2x_caught": false,
+      "c3_8fps2x_caught": false
+    },
+    {
+      "id": "lane_violation_left__20",
+      "c3_4fps2x": "keep_within_lane",
+      "c3_8fps2x": "keep_within_lane",
+      "c3_4fps2x_caught": false,
+      "c3_8fps2x_caught": false
+    },
+    {
+      "id": "lane_violation_left__21",
+      "c3_4fps2x": "lane_change",
+      "c3_8fps2x": "lane_change",
+      "c3_4fps2x_caught": true,
+      "c3_8fps2x_caught": true
+    },
+    {
+      "id": "lane_violation_right__00",
+      "c3_4fps2x": "lane_wandering",
+      "c3_8fps2x": "keep_within_lane",
+      "c3_4fps2x_caught": false,
+      "c3_8fps2x_caught": false
+    },
+    {
+      "id": "lane_violation_right__13",
+      "c3_4fps2x": "lane_change",
+      "c3_8fps2x": "lane_wandering",
+      "c3_4fps2x_caught": true,
+      "c3_8fps2x_caught": false
+    },
+    {
+      "id": "lane_violation_right__16",
+      "c3_4fps2x": "keep_within_lane",
+      "c3_8fps2x": "keep_within_lane",
+      "c3_4fps2x_caught": false,
+      "c3_8fps2x_caught": false
+    },
+    {
+      "id": "lane_violation_right__27",
+      "c3_4fps2x": "keep_within_lane",
+      "c3_8fps2x": "lane_change",
+      "c3_4fps2x_caught": false,
+      "c3_8fps2x_caught": true
+    }
+  ]
+}
