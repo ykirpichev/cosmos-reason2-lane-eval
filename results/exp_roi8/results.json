@@ -1,0 +1,42 @@
+{
+  "config": "ROI(0.36, 0.95) zoom w=1052 @ 8.0fps greedy",
+  "n": 27,
+  "accuracy": 0.9259,
+  "lane_change": {
+    "tp": 11,
+    "fp": 0,
+    "fn": 2,
+    "precision": 1.0,
+    "recall": 0.8462,
+    "f1": 0.9167
+  },
+  "preds": {
+    "lane_keeping__curved__13": "keep_within_lane",
+    "lane_keeping__curved__15": "keep_within_lane",
+    "lane_keeping__straight__02": "keep_within_lane",
+    "lane_keeping__straight__13": "keep_within_lane",
+    "lane_keeping__straight__17": "keep_within_lane",
+    "lane_keeping__straight__19": "keep_within_lane",
+    "lane_keeping__straight__21": "keep_within_lane",
+    "lane_keeping__straight__25": "keep_within_lane",
+    "lane_keeping__straight__26": "keep_within_lane",
+    "lane_recovery__04": "lane_change",
+    "lane_recovery__10": "keep_within_lane",
+    "lane_recovery__17": "lane_change",
+    "lane_violation_left__01": "lane_change",
+    "lane_violation_left__05": "lane_change",
+    "lane_violation_left__06": "keep_within_lane",
+    "lane_violation_left__10": "lane_change",
+    "lane_violation_left__13": "keep_within_lane",
+    "lane_violation_left__14": "lane_change",
+    "lane_violation_left__18": "keep_within_lane",
+    "lane_violation_left__20": "keep_within_lane",
+    "lane_violation_left__21": "lane_change",
+    "lane_violation_right__00": "lane_change",
+    "lane_violation_right__09": "keep_within_lane",
+    "lane_violation_right__13": "lane_change",
+    "lane_violation_right__16": "lane_change",
+    "lane_violation_right__18": "keep_within_lane",
+    "lane_violation_right__27": "lane_change"
+  }
+}
